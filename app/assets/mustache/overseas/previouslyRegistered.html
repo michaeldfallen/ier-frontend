@@ -1,0 +1,38 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{previouslyRegistered.classes}}"
+              data-validation-name="previouslyRegistered"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="radioYes radioNo">
+
+        <label for="{{previouslyRegisteredTrue.id}}" class="binary selectable">
+            <input type="radio" id="{{previouslyRegisteredTrue.id}}"
+                   name="{{previouslyRegisteredTrue.name}}"
+                   value="true" class="radio validate"
+                   data-validation-name="radioYes"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previouslyRegisteredTrue.attributes}}} >Yes</input>
+        </label>
+
+        <label for="{{previouslyRegisteredFalse.id}}" class="binary selectable">
+            <input type="radio" id="{{previouslyRegisteredFalse.id}}"
+                   name="{{previouslyRegisteredFalse.name}}"
+                   value="false" class="radio validate"
+                   data-validation-name="radioNo"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previouslyRegisteredFalse.attributes}}}>No</input>
+        </label>
+
+    </fieldset>
+
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="previouslyRegistered">Continue</button>
+
+</form>

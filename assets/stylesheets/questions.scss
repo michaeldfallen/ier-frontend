@@ -1,0 +1,754 @@
+/* Styles for the question pages */
+
+@import "toolkit";
+
+/* global form control styles */
+
+legend {
+  @include bold-19;
+  float: left;
+  width: 100%;
+  margin-bottom: 1em;
+
+  &.paragraph {
+    font-weight: normal;
+  }
+}
+
+label,
+.label,
+select,
+input,
+textarea {
+  @include core-19;
+}
+
+label,
+textarea,
+.search,
+.next {
+  display: block;
+}
+
+label {
+  margin-bottom: 0.5em;
+}
+
+textarea,
+select {
+  margin-bottom: 1em;
+}
+
+label.selectable{
+  display: block;
+  position: relative;
+	background: #F0F0F0;
+	padding: 12px 14px 12px 46px;
+	margin: 0 0 1em 0;
+  overflow: hidden;
+  cursor: pointer;
+  @include ie(6) {
+    zoom: 1;
+  }
+
+  div.invalid & {
+    outline: solid 4px $mellow-red;
+  }
+
+  input {
+    position: absolute;
+    left: 14px;
+    top: 0.65em;
+    margin-right: 10px;
+  }
+
+  .visuallyhidden { /* line-height is breaking layout in firefox */
+    line-height: 0;
+  }
+
+  @include media(tablet) {
+    float: left;
+    clear: left;
+    line-height: 140%;
+    margin-right: 1em;
+
+    & input {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+label.binary {
+  @include inline-block;
+  margin-right: 10px;
+  margin-bottom: 0;
+  width: 26%;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include media($min-width: 430px) {
+    float: none;
+    width: auto;
+    @include inline-block;
+  }
+}
+
+label.selected {
+	border: 1px solid #555;
+	background: #fff;
+	padding: 11px 13px 11px 45px;
+}
+
+label.single-field {
+  margin-bottom: 0;
+}
+
+textarea,
+textarea.small,
+select.lonely,
+input.text,
+input.long,
+.twitter-typeahead {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input.text {
+	text-transform: none;
+	border: 1px solid #bbb;
+	margin: 0 0 1em;
+	padding: 0.5em;
+
+  .multi-line-field & {
+    margin-bottom: 1em;
+  }
+
+  .multi-line-field &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@include media(tablet) {
+  input.text {
+    width: auto;
+  }
+
+  input.long {
+    width: 320px;
+  }
+
+  textarea,
+  select.lonely {
+    display: block;
+    width: auto;
+  }
+
+  textarea.small {
+    width: 320px;
+    min-height: 120px;
+  }
+
+  textarea.large {
+    width: 99%;
+    height: 15em;
+  }
+}
+
+input.small{
+  width: 4.25em;
+}
+
+input.medium {
+  width: 8.5em;
+}
+
+input.nino {
+  text-transform: uppercase;
+}
+
+input.day,
+input.month {
+  width: 2.75em;
+}
+
+input.year {
+  width: 4.25em;
+}
+
+input.postcode {
+  text-transform: uppercase;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.inline-fields {
+  label {
+    margin-bottom: 0.5em;
+  }
+
+  input.text {
+    margin-right: 1em;
+  }
+
+  .field-wrapper {
+    @include inline-block;
+  }
+}
+
+span.date {
+  word-spacing: 0.25em;
+}
+
+/* layout styles specific to question pages */
+
+main header {
+  &,
+  & p {
+    @include core-16;
+
+    @include media(mobile) {
+      font-size: 16px;
+    }
+  }
+
+  padding-bottom: 2em;
+
+  p {
+    text-align: right;
+    padding-left: 4.5em;
+    margin-bottom: 0;
+    color: $grey-1;
+
+    @include media(tablet) {
+      text-align: left;
+    }
+  }
+
+  &.question-one p,
+  &.no-back-link p {
+    padding-left: 0;
+  }
+
+  h1 {
+    margin-top: 2em;
+
+    @include media(tablet) {
+      margin-top: 1.2em;
+    }
+  }
+}
+
+/* field modules */
+
+fieldset,
+.optional-section,
+.help-content {
+  & :last-child {
+    margin-bottom: 0;
+  }
+}
+
+fieldset {
+  @extend %contain-floats;
+  margin-left: 0;
+}
+
+.example {
+  margin: -0.5em 0 0;
+
+  fieldset & {
+    margin-bottom: 0.5em;
+    margin-top: -0.5em;
+  }
+
+  &.inline-fields .example {
+    margin-bottom: 0;
+    margin-top: 0.5em;
+  }
+}
+
+.optional-section,
+.help-content {
+  border-left: $grey-2 solid 4px;
+  padding: 14px 0 14px 14px;
+  margin-bottom: 1em;
+  clear: both;
+  @extend %contain-floats;
+}
+
+.optional-section {
+  h2, h3 {
+    @include bold-19;
+  }
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+/* Display of help/optional sections */
+.js-enabled .optional-section,
+.js-enabled .help-content {
+  display: none;
+}
+
+.js-enabled .optional-section-open,
+.js-enabled .help-content-open {
+  display: block;
+}
+/* help content for the whole page */
+.page-help-content:last-child {
+  margin-bottom: 2em;
+}
+
+/* additional information blocks embedded in field modules */
+.optional-section-core-content,
+.help-content .optional-section,
+#found-addresses .optional-section {
+  border-left: none;
+  padding-left: 0;
+}
+
+.help-content .optional-section,
+#found-addresses .optional-section {
+  padding: 14px 0 0;
+}
+
+.optional-section-core-content {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* example of suggested field input */
+.inline-fields .example {
+  margin-bottom: 0;
+  margin-top: 0.5em;
+}
+
+/* styles for the autocomplete dropdown */
+
+.typeahead,
+.tt-query,
+.tt-hint {
+	font-size: 19px;
+	line-height: 1.25;
+	font-weight: 300;
+	text-transform: none;
+	border: 1px solid #bbb;
+	margin: 0;
+	padding: 0.5em;
+}
+
+.tt-hint{
+	display: none;
+}
+
+.tt-dropdown-menu {
+	padding: 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+.tt-suggestion {
+	padding: 0.5em;
+	font-size: 19px;
+	line-height: 24px;
+}
+
+.tt-suggestion p{
+	margin: 0;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+	color: #fff;
+	background-color: #0097cf;
+}
+
+.twitter-typeahead {
+  margin-bottom: 0.5em;
+
+  .validation-wrapper .optional-section & input {
+    margin-bottom: 0;
+  }
+}
+
+.added-country {
+  margin: 0 0 1em;
+
+  a {
+    @include core-19;
+  }
+
+  .country-label,
+  .remove-field {
+    float: left;
+    line-height: 1.25;
+    margin-bottom: 0.5em;
+  }
+
+  .text {
+    clear: left;
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .tt-dropdown-menu {
+    margin-top: 0;
+  }
+
+  .duplication-intro {
+    margin-bottom: 0;
+  }
+}
+
+.duplicate-control {
+  @include core-19;
+  display: block;
+
+  p & {
+    display: inline;
+  }
+}
+
+.remove-field {
+  margin-left: 1em;
+}
+
+/* additional content toggle */
+
+.toggle {
+  @include core-19;
+  display: block;
+  float: left;
+  clear: both;
+  margin: 2em 0;
+
+  fieldset & {
+    margin-bottom: 0;
+  }
+
+  .help-content &,
+  .optional-section & {
+    margin: 0;
+  }
+
+  .contains-addresses & {
+    margin: 1em 0 2em;
+  }
+
+  /* overwrite for being in an .optional-section */
+  .optional-section-core-content & {
+    margin: 2em 0;
+  }
+
+  .optional-section-core-content .contains-addresses & {
+    margin-top: 1em;
+  }
+}
+
+.toggle-closed {
+  background: url("/assets/images/icon-caret-right.png") left 0.3em no-repeat;
+  padding-left: 0.75em;
+}
+
+.toggle-open {
+  background: url("/assets/images/icon-caret-down.png") left 0.5em no-repeat;
+  padding-left: 0.75em;
+  margin-bottom: 0;
+
+  #found-addresses & {
+    margin-bottom: 0;
+  }
+}
+
+.toggle-form-footer {
+  margin-top: 0;
+}
+
+.help-content,
+.optional-section {
+  & .toggle-closed,
+  & .toggle-open {
+    background-image: none;
+    padding-left: 0;
+  }
+}
+
+.optional-section-core-content #found-addresses {
+  & .toggle-closed,
+  & .toggle-open {
+    padding-left: 0.75em;
+  }
+
+  & .toggle-closed {
+    background-image: url("/assets/images/icon-caret-right.png");
+  }
+
+  & .toggle-open {
+    background-image: url("/assets/images/icon-caret-down.png");
+  }
+}
+
+/* call to action buttons */
+
+.next,
+.search {
+  box-sizing: border-box;
+  font-size: 19px;
+  text-align: center;
+  clear: both;
+  margin: 2em 0;
+  width: 100%;
+
+  @include media(tablet) {
+    width: auto;
+  }
+}
+
+.next {
+  @include core-19;
+  padding: 0.6em 0.8em 0.5em 0.8em;
+
+  @include media(mobile) {
+    font-size: 19px;
+  }
+
+  /* overwrite for matching :last-child */
+  #found-addresses & {
+    margin-bottom: 2em;
+  }
+}
+
+.search {
+  @include button($mainstream-brand);
+  @include core-19;
+  display: block;
+  padding: 0.6em 0.8em 0.5em 0.8em;
+  margin-top: 0;
+
+  @include media(mobile) {
+    font-size: 19px;
+  }
+}
+
+input.postcode {
+  text-transform: uppercase;
+}
+
+span.postcode {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.postcode-prefix {
+  display: block;
+  line-height: (25 / 19);
+  margin-bottom: 0.5em;
+}
+
+#wait-for-request {
+  padding-right: 20px;
+  background: url('/assets/images/spinner.gif') right center no-repeat;
+  @include inline-block;
+}
+
+#found-addresses {
+  @extend %contain-floats;
+
+  &.contains-addresses {
+    margin-top: 2em;
+  }
+}
+
+/* validation styles */
+
+.validation-wrapper {
+  @extend %contain-floats;
+  font-size: 19px;
+  clear: left;
+  margin-bottom: 1em;
+
+  input,
+  select {
+    margin-bottom: 0;
+  }
+
+  & .help-content select {
+    margin-bottom: 1em;
+  }
+
+  & .added-country .text {
+    margin-bottom: 0;
+  }
+}
+
+.invalid {
+  outline: solid 4px $mellow-red;
+}
+
+/*
+  Should only apply to the div.validation-wrapper that
+  is applied around text fields etc.
+  Preferred over .validation-wrapper.invalid since older
+  browsers don't support class-chaining.
+ */
+div.invalid {
+  padding-left: 10px;
+  margin-left: -14px;
+  border-left: solid 4px #DF3034;
+  outline:none;
+
+  .optional-section &,
+  .help-content & {
+    padding-left: 28px;
+    margin-left: -32px;
+  }
+
+  .optional-section-core-content & :last-child {
+    margin-bottom: 0;
+  }
+
+  @include media(tablet) {
+    padding-left: 14px;
+    margin-left: -18px;
+
+    .optional-section &,
+    .help-content &,
+    .optional-section-core-content .optional-section & {
+      padding-left: 30px;
+      margin-left: -34px;
+    }
+
+    .optional-section-core-content & {
+      padding-left: 14px;
+      margin-left: -18px;
+    }
+  }
+}
+
+label.invalid,
+fieldset.invalid {
+  outline: none;
+}
+
+fieldset.invalid {
+  border-left: solid 4px $mellow-red;
+  padding-left: 10px;
+  margin-left: -14px;
+
+  @include media(tablet) {
+    padding-left: 14px;
+    margin-left: -18px;
+  }
+
+  .help-content & {
+    padding-left: 28px;
+    margin-left: -32px;
+
+    @include media(tablet) {
+      padding-left: 32px;
+      margin-left: -36px;
+    }
+  }
+}
+
+#found-addresses.invalid {
+  outline: none;
+
+  select {
+    outline: solid 4px $mellow-red;
+  }
+}
+
+#add-countries {
+  border-left: 0;
+  padding-left: 0;
+
+  &.invalid {
+    outline: none;
+    margin-left: 0;
+    border-left: $grey-2 solid 4px;
+  }
+
+  .validation-wrapper {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .js-enabled &.optional-section {
+    border-left: $grey-2 solid 4px;
+    padding: 14px 0 14px 14px;
+  }
+
+  .invalid .country-autocomplete {
+    outline: solid 4px $mellow-red;
+  }
+}
+
+fieldset.invalid {
+  border-left: solid 4px $mellow-red;
+  padding-left: 10px;
+  margin-left: -14px;
+
+  @include media(tablet) {
+    padding-left: 14px;
+    margin-left: -18px;
+  }
+
+  .help-content & {
+    padding-left: 28px;
+    margin-left: -32px;
+
+    @include media(tablet) {
+      padding-left: 32px;
+      margin-left: -36px;
+    }
+  }
+}
+
+.validation-message {
+	font-size: 19px;
+	display: none;
+  clear: both;
+	padding: 10px;
+	margin: 1em 0 1em -14px;
+	border-left: 4px solid $mellow-red;
+	color: $mellow-red;
+	font-weight: bold;
+
+  @include media(tablet) {
+    padding-left: 14px;
+    margin-left: -18px;
+  }
+
+  /* messages added to label text */
+  label & {
+    display: block;
+    position: absolute;
+    left: -9999em;
+    top: -9999em;
+  }
+
+  a {
+    color: $mellow-red;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Styles for content specific to pages without JavaScript enabled */
+
+.js-enabled #alt-continue {
+  display: none;
+}

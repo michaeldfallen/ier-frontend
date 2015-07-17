@@ -1,0 +1,67 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{waysToVote.classes}}"
+              data-validation-name="waysToVote"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="byPost byProxy inPerson">
+
+        <p>
+        <label for="{{byPost.id}}" class="selectable binary"  >
+            <input type="radio"
+                   id="{{byPost.id}}"
+                   name="{{byPost.name}}"
+                   value="{{byPost.value}}"
+                   class="radio validate {{byPost.classes}}"
+                   data-validation-name="byPost"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{byPost.attributes}}}>
+            By post
+        </label>
+        </p>
+
+        <p>
+        <label for="{{byProxy.id}}" class="selectable binary"  >
+            <input type="radio"
+                   id="{{byProxy.id}}"
+                   name="{{byProxy.name}}"
+                   value="{{byProxy.value}}"
+                   class="radio  validate {{byProxy.classes}}"
+                   data-validation-name="byProxy"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{byProxy.attributes}}}>
+            By proxy (someone else voting for you)
+        </label>
+        </p>
+
+        <p>or</p>
+
+        <p>
+        <label for="{{inPerson.id}}" class="selectable binary"  >
+            <input type="radio"
+                   id="{{inPerson.id}}"
+                   name="{{inPerson.name}}"
+                   value="{{inPerson.value}}"
+                   class="radio  validate {{inPerson.classes}}"
+                   data-validation-name="inPerson"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{inPerson.attributes}}}>
+            In the UK, at a polling station
+        </label>
+        </p>
+
+    </fieldset>
+
+    <button id="continue"
+            type="submit"
+            class="button next validation-submit"
+            data-validation-sources="waysToVote">
+        Continue
+    </button>
+</form>

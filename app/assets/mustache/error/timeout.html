@@ -1,0 +1,21 @@
+{{<template/govuk}}
+
+{{$pageTitle}}Sorry, you'll have to start again{{/pageTitle}}
+
+{{$main}}
+<header>
+  <h1>Sorry, you'll have to start again</h1>
+</header>
+<article>
+  <p class="summary">
+      You haven't entered any details for {{timeout}} minutes,
+      so we have cleared your information to keep it secure.
+  </p>
+  <p>
+    <a href="{{startUrl}}" class="button">Start again</a>
+  </p>
+</article>
+{{/main}}
+
+{{/template/govuk}}
+

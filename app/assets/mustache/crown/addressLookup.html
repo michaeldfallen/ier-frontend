@@ -1,0 +1,39 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset>
+        <label for="{{postcode.id}}">
+            Postcode
+        </label>
+        <div class="validation-wrapper {{postcode.classes}}">
+            <input
+                type="text"
+                id="{{postcode.id}}"
+                name="{{postcode.name}}"
+                value="{{postcode.value}}"
+                autocomplete="off"
+                class="text postcode medium validate {{postcode.classes}}"
+                data-validation-name="postcode"
+                data-validation-type="field"
+                data-validation-rules="nonEmpty postcode"
+            />
+        </div>
+    </fieldset>
+
+    <button
+        id="find-address"
+        type="submit"
+        class="button next validation-submit"
+        data-validation-sources="postcode"
+    >
+        Find address
+    </button>
+
+    <input
+        type="hidden"
+        id="{{hasUkAddress.id}}"
+        name="{{hasUkAddress.name}}"
+        value="{{hasUkAddress.value}}">
+
+</form>

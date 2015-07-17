@@ -1,0 +1,40 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset>
+
+        <p>
+          {{messages.ordinary_openRegister_content_1}}
+        </p>
+        <p>
+          {{messages.ordinary_openRegister_content_2}}
+        </p>
+        <label class="selectable"  >
+            <input type="checkbox" id="{{openRegister.id}}" name="{{openRegister.name}}" 
+              value="false" {{{openRegister.attributes}}} 
+              data-journey-click="Open Register:Opt out:Open register opt out">
+            {{messages.ordinary_openRegister_choice}}
+        </label>
+
+    </fieldset>
+    <button type="submit" id="alt-continue" class="button next">{{messages.step_continue}}</button>
+    <div class="help-content" data-toggle-text="{{messages.ordinary_data-toggle-text}}">
+        <h2>{{messages.ordinary_openRegister_help_link}}</h2>
+        <p>{{messages.ordinary_openRegister_help_content_1}}</p>
+        <h3>{{messages.ordinary_openRegister_help_heading_1}}</h3>
+        <p>{{messages.ordinary_openRegister_help_content_2}}</p>
+        <p>{{messages.ordinary_openRegister_help_content_3}}</p>
+        <ul>
+            <li>{{messages.ordinary_openRegister_help_detecting_crime}}</li>
+            <li>{{messages.ordinary_openRegister_help_calling_people}}</li>
+            <li>{{messages.ordinary_openRegister_help_checking_credit}}</li>
+        </ul>
+        <h3>{{messages.ordinary_openRegister_help_heading_2}}</h3>
+        <p>{{messages.ordinary_openRegister_help_content_4}}</p>
+        <p>{{messages.ordinary_openRegister_help_content_5}}</p>
+    </div>
+    <button type="submit" id="continue" class="button next">{{messages.step_continue}}</button>
+</form>

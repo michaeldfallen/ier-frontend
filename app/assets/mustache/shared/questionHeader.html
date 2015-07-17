@@ -1,0 +1,9 @@
+<header class="no-back-link">
+    {{#question.number}}
+    <p>{{messages.step_question}} {{question.number}}</p>
+    {{/question.number}}
+    {{^question.number}}
+    <br/>
+    {{/question.number}}
+    <h1>{{question.title}}</h1>
+</header>

@@ -1,0 +1,146 @@
+/* Styles for exit pages */
+
+@import "toolkit";
+
+.article {
+  position: relative;
+  @extend %contain-floats;
+  padding-top: 46px;
+
+  @include media(tablet) {
+    padding-top: 50px;
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+  }
+
+  h1 {
+    @include bold-48;
+    margin: 10px 0;
+
+    @include media(tablet){
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  h2 {
+    @include bold-24;
+    margin: 1.2em 0 0.4em 0;
+  }
+
+  h3 {
+    @include bold-19;
+    margin: 1em 0  0.75em;
+  }
+
+  .back-to-previous {
+    position: absolute;
+    top: 13px;
+    margin: 0 14px;
+
+    @include media(tablet) {
+      top: 20px;
+      margin-left: 32px;
+      margin-right: 32px;
+    }
+  }
+
+  header {
+    margin: 0;
+    padding: 0 14px 0;
+
+    @include media(tablet) {
+      margin: 0;
+      padding: 10px 2em;
+      max-width: 36em;
+    }
+  }
+
+  article {
+    padding-bottom: 2em;
+
+    p {
+      margin: 0.75em 0;
+
+      @include media(tablet) {
+        &.summary {
+          margin-top: 0;
+        }
+      }
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin: 1em 0 2em 0;
+      width: 100%;
+
+      caption {
+        padding-left: 0;
+      }
+
+      @include media(tablet) {
+        margin: 1em -1em 2em -1em;
+        width: 105.95%;
+
+        caption {
+          @include bold-24;
+          margin: 0.4em 0.5em 0.4em 0.7em;
+          text-align: left;
+        }
+      }
+    }
+
+    th, td {
+      @include core-16;
+      vertical-align: top;
+      padding: 0.7em 0.5em 0.7em 1em;
+
+      a[rel="external"] {
+        @include external-link-14;
+        @include media(tablet) {
+          @include external-link-16;
+        }
+      }
+    }
+
+    tr:nth-child(even) td {
+      background-color: #fff;
+    }
+
+    td {
+      background: #eaedef;
+      border: dotted 1px #b8c6cc;
+
+      small {
+        @include core-16;
+      }
+    }
+
+    /* reduce table font size on very small screens */
+    @media screen and (max-width: 320px) {
+      th, td, td small {
+        font-size: 10px;
+      }
+    }
+
+    th {
+      line-height: 1.25em;
+      text-align: left;
+      color: #0b0c0c;
+      font-weight: 700;
+      background-color: #DEE0E2;
+      border: solid 1px #a1acb2;
+    }
+  }
+
+  form {
+    padding-top: 0;
+  }
+}
+
+main.article header h1 { /* overwrite styles from questions.scss */
+  margin-top: 0;
+}

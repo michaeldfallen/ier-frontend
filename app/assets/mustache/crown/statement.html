@@ -1,0 +1,65 @@
+<form action="{{question.postUrl}}" method="POST" >
+    <header>
+        <h1>{{question.title}}</h1>
+    </header>
+
+    {{> shared/validationMessages }}
+
+    <fieldset id="{{crown.id}}" class="{{crown.classes}}">
+        <legend>
+            Crown servant
+        </legend>
+        <div class="validation-wrapper {{crownServant.classes}}">
+            <label class="selectable" for="{{crownServant.id}}">
+                <input
+                  id="{{crownServant.id}}"
+                  type="checkbox"
+                  name="{{crownServant.name}}"
+                  value="{{crownServant.value}}"
+                  {{{crownServant.attributes}}}>
+                I am a Crown servant
+            </label>
+        </div>
+        <div class="validation-wrapper {{crownPartner.classes}}">
+            <label class="selectable" for="{{crownPartner.id}}">
+                <input
+                  id="{{crownPartner.id}}"
+                  type="checkbox"
+                  name="{{crownPartner.name}}"
+                  value="{{crownPartner.value}}"
+                  {{{crownPartner.attributes}}}>
+                I am the wife, husband or civil partner of a Crown servant
+            </label>
+        </div>
+    </fieldset>
+
+    <fieldset id="{{council.id}}" class="sub-section {{council.classes}}">
+        <legend>
+            British Council
+        </legend>
+        <div class="validation-wrapper {{councilEmployee.classes}}">
+            <label class="selectable" for="{{councilEmployee.id}}">
+                <input
+                  id="{{councilEmployee.id}}"
+                  type="checkbox"
+                  name="{{councilEmployee.name}}"
+                  value="{{councilEmployee.value}}"
+                  {{{councilEmployee.attributes}}}>
+                I am a British Council employee
+            </label>
+        </div>
+        <div class="validation-wrapper {{councilPartner.classes}}">
+            <label class="selectable" for="{{councilPartner.id}}">
+                <input
+                  id="{{councilPartner.id}}"
+                  type="checkbox"
+                  name="{{councilPartner.name}}"
+                  value="{{councilPartner.value}}"
+                  {{{councilPartner.attributes}}}>
+                I am the wife, husband or civil partner of a British Council employee
+            </label>
+        </div>
+    </fieldset>
+
+    <button type="submit" id="continue" class="button next">Continue</button>
+</form>

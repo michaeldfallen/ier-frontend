@@ -1,0 +1,33 @@
+{
+	"url" : "http://localhost:9900/ertp-api/ems/registration-requests",
+	
+	"eros" : [
+	  {
+			"token" : "iJfY1I-QLGYGVMLUTefW5ZREU5KezuBd7IVsTSRROlslE3lNuGiGOaQ90Z0EprfyeE9SFN08yYvFrGOM1XDsFQ",
+			"snac" : "99MA",
+			"upload" : {
+				"include" : true,
+				"frequency" : 2,
+				"uploadQuantity" : "100000",
+				"pageSize" : "500"
+			},
+			"jsonErrors" : {
+				"include" : false,
+				"frequency" : 5,
+				"percentage" : "100"
+			},
+			"validationErrors" : {
+				"include" : false,
+				"frequency" : 3,
+				"percentage" : "100"
+			},
+			"queueFetch" : {
+				"include" : false,
+				"frequency" : 1,
+				"fetches" : 1,
+				"pageSize" : 1000,
+				"consumeQueue" : false
+			}
+		}	
+  ]
+}

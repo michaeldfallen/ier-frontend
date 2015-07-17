@@ -1,0 +1,98 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+  {{> shared/questionHeader }}
+  {{> shared/validationMessages }}
+
+    <fieldset>
+
+        <input
+          type="hidden"
+          id="{{hasPassport.id}}"
+          name="{{hasPassport.name}}"
+          value="{{hasPassport.value}}">
+
+        <input
+          type="hidden"
+          id="{{bornInUk.id}}"
+          name="{{bornInUk.name}}"
+          value="{{bornInUk.value}}">
+
+        <label for="{{passportNumber.id}}">
+            Passport Number
+        </label>
+        <div class="validation-wrapper {{passportNumber.classes}}">
+            <input
+              type="text"
+              id="{{passportNumber.id}}"
+              name="{{passportNumber.name}}"
+              value="{{passportNumber.value}}"
+              autocomplete="off"
+              class="text long validate {{passportNumber.classes}}">
+        </div>
+
+        <label for="{{authority.id}}">
+            Authority/Place of Issue
+        </label>
+        <div class="validation-wrapper {{authority.classes}}">
+            <input
+              type="text"
+              id="{{authority.id}}"
+              name="{{authority.name}}"
+              value="{{authority.value}}"
+              autocomplete="off"
+              class="text long validate {{authority.classes}}">
+        </div>
+
+        <fieldset
+          id="{{issueDate.id}}"
+          class="validate inline-fields sub-section {{issueDate.classes}}">
+
+            <legend class="label">
+                Date of Issue
+            </legend>
+            <span class="field-wrapper day">
+                <label for="{{issueDateDay.id}}" class="">Day</label>
+                <input
+                  type="number"
+                  id="{{issueDateDay.id}}"
+                  name="{{issueDateDay.name}}"
+                  value="{{issueDateDay.value}}"
+                  autocomplete="off"
+                  class="text day {{issueDateDay.classes}}">
+            </span>
+
+            <span class="field-wrapper month">
+                <label for="{{issueDateMonth.id}}" class="">Month</label>
+                <input
+                  type="number"
+                  id="{{issueDateMonth.id}}"
+                  name="{{issueDateMonth.name}}"
+                  value="{{issueDateMonth.value}}"
+                  autocomplete="off"
+                  class="text month {{issueDateMonth.classes}}">
+            </span>
+
+            <span class="field-wrapper year">
+                <label for="{{issueDateYear.id}}" class="">Year</label>
+                <input
+                  type="number"
+                  id="{{issueDateYear.id}}"
+                  name="{{issueDateYear.name}}"
+                  value="{{issueDateYear.value}}"
+                  autocomplete="off"
+                  class="text year {{issueDateYear.classes}}">
+            </span>
+
+            <p class="example">
+                For example: <span class="date">31 12 2013</span>
+            </p>
+        </fieldset>
+    </fieldset>
+
+    <button
+      id="continue"
+      type="submit"
+      class="button next">
+        Continue
+    </button>
+</form>

@@ -1,0 +1,92 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{previousAddress.classes}}"
+              data-validation-name="previousAddress"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="previousYesUk previousYesAbroad previousNo">
+        <label for="{{previousNo.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{previousNo.id}}"
+                   name="{{previousNo.name}}"
+                   value="{{previousNo.value}}"
+                   class="radio  validate"
+                   data-validation-name="previousNo"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previousNo.attributes}}}>
+            {{messages.ordinary_previousAddress_no_option}}
+        </label>
+
+        <label for="{{previousYesUk.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{previousYesUk.id}}"
+                   name="{{previousYesUk.name}}"
+                   value="{{previousYesUk.value}}"
+                   class="radio validate"
+                   data-validation-name="previousYesUk"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previousYesUk.attributes}}}>
+            {{messages.ordinary_previousAddress_yesFromUk_option}}
+        </label>
+
+        <label for="{{previousYesAbroad.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{previousYesAbroad.id}}"
+                   name="{{previousYesAbroad.name}}"
+                   value="{{previousYesAbroad.value}}"
+                   class="radio validate"
+                   data-validation-name="previousYesAbroad"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previousYesAbroad.attributes}}}>
+            {{messages.ordinary_previousAddress_yesFromAbroad_option}}
+        </label>
+    </fieldset>
+
+    <fieldset class="optional-section sub-section validate {{registeredAbroad.classes}}"
+              data-condition="{{previousYesAbroad.id}}"
+              data-validation-name="registeredAbroad"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="registeredAbroadYes registeredAbroadNo">
+        <legend>{{messages.ordinary_previousAddress_yesFromAbroad_wasRegisteredQuestion}}</legend>
+
+        <label for="{{registeredAbroadYes.id}}" class="selectable binary">
+            <input type="radio"
+                   id="{{registeredAbroadYes.id}}"
+                   name="{{registeredAbroadYes.name}}"
+                   value="{{registeredAbroadYes.value}}"
+                   class="radio validate"
+                   data-validation-name="registeredAbroadYes"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{registeredAbroadYes.attributes}}}>
+            {{messages.ordinary_previousAddress_yesFromAbroad_wasRegistered_yes_option}}
+        </label>
+        <label for="{{registeredAbroadNo.id}}" class="selectable binary">
+            <input type="radio"
+                   id="{{registeredAbroadNo.id}}"
+                   name="{{registeredAbroadNo.name}}"
+                   value="{{registeredAbroadNo.value}}"
+                   class="radio validate"
+                   data-validation-name="registeredAbroadNo"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{registeredAbroadNo.attributes}}}>
+            {{messages.ordinary_previousAddress_yesFromAbroad_wasRegistered_no_option}}
+        </label>
+    </fieldset>
+
+
+
+    <button id="continue"
+            type="submit"
+            class="button next validation-submit"
+            data-validation-sources="previousAddress registeredAbroad">
+        {{messages.step_continue}}
+    </button>
+</form>

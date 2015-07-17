@@ -1,0 +1,42 @@
+<form action="{{question.postUrl}}" method="POST" >
+    <header>
+        <h1>{{question.title}}</h1>
+    </header>
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{statementFieldSet.classes}}"
+              data-validation-name="statement"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="member partner">
+
+        <label class="selectable"  >
+            <input type="checkbox" id="{{statementMemberForcesCheckbox.id}}"
+                   name="{{statementMemberForcesCheckbox.name}}"
+                   value="true"
+                   class="validate {{statementMemberForcesCheckbox.classes}}"
+                   data-validation-name="member"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                  {{statementMemberForcesCheckbox.attributes}}>
+            I am a member of the armed forces
+        </label>
+
+        <label class="selectable"  >
+            <input type="checkbox" id="{{statementPartnerForcesCheckbox.id}}"
+                   name="{{statementPartnerForcesCheckbox.name}}"
+                   value="true"
+                   class=" validate {{statementPartnerForcesCheckbox.classes}}"
+                   data-validation-name="partner"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{statementPartnerForcesCheckbox.attributes}}>
+            I am the wife, husband or civil partner of a member of the armed forces
+        </label>
+
+    </fieldset>
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="statement">Continue</button>
+</form>

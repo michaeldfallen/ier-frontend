@@ -1,0 +1,39 @@
+<article>
+  <header>
+    <h1>{{messages.ordinary_confirmation_title}}</h1>
+  </header>
+
+    {{#completeApplicantDetails}}
+    <div>
+        <h3>{{title}}</h3>
+        <div class="data-wrap">
+            {{#content}}
+            {{#blockContent}}
+            <p>{{.}}</p>
+            {{/blockContent}}
+            {{#blockError}}
+            <div class="validation-message visible">{{.}}</div>
+            {{/blockError}}
+            {{/content}}
+        </div>
+        <a href="{{editLink}}" class="change">
+            {{messages.ordinary_confirmation_edit_link}}<span class="visuallyhidden"> {{changeName}}</span>
+        </a>
+    </div>
+    {{/completeApplicantDetails}}
+
+    <div class="notice">
+        <h2>{{messages.ordinary_confirmation_help_h2}}</h2>
+        <p>{{messages.ordinary_confirmation_help_p1}}</p>
+        <p>{{messages.ordinary_confirmation_help_p2}}</p>
+        <div class="warning">
+            <p>{{messages.ordinary_confirmation_help_p3}}</p>
+        </div>
+    </div>  
+  
+</article>
+<form action="{{question.postUrl}}" method="POST">
+  <input id="continue" type="submit"
+         class="button next"
+         value="{{messages.ordinary_confirmation_submitApplication}}">
+</form>

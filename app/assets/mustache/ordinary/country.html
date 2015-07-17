@@ -1,0 +1,159 @@
+<form action="{{question.postUrl}}" method="POST" >
+    <header class="question-one">
+        {{#question.number}}
+        <p>{{messages.step_question}} {{question.number}}</p>
+        {{/question.number}}
+        {{^question.number}}
+        <br/>
+        {{/question.number}}
+        <h1>{{question.title}}</h1>
+    </header>
+
+    {{> shared/validationMessages }}
+
+    <fieldset
+      class="validate {{countries.classes}}"
+      data-validation-name="country"
+      data-validation-type="fieldset"
+      data-validation-rules="atLeastOneNonEmpty"
+      data-validation-children="england scotland wales northernIreland britishIslands abroad">
+
+        <label for="{{england.id}}"
+          class="selectable">
+            <input
+              type="radio"
+              id="{{england.id}}"
+              name="{{england.name}}"
+              value="England"
+              class="radio  validate"
+              {{{england.attributes}}}
+              data-validation-name="england"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+            {{messages.ordinary_country_england}}
+        </label>
+        <label for="{{scotland.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{scotland.id}}"
+              name="{{scotland.name}}"
+              value="Scotland"
+              class="radio  validate"
+              {{{scotland.attributes}}}
+              data-validation-name="scotland"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+            {{messages.ordinary_country_scotland}}
+        </label>
+        <label for="{{wales.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{wales.id}}"
+              name="{{wales.name}}"
+              value="Wales"
+              class="radio  validate"
+              {{{wales.attributes}}}
+              data-validation-name="wales"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+            {{messages.ordinary_country_wales}}
+        </label>
+        <label for="{{northIreland.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{northIreland.id}}"
+              name="{{northIreland.name}}"
+              value="Northern Ireland"
+              class="radio  validate"
+              {{{northIreland.attributes}}}
+              data-validation-name="northernIreland"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+            {{messages.ordinary_country_northernIreland}}
+        </label>
+        <p>{{messages.ordinary_country_or}}</p>
+        <label for="{{livingAbroad.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{livingAbroad.id}}"
+              name="{{livingAbroad.name}}"
+              value="{{livingAbroad.value}}"
+              class="radio validate"
+              {{{livingAbroad.attributes}}}
+              data-validation-name="livingAbroad"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+            {{messages.ordinary_country_britishAbroad_option}}
+        </label>
+    </fieldset>
+
+    <fieldset class="{{origin.classes}}">
+        <div
+          class="optional-section sub-section validate"
+          data-condition="{{livingAbroad.id}}">
+            <h2>{{messages.ordinary_country_britishAbroad_heading}}</h2>
+            <label for="{{englandOrigin.id}}"
+              class="selectable">
+                <input
+                  type="radio"
+                  id="{{englandOrigin.id}}"
+                  name="{{englandOrigin.name}}"
+                  value="England"
+                  class="radio  validate"
+                  {{{englandOrigin.attributes}}}
+                  data-validation-name="englandOrigin"
+                  data-validation-type="field"
+                  data-validation-rules="nonEmpty">
+                {{messages.ordinary_country_england}}
+            </label>
+            <label for="{{scotlandOrigin.id}}" class="selectable">
+                <input
+                  type="radio"
+                  id="{{scotlandOrigin.id}}"
+                  name="{{scotlandOrigin.name}}"
+                  value="Scotland"
+                  class="radio  validate"
+                  {{{scotlandOrigin.attributes}}}
+                  data-validation-name="scotlandOrigin"
+                  data-validation-type="field"
+                  data-validation-rules="nonEmpty">
+                {{messages.ordinary_country_scotland}}
+            </label>
+            <label for="{{walesOrigin.id}}" class="selectable">
+                <input
+                  type="radio"
+                  id="{{walesOrigin.id}}"
+                  name="{{walesOrigin.name}}"
+                  value="Wales"
+                  class="radio  validate"
+                  {{{walesOrigin.attributes}}}
+                  data-validation-name="walesOrigin"
+                  data-validation-type="field"
+                  data-validation-rules="nonEmpty">
+                {{messages.ordinary_country_wales}}
+            </label>
+            <label for="{{northIrelandOrigin.id}}" class="selectable">
+                <input
+                  type="radio"
+                  id="{{northIrelandOrigin.id}}"
+                  name="{{northIrelandOrigin.name}}"
+                  value="Northern Ireland"
+                  class="radio  validate"
+                  {{{northIrelandOrigin.attributes}}}
+                  data-validation-name="northernIreland"
+                  data-validation-type="field"
+                  data-validation-rules="nonEmpty">
+                {{messages.ordinary_country_northernIreland}}
+            </label>
+        </div>
+    </fieldset>
+
+    <button
+      type="submit"
+      id="continue"
+      class="button next validation-submit"
+      data-validation-sources="country">
+        {{messages.step_continue}}
+    </button>
+
+</form>

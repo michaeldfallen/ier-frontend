@@ -1,0 +1,107 @@
+<form action="{{question.postUrl}}" method="POST">
+    
+   {{> shared/questionHeader }}
+
+   {{> shared/validationMessages }}
+
+    <p>{{messages.ordinary_postalVote_optionsQuestion}}</p>
+    <fieldset
+      class="validate"
+      data-validation-name="postalVote"
+      data-validation-type="fieldset"
+      data-validation-rules="atLeastOneNonEmpty"
+      data-validation-children="postalNo postalYes">
+
+        <label for="{{postCheckboxNoAndVoteInPerson.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{postCheckboxNoAndVoteInPerson.id}}"
+              name="{{postCheckboxNoAndVoteInPerson.name}}"
+              value="{{postCheckboxNoAndVoteInPerson.value}}"
+              class="radio validate {{postCheckboxNoAndVoteInPerson.classes}}"
+              data-validation-name="postalNo"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty" {{postCheckboxNoAndVoteInPerson.attributes}}>
+                {{messages.ordinary_postalVote_voteInPerson_option}}
+        </label>
+
+        <label for="{{postCheckboxNoAndAlreadyHave.id}}" class="selectable">
+            <input
+                    type="radio"
+                    id="{{postCheckboxNoAndAlreadyHave.id}}"
+                    name="{{postCheckboxNoAndAlreadyHave.name}}"
+                    value="{{postCheckboxNoAndAlreadyHave.value}}"
+                    class="radio validate {{postCheckboxNoAndAlreadyHave.classes}}"
+                    data-validation-name="postalNo"
+                    data-validation-type="field"
+                    data-validation-rules="nonEmpty" {{postCheckboxNoAndAlreadyHave.attributes}}>
+            {{messages.ordinary_postalVote_voteAlreadyHave_option}}
+        </label>
+        <div id="{{postCheckboxNoAndAlreadyHave.id}}_help"
+             class="optional-section"
+             data-condition="{{postCheckboxNoAndAlreadyHave.id}}">
+
+            <p>{{messages.ordinary_postalVote_voteAlreadyHave_help}}</p>
+        </div>
+
+
+        <label for="{{postCheckboxYes.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{postCheckboxYes.id}}"
+              name="{{postCheckboxYes.name}}"
+              value="{{postCheckboxYes.value}}"
+              class="radio validate {{postCheckboxYes.classes}}"
+              data-validation-name="postalYes"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty"
+              {{postCheckboxYes.attributes}}
+              data-journey-click="Postal vote:Yes:Yes I want a postal vote">
+                {{messages.ordinary_postalVote_postalVote_option}}
+        </label>
+
+    </fieldset>
+    <h2 class="alt-content">{{messages.ordinary_postalVote_postalVote_heading}}</h2>
+    <fieldset class="optional-section optional-section-core-content sub-section validate {{deliveryMethodValid}}" 
+      data-condition="{{postCheckboxYes.id}}" data-validation-name="deliveryMethod"
+      data-validation-type="fieldset" data-validation-rules="atLeastOneNonEmpty" 
+      data-validation-children="deliveryMethodEmail deliveryMethodPost">
+      <legend class="paragraph">{{messages.ordinary_postalVote_postalVote_deliveryOptionsQuestion}}</legend>
+
+<label for="{{deliveryByEmail.id}}" class="selectable" style="margin-bottom: 16px;">
+    <input type="radio" id="{{deliveryByEmail.id}}" name="{{deliveryByEmail.name}}" value="{{deliveryByEmail.value}}" class="radio  
+      validate" data-validation-name="deliveryMethodEmail" data-validation-type="field" 
+      data-validation-rules="nonEmpty" {{deliveryByEmail.attributes}}>
+        {{messages.ordinary_postalVote_postalVote_deliveryEmail_option}}
+</label>
+
+      <div class="optional-section" data-condition="{{deliveryByEmail.id}}">
+        <label for="{{emailField.id}}">{{messages.ordinary_postalVote_postalVote_emailAddress_label}}</label>
+        <div class="validation-wrapper {{emailField.classes}}">
+          
+<input type="email" id="{{emailField.id}}" name="{{emailField.name}}" value="{{emailField.value}}"
+  autocomplete="off" class="text  text long validate {{emailField.classes}}" data-validation-name="emailAddress" 
+  data-validation-type="field" data-validation-rules="nonEmpty email">
+        </div>
+      </div>
+      
+<label for="{{deliveryByPost.id}}" class="selectable">
+    <input type="radio" id="{{deliveryByPost.id}}" name="{{deliveryByPost.name}}" value="{{deliveryByPost.value}}" class="radio  
+      validate" data-validation-name="deliveryMethodPost" data-validation-type="field" 
+      data-validation-rules="nonEmpty" {{deliveryByPost.attributes}}>
+        {{messages.ordinary_postalVote_postalVote_deliveryPost_option}}
+</label>
+
+      </fieldset>
+      
+      <button type="submit" id="alt-continue" class="button next validation-submit" 
+        data-validation-sources="postalVote deliveryMethod emailAddress">{{messages.step_continue}}</button>
+      <div class="help-content" data-toggle-text="{{messages.ordinary_postalVote_help_link}}">
+        <h2>{{messages.ordinary_postalVote_help_link}}</h2>
+        <p>{{messages.ordinary_postalVote_help_content_1}}</p>
+        <p>{{messages.ordinary_postalVote_help_content_2}}</p>
+        <p>{{messages.ordinary_postalVote_help_content_3}}</p>
+      </div>
+      <button type="submit" id="continue" class="button next validation-submit" 
+        data-validation-sources="postalVote deliveryMethod emailAddress">{{messages.step_continue}}</button>
+</form>

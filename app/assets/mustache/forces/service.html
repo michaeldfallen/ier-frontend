@@ -1,0 +1,73 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{serviceFieldSet.classes}}"
+              data-validation-name="service"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="royalNavyOption britishArmyOption royalAirForceOption">
+
+        <label class="selectable"  >
+            <input type="radio"
+                    id="{{royalNavy.id}}"
+                    name="{{royalNavy.name}}"
+                    value="Royal Navy"
+                    class="radio validate {{royalNavy.classes}}"
+                    data-validation-name="royalNavyOption"
+                    data-validation-type="field"
+                    data-validation-rules="nonEmpty"
+                    {{{royalNavy.attributes}}}>
+        Royal Navy
+        </label>
+
+        <label class="selectable"  >
+            <input type="radio"
+                   id="{{britishArmy.id}}"
+                   name="{{britishArmy.name}}"
+                   value="British Army"
+                   class="radio validate {{britishArmy.classes}}"
+                   data-validation-name="britishArmyOption"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{britishArmy.attributes}}}>
+            British Army
+        </label>
+
+        <div class="optional-section optional-section{{regimentShowFlag.value}}"
+             data-condition="{{britishArmy.id}}">
+            <label for="{{regiment.id}}">
+                Regiment or corps
+            </label>
+            <div class="validation-wrapper">
+                <input type="text" id="{{regiment.id}}" name="{{regiment.name}}"
+                       value="{{regiment.value}}" autocomplete="off"
+                       class="text  validate {{regiment.classes}}"
+                       data-validation-name="regiment"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty" >
+            </div>
+        </div>
+
+
+        <label class="selectable"  >
+            <input type="radio"
+                   id="{{royalAirForce.id}}"
+                   name="{{royalAirForce.name}}"
+                   value="Royal Air Force"
+                   class="radio validate {{royalAirForce.classes}}"
+                   data-validation-name="royalAirForceOption"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{royalAirForce.attributes}}}>
+            Royal Air Force
+        </label>
+
+    </fieldset>
+
+    <button type="submit" id="continue" class="button next validation-submit"
+      data-validation-sources="service regiment">
+        Continue</button>
+</form>

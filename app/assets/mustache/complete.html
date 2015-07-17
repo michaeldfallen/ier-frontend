@@ -1,0 +1,60 @@
+{{<template/govuk}}
+
+{{$main}}
+<header
+    {{#showBirthdayBunting}}
+        class="bunting"
+    {{/showBirthdayBunting}}
+    >
+
+  {{#showBirthdayBunting}}
+    <img src="{{{ appAssetPath }}}images/birthdaybunting.png" alt="Happy Birthday" class="bunting-image"/>
+  {{/showBirthdayBunting}}
+
+  <h3>{{messages.complete_applicationComplete}}</h3>
+
+  {{#refNumber}}
+  <p>
+    {{messages.complete_yourRefNumberIs}}
+    <span>{{refNumber}}</span>
+    <h1>{{messages.complete_registerGuidance}}</h1>
+  </p>
+  {{/refNumber}}
+
+</header>
+<article>
+  {{#showEmailConfirmation}}
+  <p class="intro email">{{messages.complete_emailConfirmation}}</p>
+  {{/showEmailConfirmation}}
+
+  <h2>{{messages.complete_whatHappensNext_h2}}</h2>
+  <p>{{messages.complete_sentApplicationTo_p}} <strong>{{authorityName}}</strong>.</p>
+  <p>{{messages.complete_contactYouTo_p1}}</p>
+  <p>{{messages.complete_contactYouTo_p2}}</p>
+  <p>
+    {{messages.complete_questionsContact_p1}}
+    {{#authorityUrl}}<a href="{{.}}">{{/authorityUrl}}{{authorityName}}{{#authorityUrl}}</a>{{/authorityUrl}}
+    {{messages.complete_questionsContact_p2}}.
+  </p>
+
+  {{#hasOtherAddress}}
+  <p>{{messages.complete_ifYouAreNotAlreadyRegistered1_p}}
+  <a href="{{backToStartUrl}}">{{messages.complete_ifYouAreNotAlreadyRegistered2_p}}</a>.</p>
+  {{/hasOtherAddress}}
+  <div class="footnote">
+    <h3>{{messages.complete_social_heading}}</h3>
+    <ul class="sharing-links">
+      <li><a href="https://twitter.com/intent/tweet?text={{messages.complete_social_twitter_url_text}}&url=https%3A%2F%2Fwww.gov.uk%2Fregister-to-vote" data-journey-click="Social media sharing:Click share link:Twitter" rel="external"><img src="{{{ appAssetPath }}}images/icon-social-twitter.png" alt="" />{{messages.complete_social_twitter_link_text}}</a></li>
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.gov.uk%2Fregister-to-vote" data-journey-click="Social media sharing:Click share link:Facebook" rel="external"><img src="{{{ appAssetPath }}}images/icon-social-facebook.png" alt="" />{{messages.complete_social_facebook_link_text}}</a></li>
+    </ul>
+  </div>  
+  <div class="footnote">
+    {{#surveyLink}}
+    <p><a href="{{surveyLink}}">{{messages.complete_takeOurSurvey_a}}</a> {{messages.complete_takeOurSurvey_p}}</p>
+    {{/surveyLink}}
+    <p><a href="{{messages.complete_moreAboutVoting_url}}">{{messages.complete_moreAboutVoting_a}}</a></p>
+  </div>
+</article>
+{{/main}}
+
+{{/template/govuk}}

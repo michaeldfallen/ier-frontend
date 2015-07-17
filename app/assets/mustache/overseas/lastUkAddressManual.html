@@ -1,0 +1,93 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate"
+      data-validation-name="addressManual"
+      data-validation-type="fieldset"
+      data-validation-rules="atLeastOneTextEntry atLeastOneValid"
+      data-validation-children="manualAddressMultiline city"
+    >
+        <p>
+            <span class="postcode-prefix">Postcode</span>
+            <span class="visuallyhidden">:</span>
+            <span class="postcode">{{postcode.value}}</span>
+            <a href="{{lookupUrl}}" class="change-postcode-button">
+                Change<span class="visuallyhidden"> your postcode</span>
+            </a>
+        </p>
+        <input
+          type="hidden"
+          id="{{postcode.id}}"
+          name="{{postcode.name}}"
+          value="{{postcode.value}}"
+          class="text hidden">
+
+        <div class="validation-wrapper {{maLines.classes}}">
+            <fieldset class="multi-line-field validate"
+              data-validation-name="manualAddressMultiline"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="manualAddressLineOne manualAddressLineTwo manualAddressLineThree"
+            >
+                <legend class="label">
+                    Address
+                </legend>
+                <label for="{{maLineOne.id}}" class="visuallyhidden">Address line one</label>
+                <input type="text"
+                       id="{{maLineOne.id}}"
+                       name="{{maLineOne.name}}"
+                       value="{{maLineOne.value}}"
+                       class="text long validate {{maLineOne.classes}}"
+                       autocomplete="off"
+                       data-validation-name="manualAddressLineOne"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty"
+                />
+                <label for="{{maLineTwo.id}}" class="visuallyhidden">Address line two</label>
+                <input type="text"
+                       id="{{maLineTwo.id}}"
+                       name="{{maLineTwo.name}}"
+                       value="{{maLineTwo.value}}"
+                       class="text long validate {{maLineTwo.classes}}"
+                       autocomplete="off"
+                       data-validation-name="manualAddressLineTwo"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty"
+                />
+                <label for="{{maLineThree.id}}" class="visuallyhidden">Address line three</label>
+                <input type="text"
+                       id="{{maLineThree.id}}"
+                       name="{{maLineThree.name}}"
+                       value="{{maLineThree.value}}"
+                       class="text long validate {{maLineThree.classes}}"
+                       autocomplete="off"
+                       data-validation-name="manualAddressLineThree"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty"
+                />
+            </fieldset>
+        </div>
+        <label for="{{maCity.id}}">Town or city</label>
+        <div class="validation-wrapper {{maCity.classes}}">
+            <input type="text"
+                   id="{{maCity.id}}"
+                   name="{{maCity.name}}"
+                   value="{{maCity.value}}"
+                   class="text long validate {{maCity.classes}}"
+                   autocomplete="off"
+                   data-validation-name="city"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            />
+        </div>
+    </fieldset>
+
+    <button
+            type="submit"
+            id="continue"
+            class="button next validation-submit"
+            data-validation-sources="addressManual">
+        Continue
+    </button>
+</form>

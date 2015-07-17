@@ -1,0 +1,136 @@
+<form action="{{question.postUrl}}" method="POST"
+      data-validation-name="dateOfBirth"
+      data-validation-type="association"
+      data-validation-rules="dateOfBirthOrExcuse" 
+      data-validation-members="dateOfBirthDate dateOfBirthExcuse"
+      class="validate">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate inline-fields" data-validation-name="dateOfBirthDate"
+              data-validation-type="fieldset" data-validation-rules="allNonEmpty"
+              data-validation-children="day month year">
+
+      <span class="day field-wrapper">
+        <label for="{{day.id}}" class=""  >
+            {{messages.ordinary_dob_day_label}}
+        </label>
+        <input type="number" id="{{day.id}}" name="{{day.name}}"
+               value="{{day.value}}"
+               autocomplete="off"
+               class="text  day validate {{day.classes}}"
+               data-validation-name="day"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+      <span class="month field-wrapper">
+        <label for="{{month.id}}" class=""  >
+            {{messages.ordinary_dob_month_label}}
+        </label>
+        <input type="number" id="{{month.id}}" name="{{month.name}}"
+               value="{{month.value}}"
+               autocomplete="off"
+               class="text  month validate {{month.classes}}"
+               data-validation-name="month"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+      <span class="year field-wrapper">
+        <label for="{{year.id}}" class=""  >
+            {{messages.ordinary_dob_year_label}}
+        </label>
+        <input type="number" id="{{year.id}}" name="{{year.name}}" value="{{year.value}}"
+               autocomplete="off"
+               class="text  year text validate {{year.classes}}"
+               data-validation-name="year"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+        <p class="example">{{{messages.ordinary_dob_formatExample}}}</p>
+    </fieldset>
+
+    <button type="submit" id="alt-continue"
+            class="button next validation-submit"
+            data-validation-sources="dateOfBirth">{{messages.step_continue}}</button>
+    <div class="help-content help-content{{noDobReasonShowFlag.value}}" data-toggle-text="{{messages.ordinary_dob_help_link}}">
+        <h3>{{messages.ordinary_dob_help_link}}</h3>
+        <p>{{messages.ordinary_dob_help_content_1}}</p>
+        <p>{{messages.ordinary_dob_help_content_2}}</p>
+
+        <div class="optional-section validate optional-section{{noDobReasonShowFlag.value}}"
+             id="no-date-of-birth"
+             data-toggle-text="{{messages.ordinary_dob_help_cannotProvideDOB_link}}"
+             data-validation-name="dateOfBirthExcuse" data-validation-type="fieldset"
+             data-validation-rules="allNonEmpty"
+             data-validation-children="dateOfBirthExcuseReason excuseAgeAttempt">
+
+           <h3>{{messages.ordinary_dob_help_cannotProvideDOB_link}}</h3>
+           <label for="{{noDobReason.id}}" class=""  >
+               {{messages.ordinary_dob_help_cannotProvideDOB_reasonQuestion}}
+            </label>
+
+            <div class="validation-wrapper">
+                <textarea name="{{noDobReason.name}}" id="{{noDobReason.id}}"
+                          class="validate small {{noDobReason.classes}}"
+                          data-validation-name="dateOfBirthExcuseReason"
+                          data-validation-type="field"
+                          data-validation-rules="nonEmpty"
+                          autocomplete="off" >{{noDobReason.value}}</textarea>
+            </div>
+
+            <fieldset class="validate {{rangeFieldSet.classes}}"
+                      data-validation-name="excuseAgeAttempt"
+                      data-validation-type="fieldset"
+                      data-validation-rules="radioNonEmpty"
+                      data-validation-children="excuseUnder18 excuse18to70 excuseOver70 excuseDontKnow">
+
+                <p>{{messages.ordinary_dob_help_cannotProvideDOB_ageGroupQuestion}}</p>
+                <label for="{{rangeUnder18.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeUnder18.id}}" name="{{rangeUnder18.name}}"
+                           value="under18"  class="radio  validate"
+                           data-validation-name="excuseUnder18"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeUnder18.attributes}}}>
+                    {{{messages.ordinary_dob_help_cannotProvideDOB_ageGroup_under18_option}}}
+                </label>
+                <label for="{{range18to70.id}}" class="selectable"  >
+                    <input type="radio" id="{{range18to70.id}}" name="{{range18to70.name}}"
+                           value="18to70"  class="radio  validate"
+                           data-validation-name="excuse18to70"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{range18to70.attributes}}}>
+                    {{{messages.ordinary_dob_help_cannotProvideDOB_ageGroup_between18and70_option}}}
+                </label>
+                <label for="{{rangeOver70.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeOver70.id}}" name="{{rangeOver70.name}}"
+                           value="over70"  class="radio  validate"
+                           data-validation-name="excuseOver70"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeOver70.attributes}}}>
+                    {{{messages.ordinary_dob_help_cannotProvideDOB_ageGroup_over70_option}}}
+                </label>
+                <label for="{{rangeDontKnow.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeDontKnow.id}}" name="{{rangeDontKnow.name}}"
+                           value="dontKnow"  class="radio  validate"
+                           data-validation-name="excuseDontKnow"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeDontKnow.attributes}}}>
+                    {{{messages.ordinary_dob_help_cannotProvideDOB_ageGroup_dontKnow_option}}}
+                </label>
+            </fieldset>
+        </div>
+    </div>
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="dateOfBirth">{{messages.step_continue}}</button>
+
+</form>

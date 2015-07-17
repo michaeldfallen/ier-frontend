@@ -1,0 +1,48 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate" data-validation-name="serviceNumberAndRank"
+              data-validation-type="association"
+              data-validation-rules="allNonEmpty"
+              data-validation-members="serviceNumber rank">
+
+        <label for="{{serviceNumber.id}}">
+            Service number
+        </label>
+        <div class="validation-wrapper {{serviceNumber.classes}}">
+            <input type="text" id="{{serviceNumber.id}}"
+                   name="{{serviceNumber.name}}"
+                   value="{{serviceNumber.value}}"
+                   autocomplete="off"
+                   class="text long validate {{serviceNumber.classes}}"
+                   data-validation-name="serviceNumber"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" >
+        </div>
+
+        <label for="{{rank.id}}">
+            Rank or rating
+        </label>
+        <div class="validation-wrapper {{rank.classes}}">
+            <input type="text" id="{{rank.id}}"
+                   name="{{rank.name}}"
+                   value="{{rank.value}}"
+                   autocomplete="off"
+                   class="text long validate {{rank.classes}}"
+                   data-validation-name="rank"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" >
+        </div>
+        <p>
+            Examples: Captain, Warrant Officer, Lance Corporal
+        </p>
+    </fieldset>
+
+    <button id="continue" type="submit"
+            class="button next validation-submit"
+            data-validation-sources="numberAndRank">
+        Continue
+    </button>
+</form>

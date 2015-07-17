@@ -1,0 +1,29 @@
+<h2 class="visuallyhidden">
+    {{^messages.service_footer_supportLinks}}Support links{{/messages.service_footer_supportLinks}}
+    {{messages.service_footer_supportLinks}}
+</h2>
+<ul>
+    <li>
+      <a href="/register-to-vote/local-authority/lookup?sourcePath={{sourcePath}}">
+          {{^messages.service_footer_contactEro}}Contact your local Electoral Registration Office{{/messages.service_footer_contactEro}}
+          {{messages.service_footer_contactEro}}
+      </a>
+      {{^messages.service_footer_forHelp}}for help using this service{{/messages.service_footer_forHelp}}
+      {{messages.service_footer_forHelp}}
+    </li>
+</ul>
+<ul>
+    <li>
+        <a href="/register-to-vote/feedback{{#sourcePath}}?sourcePath={{sourcePath}}{{/sourcePath}}">
+            Feedback
+        </a>
+    </li>
+    <li><a href="{{privacyUrl}}">Privacy</a></li>
+    <li><a href="{{cookieUrl}}">Cookies</a></li>
+    <li>
+        Built by the
+        <a href="http://digital.cabinetoffice.gov.uk/">
+            Government Digital Service
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,390 @@
+/* Global styles for all pages */
+
+@import "toolkit";
+$grey-8: #DEE0E2;
+
+html {
+  background-color: $grey-8;
+}
+
+body {
+  background: $white;
+}
+
+main {
+  display: block;
+}
+
+p,
+ol,
+ul,
+li {
+  @include core-19;
+}
+
+p,
+a.paragraph {
+  margin: 0 0 1em;
+  clear: both;
+}
+
+a.paragraph {
+  display: block;
+  @include core-19;
+}
+
+p.footnote {
+  margin-top: 2em;
+}
+
+ul,li {
+	list-style-type: circle;
+  list-style-image: url("/assets/images/bullet-disc-5px.gif");
+}
+
+ul {
+  padding-left: 1em;
+}
+
+li {
+  margin: 0.25em 0;
+  padding-left: 0.3em;
+}
+
+ul.plain-format {
+  &,
+  li {
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+h1 {
+  @include bold-27;
+
+  @include media(mobile) {
+    font-size: 24px;
+  }
+}
+
+h2 {
+  @include bold-24;
+  margin: 1em 0 0.75em;
+
+  &.paragraph {
+    @include core-19;
+  }
+}
+
+h3 {
+  @include bold-19;
+  margin: 1.2em 0 0.4em;
+}
+
+input,
+textarea {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select {
+	margin: 0 0.6em 0 0;
+	max-width: 100%;
+	overflow: hidden;
+	border: 1px solid #aaa;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+	padding: 10px;
+}
+
+main .visible { // assumes default state is block
+  display: block
+}
+
+.button {
+  @include button;
+  
+  color: white;
+  padding: 0.3em 0.6em 0.2em 0.6em;  
+}
+
+.breadcrumbs {
+	margin: 0 15px;
+	padding: 0.75em 0;
+  overflow: hidden;
+
+  @include media(tablet) {
+    margin: 0 32px;
+  }
+}
+
+.breadcrumbs li {
+  @include core-16;
+	background-image: url("/assets/images/separator.png");
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+  float: left;
+	list-style: none;
+  line-height: 1.25;
+	margin: 0 0.5em 0 0;
+	padding-right: 1em;
+	padding-left: 0;
+
+  @include device-pixel-ratio() {
+    background-image: image-url("/assets/images/separator-2x.png");
+    background-size: 6px 11px;
+  }
+}
+
+.breadcrumbs li:last-child {
+	background: none;
+	padding-right: 0;
+}
+
+.breadcrumbs li a {
+	color: #111;
+}
+
+.breadcrumbs li strong {
+  font-weight: normal;
+}
+
+/* get started buttons */
+.get-started {
+  margin:1.5em 0 1.5em;
+
+  .destination {
+    @include core-14;
+    color:$grey-2;
+    display: block;
+    margin-top: 0.5em;
+    max-width: 13em;
+  }
+}
+
+.get-started .button {
+  @include bold-24($line-height: (16 / 24));
+  display: inline-block;
+  padding: 0.60em 1.7em 0.45em 0.67em;
+  background-image: url("/assets/images/icon-pointer.png");
+  background-position: 105% 50%;
+  background-repeat: no-repeat;
+
+  @include media(desktop) {
+    background-position: 100% 50%;
+  }
+
+  @include ie(7) {
+    padding: 0.45em 1.7em 0.62em 0.67em;
+  }
+
+  @include ie(6) {
+    background-image: url('/assets/images/icon-pointer-indexed.png');
+    /* IE6 adds its own side padding so requires no extra */
+    padding: 0.45em 0.5em 0.62em 0.5em;
+  }
+
+  @include device-pixel-ratio() {
+    background-image: url("/assets/images/icon-pointer-2x.png");
+    background-size: 30px 19px;
+  }
+}
+
+#content {
+	margin: 0 auto;
+	max-width: 1020px;
+
+  @include ie-lte(6)  {
+    width: 990px;
+  }
+}
+
+article,
+form {
+  padding: 0 14px;
+  max-width: 36em;
+
+  @include ie(6) {
+    width: 36em;
+  }
+
+  @include media(tablet) {
+    padding: 0 2em;
+  }
+}
+
+form {
+  padding-top: 2em;
+  @extend %contain-floats;
+
+  &.sub-step {
+    padding-top: 0;
+  }
+}
+
+#found-addresses {
+  padding: 0 14px;
+
+  @include media(tablet) {
+    padding: 0 2em;
+  }
+
+  form &,
+  form {
+    padding: 0;
+  }
+}
+
+.inner-block{
+	padding: 0 15px;
+}
+
+#main,
+.global-header .header-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.warning {
+  font-weight: 600;
+  padding-left: 3em;
+  background: url("/assets/images/icon-important.png") no-repeat scroll 0 0.5em;
+
+  @include device-pixel-ratio() {
+    background-image: url("/assets/images/icon-important-2x.png");
+    background-size: 34px 34px;
+  }
+}
+
+.sub-section,
+.optional-section-core-content,
+.help {
+  margin-top: 2em;
+}
+
+.back-to-previous {
+  @include core-16;
+  display: block;
+  position: static;
+  text-decoration: none;
+  border-bottom: $black 1px solid;
+  width: 2.25em;
+  background: url("/assets/images/icon-caret-left.png") left 0.2em no-repeat;
+  padding-left: 0.75em;
+  text-align: right;
+  margin: 2em 0 0 2em;
+  overflow: hidden;
+
+  form & {
+    position: absolute;
+    margin: 0;
+  }
+
+  article & {
+    margin: 0;
+  }
+
+  @include media(mobile) {
+    font-size: 16px;
+  }
+}
+
+a.back-to-previous,
+a.back-to-previous:active,
+a.back-to-previous:hover,
+a.back-to-previous:focus {
+  color: $black;
+}
+
+a.download {
+  display: block;
+  font-weight: 600;
+  background: url("/assets/images/icon-file-download.png") no-repeat scroll 0 0;
+  min-height: 2.5em;
+  padding:0 0 0 2.5em;
+
+  @include device-pixel-ratio() {
+    background-image: url("/assets/images/icon-file-download-2x.png");
+    background-size: 25px 25px;
+  }
+}
+
+a.call-to-action {
+  font-size: 18px;
+  line-height: 1.5;
+  @include inline-block;
+  background: transparent url("/assets/images/icon-caret-left-medium.png") no-repeat 0 center;
+  padding: 0px 0px 0px 17px;
+  border-bottom: $black 0.1em solid;
+  margin: 22px 0 0;
+  text-decoration: none;
+  cursor: pointer;
+
+  @include media(tablet) {
+    font-size: 27px;
+    background-image: url("/assets/images/icon-caret-left-large.png");
+    padding-left: 26px;
+  }
+
+  &,
+  &:hover,
+  &:focus {
+    color: $black;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #F0F0F0;
+  }
+
+  .summary & {
+    margin: 0;
+  }
+}
+
+button:focus,
+.invalid:focus,
+.selectable-focus {
+  outline: solid 3px $yellow;
+}
+
+.selectable-focus input:focus {
+  outline: none;
+}
+
+#footer .footer-meta-inner li {
+  @include core-16;
+  padding-left: 0;
+}
+
+.alt-content {
+  display: block;
+
+  .js-enabled & {
+    display: none;
+  }
+}
+
+/* IER-specific template header styles */
+.header-proposition {
+  display: none;
+
+  @include media(tablet) {
+    display: block;
+  }
+}

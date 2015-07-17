@@ -1,0 +1,21 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <p>
+    To confirm your role, you must download, print and return a declaration form.
+    </p>
+
+    <p>
+    <a href="{{declarationPdfUrl}}" class="download" id="downloadButton">Download the form (PDF, {{pdfFileSize}})</a>
+    </p>
+
+    <p>
+    Print and complete your declaration form and send it to your local electoral registration office
+    as soon as you can. Your application is not complete until they receive the form.
+    </p>
+
+    <button id="continue" type="submit" class="button next">
+        Continue
+    </button>
+</form>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="isNotInTestMode" value='!property("gds.mode").equals("test")' />
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <if condition='${isNotInTestMode}'>
+            <then>
+                <file>/var/log/ier/ier-frontend.log</file>
+            </then>
+            <else>
+                <file>logs/ier-frontend.log</file>
+            </else>
+        </if>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date{ISO8601} clientip=[%X{clientip}] level=[%level] logger=[%logger] thread=[%thread] message=[%message] %replace(exception=[%xException]){'^exception=\[\]$',''}%n%nopex</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date{ISO8601} clientip=[%X{clientip}] level=[%level] logger=[%logger] thread=[%thread] message=[%message] %replace(exception=[%xException]){'^exception=\[\]$',''}%n%nopex</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="uk.gov" level="INFO" />
+
+    <logger name="mustache" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+
+        <if condition='${isNotInTestMode}'>
+            <then>
+                <appender-ref ref="STDOUT"/>
+            </then>
+        </if>
+    </root>
+</configuration>

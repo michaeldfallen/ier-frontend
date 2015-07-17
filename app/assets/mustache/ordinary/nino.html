@@ -1,0 +1,47 @@
+<form action="{{question.postUrl}}" method="POST" data-validation-name="nino"
+      data-validation-type="association"
+      data-validation-rules="fieldsetOrExcuse"
+      class="validate" data-validation-members="ninoCode ninoExcuse">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <label for="{{nino.id}}" class="visuallyhidden"  >
+        {{messages.ordinary_nino_heading}}
+    </label>
+
+    <div class="validation-wrapper {{nino.classes}}">
+        <input type="text" id="{{nino.id}}" name="{{nino.name}}" value="{{nino.value}}"
+               autocomplete="off" class="text  validate nino {{nino.classes}}"
+               data-validation-name="ninoCode" data-validation-type="field"
+               data-validation-rules="nonEmpty nino" />
+    </div>
+    <p class="example">{{messages.ordinary_nino_example}}</p>
+    <button type="submit" id="alt-continue"
+            class="button next validation-submit"
+            data-validation-sources="nino">{{messages.step_continue}}</button>
+    <div class="help-content help-content{{noNinoReasonShowFlag.value}}" data-toggle-text="{{messages.ordinary_nino_help}}">
+        <h2>{{messages.ordinary_nino_help}}</h2>
+        <p>{{messages.ordinary_nino_section_1}}</p>
+        <ul>
+            <li>{{messages.ordinary_nino_list_1}}</li>
+            <li><a href="https://www.gov.uk/lost-national-insurance-number">{{messages.ordinary_nino_list_2}}</a></li>
+        </ul>
+        <p>{{messages.ordinary_nino_section_2}}</p>
+        <div class="optional-section optional-section{{noNinoReasonShowFlag.value}}" data-toggle-text="{{messages.ordinary_nino_excuse}}">
+            <h3>{{messages.ordinary_nino_excuse}}</h3>
+
+            <label for="{{noNinoReason.id}}" class=""  >
+                {{messages.ordinary_nino_excuse_content}}
+            </label>
+            <textarea name="{{noNinoReason.name}}" id="{{noNinoReason.id}}" class="small validate"
+                      data-validation-name="ninoExcuse"  data-validation-type="field"
+                      data-validation-rules="nonEmpty" maxlength="500"
+                      autocomplete="off">{{noNinoReason.value}}</textarea>
+        </div>
+    </div>
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="nino">{{messages.step_continue}}</button>
+</form>

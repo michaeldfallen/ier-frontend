@@ -1,0 +1,614 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /template-test                                               @uk.gov.gds.ier.controller.RegisterToVoteController.templateTest
+GET         /                                                            @uk.gov.gds.ier.controller.RegisterToVoteController.redirectToOrdinary
+GET         /register-to-vote                                            @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVote
+GET         /register-to-vote/start                                      @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteStart
+
+#Complete Route
+GET         /register-to-vote/complete                                   @uk.gov.gds.ier.transaction.complete.CompleteStep.complete
+GET         /register-to-vote/overseas/complete                          @uk.gov.gds.ier.transaction.complete.CompleteStep.overseasComplete
+
+#Service Routes
+GET         /register-to-vote/privacy                                    @uk.gov.gds.ier.controller.RegisterToVoteController.privacy
+GET         /register-to-vote/cookies                                    @uk.gov.gds.ier.controller.RegisterToVoteController.cookies
+
+#Exit Routes
+GET         /register-to-vote/exit/british-islands                       @uk.gov.gds.ier.controller.ExitController.britishIslands
+GET         /register-to-vote/exit/scotland                              @uk.gov.gds.ier.controller.ExitController.scotland
+GET         /register-to-vote/exit/northern-ireland                      @uk.gov.gds.ier.controller.ExitController.northernIreland
+GET         /register-to-vote/exit/under-18                              @uk.gov.gds.ier.controller.ExitController.under18
+GET         /register-to-vote/exit/dont-know                             @uk.gov.gds.ier.controller.ExitController.dontKnow
+GET         /register-to-vote/exit/too-young                             @uk.gov.gds.ier.controller.ExitController.tooYoung
+GET         /register-to-vote/exit/no-franchise                          @uk.gov.gds.ier.controller.ExitController.noFranchise
+GET         /register-to-vote/exit/overseas/left-uk-over-15-years        @uk.gov.gds.ier.controller.ExitController.leftUkOver15Years
+GET         /register-to-vote/exit/overseas/too-old-when-left-uk         @uk.gov.gds.ier.controller.ExitController.tooOldWhenLeftUk
+GET         /register-to-vote/exit/overseas/left-service-over-15-years   @uk.gov.gds.ier.controller.ExitController.leftSpecialOver15Years
+
+
+#Error Routes
+GET         /register-to-vote/error/timeout                              @uk.gov.gds.ier.controller.ErrorController.ordinaryTimeout
+GET         /register-to-vote/error/forces/timeout                       @uk.gov.gds.ier.controller.ErrorController.forcesTimeout
+GET         /register-to-vote/error/crown/timeout                        @uk.gov.gds.ier.controller.ErrorController.crownTimeout
+GET         /register-to-vote/error/serverError                          @uk.gov.gds.ier.controller.ErrorController.serverError
+GET         /register-to-vote/error/notFound                             @uk.gov.gds.ier.controller.ErrorController.notFound
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/messages.js                                          @uk.gov.gds.ier.langs.MessagesController.all
+GET         /assets/:lang/messages.js                                    @uk.gov.gds.ier.langs.MessagesController.forLang(lang:String)
+GET         /assets/template/*file                                       @uk.gov.gds.ier.assets.Template.at(path="/app/assets/mustache/govuk_template_inheritance/assets", file)
+GET         /assets/toolkit/*file                                        @uk.gov.gds.ier.assets.GovukToolkit.at(path="/app/assets/govuk_frontend_toolkit", file)
+GET         /assets/*file                                                @uk.gov.gds.ier.assets.Assets.at(path="/public", file)
+
+# Status route
+GET         /status                                                      @uk.gov.gds.ier.controller.StatusController.status
+
+
+
+################################
+##Initial Branching routes
+################################
+
+#Country Step
+GET         /register-to-vote/country-of-residence                       @uk.gov.gds.ier.transaction.country.CountryStep.get
+POST        /register-to-vote/country-of-residence                       @uk.gov.gds.ier.transaction.country.CountryStep.post
+GET         /register-to-vote/edit/country-of-residence                  @uk.gov.gds.ier.transaction.country.CountryStep.editGet
+POST        /register-to-vote/edit/country-of-residence                  @uk.gov.gds.ier.transaction.country.CountryStep.editPost
+
+
+################################
+##Ordinary Voter routes
+################################
+
+#Confirmation Step
+GET         /register-to-vote/confirmation                               @uk.gov.gds.ier.transaction.ordinary.confirmation.ConfirmationStep.get
+POST        /register-to-vote/confirmation                               @uk.gov.gds.ier.transaction.ordinary.confirmation.ConfirmationStep.post
+
+#Contact Step
+GET         /register-to-vote/contact                                    @uk.gov.gds.ier.transaction.ordinary.contact.ContactStep.get
+POST        /register-to-vote/contact                                    @uk.gov.gds.ier.transaction.ordinary.contact.ContactStep.post
+GET         /register-to-vote/edit/contact                               @uk.gov.gds.ier.transaction.ordinary.contact.ContactStep.editGet
+POST        /register-to-vote/edit/contact                               @uk.gov.gds.ier.transaction.ordinary.contact.ContactStep.editPost
+
+#Postal Vote Step
+GET         /register-to-vote/postal-vote                                @uk.gov.gds.ier.transaction.ordinary.postalVote.PostalVoteStep.get
+POST        /register-to-vote/postal-vote                                @uk.gov.gds.ier.transaction.ordinary.postalVote.PostalVoteStep.post
+GET         /register-to-vote/edit/postal-vote                           @uk.gov.gds.ier.transaction.ordinary.postalVote.PostalVoteStep.editGet
+POST        /register-to-vote/edit/postal-vote                           @uk.gov.gds.ier.transaction.ordinary.postalVote.PostalVoteStep.editPost
+
+#Open Register Step
+GET         /register-to-vote/open-register                              @uk.gov.gds.ier.transaction.ordinary.openRegister.OpenRegisterStep.get
+POST        /register-to-vote/open-register                              @uk.gov.gds.ier.transaction.ordinary.openRegister.OpenRegisterStep.post
+GET         /register-to-vote/edit/open-register                         @uk.gov.gds.ier.transaction.ordinary.openRegister.OpenRegisterStep.editGet
+POST        /register-to-vote/edit/open-register                         @uk.gov.gds.ier.transaction.ordinary.openRegister.OpenRegisterStep.editPost
+
+#Other Address Step
+GET         /register-to-vote/other-address                              @uk.gov.gds.ier.transaction.ordinary.otherAddress.OtherAddressStep.get
+POST        /register-to-vote/other-address                              @uk.gov.gds.ier.transaction.ordinary.otherAddress.OtherAddressStep.post
+GET         /register-to-vote/edit/other-address                         @uk.gov.gds.ier.transaction.ordinary.otherAddress.OtherAddressStep.editGet
+POST        /register-to-vote/edit/other-address                         @uk.gov.gds.ier.transaction.ordinary.otherAddress.OtherAddressStep.editPost
+
+#Nationality Step
+GET         /register-to-vote/nationality                                @uk.gov.gds.ier.transaction.ordinary.nationality.NationalityStep.get
+POST        /register-to-vote/nationality                                @uk.gov.gds.ier.transaction.ordinary.nationality.NationalityStep.post
+GET         /register-to-vote/edit/nationality                           @uk.gov.gds.ier.transaction.ordinary.nationality.NationalityStep.editGet
+POST        /register-to-vote/edit/nationality                           @uk.gov.gds.ier.transaction.ordinary.nationality.NationalityStep.editPost
+
+#Address
+GET         /register-to-vote/address                                    @uk.gov.gds.ier.transaction.ordinary.address.AddressStep.get
+POST        /register-to-vote/address                                    @uk.gov.gds.ier.transaction.ordinary.address.AddressStep.post
+GET         /register-to-vote/edit/address                               @uk.gov.gds.ier.transaction.ordinary.address.AddressStep.editGet
+POST        /register-to-vote/edit/address                               @uk.gov.gds.ier.transaction.ordinary.address.AddressStep.editPost
+
+#Manual Address
+GET         /register-to-vote/address/manual                             @uk.gov.gds.ier.transaction.ordinary.address.AddressManualStep.get
+POST        /register-to-vote/address/manual                             @uk.gov.gds.ier.transaction.ordinary.address.AddressManualStep.post
+GET         /register-to-vote/edit/address/manual                        @uk.gov.gds.ier.transaction.ordinary.address.AddressManualStep.editGet
+POST        /register-to-vote/edit/address/manual                        @uk.gov.gds.ier.transaction.ordinary.address.AddressManualStep.editPost
+
+#Select Address
+GET         /register-to-vote/address/select                             @uk.gov.gds.ier.transaction.ordinary.address.AddressSelectStep.get
+POST        /register-to-vote/address/select                             @uk.gov.gds.ier.transaction.ordinary.address.AddressSelectStep.post
+GET         /register-to-vote/edit/address/select                        @uk.gov.gds.ier.transaction.ordinary.address.AddressSelectStep.editGet
+POST        /register-to-vote/edit/address/select                        @uk.gov.gds.ier.transaction.ordinary.address.AddressSelectStep.editPost
+
+#Previous Address Step
+GET         /register-to-vote/previous-address                           @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressFirstStep.get
+POST        /register-to-vote/previous-address                           @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressFirstStep.post
+GET         /register-to-vote/edit/previous-address                      @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressFirstStep.editGet
+POST        /register-to-vote/edit/previous-address                      @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressFirstStep.editPost
+
+#Previous Address Step - postcode entry (if there is a previous address)
+GET         /register-to-vote/previous-address/postcode                  @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressPostcodeStep.get
+POST        /register-to-vote/previous-address/postcode                  @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressPostcodeStep.post
+GET         /register-to-vote/edit/previous-address/postcode             @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressPostcodeStep.editGet
+POST        /register-to-vote/edit/previous-address/postcode             @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressPostcodeStep.editPost
+
+#Previous Address Step - selection from postcode
+GET         /register-to-vote/previous-address/select                    @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressSelectStep.get
+POST        /register-to-vote/previous-address/select                    @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressSelectStep.post
+GET         /register-to-vote/edit/previous-address/select               @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressSelectStep.editGet
+POST        /register-to-vote/edit/previous-address/select               @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressSelectStep.editPost
+
+#Previous Address Step - manual address
+GET         /register-to-vote/previous-address/manual                    @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressManualStep.get
+POST        /register-to-vote/previous-address/manual                    @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressManualStep.post
+GET         /register-to-vote/edit/previous-address/manual               @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressManualStep.editGet
+POST        /register-to-vote/edit/previous-address/manual               @uk.gov.gds.ier.transaction.ordinary.previousAddress.PreviousAddressManualStep.editPost
+
+#Name Step
+GET         /register-to-vote/name                                       @uk.gov.gds.ier.transaction.ordinary.name.NameStep.get
+POST        /register-to-vote/name                                       @uk.gov.gds.ier.transaction.ordinary.name.NameStep.post
+GET         /register-to-vote/edit/name                                  @uk.gov.gds.ier.transaction.ordinary.name.NameStep.editGet
+POST        /register-to-vote/edit/name                                  @uk.gov.gds.ier.transaction.ordinary.name.NameStep.editPost
+
+#Date Of Birth Step
+GET         /register-to-vote/date-of-birth                              @uk.gov.gds.ier.transaction.ordinary.dateOfBirth.DateOfBirthStep.get
+POST        /register-to-vote/date-of-birth                              @uk.gov.gds.ier.transaction.ordinary.dateOfBirth.DateOfBirthStep.post
+GET         /register-to-vote/edit/date-of-birth                         @uk.gov.gds.ier.transaction.ordinary.dateOfBirth.DateOfBirthStep.editGet
+POST        /register-to-vote/edit/date-of-birth                         @uk.gov.gds.ier.transaction.ordinary.dateOfBirth.DateOfBirthStep.editPost
+
+#Nino Step
+GET         /register-to-vote/nino                                       @uk.gov.gds.ier.transaction.ordinary.nino.NinoStep.get
+POST        /register-to-vote/nino                                       @uk.gov.gds.ier.transaction.ordinary.nino.NinoStep.post
+GET         /register-to-vote/edit/nino                                  @uk.gov.gds.ier.transaction.ordinary.nino.NinoStep.editGet
+POST        /register-to-vote/edit/nino                                  @uk.gov.gds.ier.transaction.ordinary.nino.NinoStep.editPost
+
+
+#Postcode Lookup
+GET         /address/:postcode                                           @uk.gov.gds.ier.controller.PostcodeController.lookupAddress(postcode)
+
+
+
+################################
+## Overseas Routes
+################################
+
+#Overseas Start page
+GET         /register-to-vote/overseas/start                             @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteOverseasStart
+
+#Date of Birth Oversesas
+GET         /register-to-vote/overseas/date-of-birth                     @uk.gov.gds.ier.transaction.overseas.dateOfBirth.DateOfBirthStep.get
+POST        /register-to-vote/overseas/date-of-birth                     @uk.gov.gds.ier.transaction.overseas.dateOfBirth.DateOfBirthStep.post
+GET         /register-to-vote/overseas/edit/date-of-birth                @uk.gov.gds.ier.transaction.overseas.dateOfBirth.DateOfBirthStep.editGet
+POST        /register-to-vote/overseas/edit/date-of-birth                @uk.gov.gds.ier.transaction.overseas.dateOfBirth.DateOfBirthStep.editPost
+
+#Date Left UK
+GET         /register-to-vote/overseas/date-left-uk                      @uk.gov.gds.ier.transaction.overseas.dateLeftUk.DateLeftUkStep.get
+POST        /register-to-vote/overseas/date-left-uk                      @uk.gov.gds.ier.transaction.overseas.dateLeftUk.DateLeftUkStep.post
+GET         /register-to-vote/overseas/edit/date-left-uk                 @uk.gov.gds.ier.transaction.overseas.dateLeftUk.DateLeftUkStep.editGet
+POST        /register-to-vote/overseas/edit/date-left-uk                 @uk.gov.gds.ier.transaction.overseas.dateLeftUk.DateLeftUkStep.editPost
+
+#Parent Name
+GET         /register-to-vote/overseas/parent-name                       @uk.gov.gds.ier.transaction.overseas.parentName.ParentNameStep.get
+POST        /register-to-vote/overseas/parent-name                       @uk.gov.gds.ier.transaction.overseas.parentName.ParentNameStep.post
+GET         /register-to-vote/overseas/edit/parent-name                  @uk.gov.gds.ier.transaction.overseas.parentName.ParentNameStep.editGet
+POST        /register-to-vote/overseas/edit/parent-name                  @uk.gov.gds.ier.transaction.overseas.parentName.ParentNameStep.editPost
+
+#Last Uk Address
+GET         /register-to-vote/overseas/last-uk-address                   @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressStep.get
+POST        /register-to-vote/overseas/last-uk-address                   @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressStep.post
+GET         /register-to-vote/overseas/edit/last-uk-address              @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressStep.editGet
+POST        /register-to-vote/overseas/edit/last-uk-address              @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressStep.editPost
+
+#Manual Last Uk Address
+GET         /register-to-vote/overseas/last-uk-address/manual            @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressManualStep.get
+POST        /register-to-vote/overseas/last-uk-address/manual            @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressManualStep.post
+GET         /register-to-vote/overseas/edit/last-uk-address/manual       @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressManualStep.editGet
+POST        /register-to-vote/overseas/edit/last-uk-address/manual       @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressManualStep.editPost
+
+#Select Last Uk Address
+GET         /register-to-vote/overseas/last-uk-address/select            @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressSelectStep.get
+POST        /register-to-vote/overseas/last-uk-address/select            @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressSelectStep.post
+GET         /register-to-vote/overseas/edit/last-uk-address/select       @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressSelectStep.editGet
+POST        /register-to-vote/overseas/edit/last-uk-address/select       @uk.gov.gds.ier.transaction.overseas.lastUkAddress.LastUkAddressSelectStep.editPost
+
+#Parents Address
+GET         /register-to-vote/overseas/parents-address                   @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressStep.get
+POST        /register-to-vote/overseas/parents-address                   @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressStep.post
+GET         /register-to-vote/overseas/edit/parents-address              @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressStep.editGet
+POST        /register-to-vote/overseas/edit/parents-address              @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressStep.editPost
+
+#Manual Parents Address
+GET         /register-to-vote/overseas/parents-address/manual            @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressManualStep.get
+POST        /register-to-vote/overseas/parents-address/manual            @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressManualStep.post
+GET         /register-to-vote/overseas/edit/parents-address/manual       @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressManualStep.editGet
+POST        /register-to-vote/overseas/edit/parents-address/manual       @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressManualStep.editPost
+
+#Select Parents Address
+GET         /register-to-vote/overseas/parents-address/select            @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressSelectStep.get
+POST        /register-to-vote/overseas/parents-address/select            @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressSelectStep.post
+GET         /register-to-vote/overseas/edit/parents-address/select       @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressSelectStep.editGet
+POST        /register-to-vote/overseas/edit/parents-address/select       @uk.gov.gds.ier.transaction.overseas.parentsAddress.ParentsAddressSelectStep.editPost
+
+
+#Name  (voter full name)
+GET         /register-to-vote/overseas/name                              @uk.gov.gds.ier.transaction.overseas.name.NameStep.get
+POST        /register-to-vote/overseas/name                              @uk.gov.gds.ier.transaction.overseas.name.NameStep.post
+GET         /register-to-vote/overseas/edit/name                         @uk.gov.gds.ier.transaction.overseas.name.NameStep.editGet
+POST        /register-to-vote/overseas/edit/name                         @uk.gov.gds.ier.transaction.overseas.name.NameStep.editPost
+
+#Nino Step
+GET         /register-to-vote/overseas/nino                              @uk.gov.gds.ier.transaction.overseas.nino.NinoStep.get
+POST        /register-to-vote/overseas/nino                              @uk.gov.gds.ier.transaction.overseas.nino.NinoStep.post
+GET         /register-to-vote/overseas/edit/nino                         @uk.gov.gds.ier.transaction.overseas.nino.NinoStep.editGet
+POST        /register-to-vote/overseas/edit/nino                         @uk.gov.gds.ier.transaction.overseas.nino.NinoStep.editPost
+
+#Address
+GET         /register-to-vote/overseas/address                           @uk.gov.gds.ier.transaction.overseas.address.AddressStep.get
+POST        /register-to-vote/overseas/address                           @uk.gov.gds.ier.transaction.overseas.address.AddressStep.post
+GET         /register-to-vote/overseas/edit/address                      @uk.gov.gds.ier.transaction.overseas.address.AddressStep.editGet
+POST        /register-to-vote/overseas/edit/address                      @uk.gov.gds.ier.transaction.overseas.address.AddressStep.editPost
+
+#Open Register Step
+GET         /register-to-vote/overseas/open-register                     @uk.gov.gds.ier.transaction.overseas.openRegister.OpenRegisterStep.get
+POST        /register-to-vote/overseas/open-register                     @uk.gov.gds.ier.transaction.overseas.openRegister.OpenRegisterStep.post
+GET         /register-to-vote/overseas/edit/open-register                @uk.gov.gds.ier.transaction.overseas.openRegister.OpenRegisterStep.editGet
+POST        /register-to-vote/overseas/edit/open-register                @uk.gov.gds.ier.transaction.overseas.openRegister.OpenRegisterStep.editPost
+
+#Ways To Vote Step
+GET         /register-to-vote/overseas/ways-to-vote                      @uk.gov.gds.ier.transaction.overseas.waysToVote.WaysToVoteStep.get
+POST        /register-to-vote/overseas/ways-to-vote                      @uk.gov.gds.ier.transaction.overseas.waysToVote.WaysToVoteStep.post
+GET         /register-to-vote/overseas/edit/ways-to-vote                 @uk.gov.gds.ier.transaction.overseas.waysToVote.WaysToVoteStep.editGet
+POST        /register-to-vote/overseas/edit/ways-to-vote                 @uk.gov.gds.ier.transaction.overseas.waysToVote.WaysToVoteStep.editPost
+
+#Proxy Vote Step
+GET         /register-to-vote/overseas/proxy-vote                        @uk.gov.gds.ier.transaction.overseas.applicationFormVote.ProxyVoteStep.get
+POST        /register-to-vote/overseas/proxy-vote                        @uk.gov.gds.ier.transaction.overseas.applicationFormVote.ProxyVoteStep.post
+GET         /register-to-vote/overseas/edit/proxy-vote                   @uk.gov.gds.ier.transaction.overseas.applicationFormVote.ProxyVoteStep.editGet
+POST        /register-to-vote/overseas/edit/proxy-vote                   @uk.gov.gds.ier.transaction.overseas.applicationFormVote.ProxyVoteStep.editPost
+
+#Postal Vote Step
+GET         /register-to-vote/overseas/postal-vote                       @uk.gov.gds.ier.transaction.overseas.applicationFormVote.PostalVoteStep.get
+POST        /register-to-vote/overseas/postal-vote                       @uk.gov.gds.ier.transaction.overseas.applicationFormVote.PostalVoteStep.post
+GET         /register-to-vote/overseas/edit/postal-vote                  @uk.gov.gds.ier.transaction.overseas.applicationFormVote.PostalVoteStep.editGet
+POST        /register-to-vote/overseas/edit/postal-vote                  @uk.gov.gds.ier.transaction.overseas.applicationFormVote.PostalVoteStep.editPost
+
+#Contact Step
+GET         /register-to-vote/overseas/contact                           @uk.gov.gds.ier.transaction.overseas.contact.ContactStep.get
+POST        /register-to-vote/overseas/contact                           @uk.gov.gds.ier.transaction.overseas.contact.ContactStep.post
+GET         /register-to-vote/overseas/edit/contact                      @uk.gov.gds.ier.transaction.overseas.contact.ContactStep.editGet
+POST        /register-to-vote/overseas/edit/contact                      @uk.gov.gds.ier.transaction.overseas.contact.ContactStep.editPost
+
+#Passport check Step
+GET         /register-to-vote/overseas/passport                          @uk.gov.gds.ier.transaction.overseas.passport.PassportCheckStep.get
+POST        /register-to-vote/overseas/passport                          @uk.gov.gds.ier.transaction.overseas.passport.PassportCheckStep.post
+GET         /register-to-vote/overseas/edit/passport                     @uk.gov.gds.ier.transaction.overseas.passport.PassportCheckStep.editGet
+POST        /register-to-vote/overseas/edit/passport                     @uk.gov.gds.ier.transaction.overseas.passport.PassportCheckStep.editPost
+
+#Passport details Step
+GET         /register-to-vote/overseas/passport-details                  @uk.gov.gds.ier.transaction.overseas.passport.PassportDetailsStep.get
+POST        /register-to-vote/overseas/passport-details                  @uk.gov.gds.ier.transaction.overseas.passport.PassportDetailsStep.post
+GET         /register-to-vote/overseas/edit/passport-details             @uk.gov.gds.ier.transaction.overseas.passport.PassportDetailsStep.editGet
+POST        /register-to-vote/overseas/edit/passport-details             @uk.gov.gds.ier.transaction.overseas.passport.PassportDetailsStep.editPost
+
+#Citizen details Step
+GET         /register-to-vote/overseas/citizen-details                   @uk.gov.gds.ier.transaction.overseas.passport.CitizenDetailsStep.get
+POST        /register-to-vote/overseas/citizen-details                   @uk.gov.gds.ier.transaction.overseas.passport.CitizenDetailsStep.post
+GET         /register-to-vote/overseas/edit/citizen-details              @uk.gov.gds.ier.transaction.overseas.passport.CitizenDetailsStep.editGet
+POST        /register-to-vote/overseas/edit/citizen-details              @uk.gov.gds.ier.transaction.overseas.passport.CitizenDetailsStep.editPost
+
+#Last Registered to vote type Step
+GET         /register-to-vote/overseas/last-registered-to-vote           @uk.gov.gds.ier.transaction.overseas.lastRegisteredToVote.LastRegisteredToVoteStep.get
+POST        /register-to-vote/overseas/last-registered-to-vote           @uk.gov.gds.ier.transaction.overseas.lastRegisteredToVote.LastRegisteredToVoteStep.post
+GET         /register-to-vote/overseas/edit/last-registered-to-vote      @uk.gov.gds.ier.transaction.overseas.lastRegisteredToVote.LastRegisteredToVoteStep.editGet
+POST        /register-to-vote/overseas/edit/last-registered-to-vote      @uk.gov.gds.ier.transaction.overseas.lastRegisteredToVote.LastRegisteredToVoteStep.editPost
+
+#Date Left Army
+GET         /register-to-vote/overseas/date-left-army                    @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftArmyStep.get
+POST        /register-to-vote/overseas/date-left-army                    @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftArmyStep.post
+GET         /register-to-vote/overseas/edit/date-left-army               @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftArmyStep.editGet
+POST        /register-to-vote/overseas/edit/date-left-army               @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftArmyStep.editPost
+
+#Date Left Council
+GET         /register-to-vote/overseas/date-left-council                 @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCouncilStep.get
+POST        /register-to-vote/overseas/date-left-council                 @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCouncilStep.post
+GET         /register-to-vote/overseas/edit/date-left-council            @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCouncilStep.editGet
+POST        /register-to-vote/overseas/edit/date-left-council            @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCouncilStep.editPost
+
+#Date Left Crown
+GET         /register-to-vote/overseas/date-left-crown                   @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCrownStep.get
+POST        /register-to-vote/overseas/date-left-crown                   @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCrownStep.post
+GET         /register-to-vote/overseas/edit/date-left-crown              @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCrownStep.editGet
+POST        /register-to-vote/overseas/edit/date-left-crown              @uk.gov.gds.ier.transaction.overseas.dateLeftSpecial.DateLeftCrownStep.editPost
+
+
+#Overseas Confirmation
+GET         /register-to-vote/overseas/confirmation                      @uk.gov.gds.ier.transaction.overseas.confirmation.ConfirmationStep.get
+POST        /register-to-vote/overseas/confirmation                      @uk.gov.gds.ier.transaction.overseas.confirmation.ConfirmationStep.post
+
+
+################################
+## Forces Routes
+################################
+
+#Forces Start page
+GET         /register-to-vote/forces                                    @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteForces
+GET         /register-to-vote/forces/start                              @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteForcesStart
+
+#Statement Step
+GET         /register-to-vote/forces/statement                          @uk.gov.gds.ier.transaction.forces.statement.StatementStep.get
+POST        /register-to-vote/forces/statement                          @uk.gov.gds.ier.transaction.forces.statement.StatementStep.post
+GET         /register-to-vote/forces/edit/statement                     @uk.gov.gds.ier.transaction.forces.statement.StatementStep.editGet
+POST        /register-to-vote/forces/edit/statement                     @uk.gov.gds.ier.transaction.forces.statement.StatementStep.editPost
+
+
+#First Address Step
+GET         /register-to-vote/forces/address/first                      @uk.gov.gds.ier.transaction.forces.address.AddressFirstStep.get
+POST        /register-to-vote/forces/address/first                      @uk.gov.gds.ier.transaction.forces.address.AddressFirstStep.post
+GET         /register-to-vote/forces/edit/address/first                 @uk.gov.gds.ier.transaction.forces.address.AddressFirstStep.editGet
+POST        /register-to-vote/forces/edit/address/first                 @uk.gov.gds.ier.transaction.forces.address.AddressFirstStep.editPost
+
+#Address Step
+GET         /register-to-vote/forces/address                            @uk.gov.gds.ier.transaction.forces.address.AddressStep.get
+POST        /register-to-vote/forces/address                            @uk.gov.gds.ier.transaction.forces.address.AddressStep.post
+GET         /register-to-vote/forces/edit/address                       @uk.gov.gds.ier.transaction.forces.address.AddressStep.editGet
+POST        /register-to-vote/forces/edit/address                       @uk.gov.gds.ier.transaction.forces.address.AddressStep.editPost
+
+#Manual Address Step
+GET         /register-to-vote/forces/address/manual                     @uk.gov.gds.ier.transaction.forces.address.AddressManualStep.get
+POST        /register-to-vote/forces/address/manual                     @uk.gov.gds.ier.transaction.forces.address.AddressManualStep.post
+GET         /register-to-vote/forces/edit/address/manual                @uk.gov.gds.ier.transaction.forces.address.AddressManualStep.editGet
+POST        /register-to-vote/forces/edit/address/manual                @uk.gov.gds.ier.transaction.forces.address.AddressManualStep.editPost
+
+#Select Address Step
+GET         /register-to-vote/forces/address/select                     @uk.gov.gds.ier.transaction.forces.address.AddressSelectStep.get
+POST        /register-to-vote/forces/address/select                     @uk.gov.gds.ier.transaction.forces.address.AddressSelectStep.post
+GET         /register-to-vote/forces/edit/address/select                @uk.gov.gds.ier.transaction.forces.address.AddressSelectStep.editGet
+POST        /register-to-vote/forces/edit/address/select                @uk.gov.gds.ier.transaction.forces.address.AddressSelectStep.editPost
+
+#Previous Address Step
+GET         /register-to-vote/forces/previous-address                   @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressFirstStep.get
+POST        /register-to-vote/forces/previous-address                   @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressFirstStep.post
+GET         /register-to-vote/forces/edit/previous-address              @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressFirstStep.editGet
+POST        /register-to-vote/forces/edit/previous-address              @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressFirstStep.editPost
+
+#Previous Address Step - postcode entry (if there is a previous address)
+GET         /register-to-vote/forces/previous-address/postcode          @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressPostcodeStep.get
+POST        /register-to-vote/forces/previous-address/postcode          @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressPostcodeStep.post
+GET         /register-to-vote/forces/edit/previous-address/postcode     @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressPostcodeStep.editGet
+POST        /register-to-vote/forces/edit/previous-address/postcode     @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressPostcodeStep.editPost
+
+#Previous Address Step - selection from postcode
+GET         /register-to-vote/forces/previous-address/select            @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressSelectStep.get
+POST        /register-to-vote/forces/previous-address/select            @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressSelectStep.post
+GET         /register-to-vote/forces/edit/previous-address/select       @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressSelectStep.editGet
+POST        /register-to-vote/forces/edit/previous-address/select       @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressSelectStep.editPost
+
+#Previous Address Step - manual address
+GET         /register-to-vote/forces/previous-address/manual            @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressManualStep.get
+POST        /register-to-vote/forces/previous-address/manual            @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressManualStep.post
+GET         /register-to-vote/forces/edit/previous-address/manual       @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressManualStep.editGet
+POST        /register-to-vote/forces/edit/previous-address/manual       @uk.gov.gds.ier.transaction.forces.previousAddress.PreviousAddressManualStep.editPost
+
+
+#Nationality Step
+GET         /register-to-vote/forces/nationality                        @uk.gov.gds.ier.transaction.forces.nationality.NationalityStep.get
+POST        /register-to-vote/forces/nationality                        @uk.gov.gds.ier.transaction.forces.nationality.NationalityStep.post
+GET         /register-to-vote/forces/edit/nationality                   @uk.gov.gds.ier.transaction.forces.nationality.NationalityStep.editGet
+POST        /register-to-vote/forces/edit/nationality                   @uk.gov.gds.ier.transaction.forces.nationality.NationalityStep.editPost
+
+#Date of Birth Step
+GET         /register-to-vote/forces/date-of-birth                      @uk.gov.gds.ier.transaction.forces.dateOfBirth.DateOfBirthStep.get
+POST        /register-to-vote/forces/date-of-birth                      @uk.gov.gds.ier.transaction.forces.dateOfBirth.DateOfBirthStep.post
+GET         /register-to-vote/forces/edit/date-of-birth                 @uk.gov.gds.ier.transaction.forces.dateOfBirth.DateOfBirthStep.editGet
+POST        /register-to-vote/forces/edit/date-of-birth                 @uk.gov.gds.ier.transaction.forces.dateOfBirth.DateOfBirthStep.editPost
+
+#Name Step
+GET         /register-to-vote/forces/name                               @uk.gov.gds.ier.transaction.forces.name.NameStep.get
+POST        /register-to-vote/forces/name                               @uk.gov.gds.ier.transaction.forces.name.NameStep.post
+GET         /register-to-vote/forces/edit/name                          @uk.gov.gds.ier.transaction.forces.name.NameStep.editGet
+POST        /register-to-vote/forces/edit/name                          @uk.gov.gds.ier.transaction.forces.name.NameStep.editPost
+
+#Nino Step
+GET         /register-to-vote/forces/nino                               @uk.gov.gds.ier.transaction.forces.nino.NinoStep.get
+POST        /register-to-vote/forces/nino                               @uk.gov.gds.ier.transaction.forces.nino.NinoStep.post
+GET         /register-to-vote/forces/edit/nino                          @uk.gov.gds.ier.transaction.forces.nino.NinoStep.editGet
+POST        /register-to-vote/forces/edit/nino                          @uk.gov.gds.ier.transaction.forces.nino.NinoStep.editPost
+
+#Service Step
+GET         /register-to-vote/forces/service                            @uk.gov.gds.ier.transaction.forces.service.ServiceStep.get
+POST        /register-to-vote/forces/service                            @uk.gov.gds.ier.transaction.forces.service.ServiceStep.post
+GET         /register-to-vote/forces/edit/service                       @uk.gov.gds.ier.transaction.forces.service.ServiceStep.editGet
+POST        /register-to-vote/forces/edit/service                       @uk.gov.gds.ier.transaction.forces.service.ServiceStep.editPost
+
+#Rank Step
+GET         /register-to-vote/forces/rank                               @uk.gov.gds.ier.transaction.forces.rank.RankStep.get
+POST        /register-to-vote/forces/rank                               @uk.gov.gds.ier.transaction.forces.rank.RankStep.post
+GET         /register-to-vote/forces/edit/rank                          @uk.gov.gds.ier.transaction.forces.rank.RankStep.editGet
+POST        /register-to-vote/forces/edit/rank                          @uk.gov.gds.ier.transaction.forces.rank.RankStep.editPost
+
+#Contact Address Step
+GET         /register-to-vote/forces/contact-address                    @uk.gov.gds.ier.transaction.forces.contactAddress.ContactAddressStep.get
+POST        /register-to-vote/forces/contact-address                    @uk.gov.gds.ier.transaction.forces.contactAddress.ContactAddressStep.post
+GET         /register-to-vote/forces/edit/contact-address               @uk.gov.gds.ier.transaction.forces.contactAddress.ContactAddressStep.editGet
+POST        /register-to-vote/forces/edit/contact-address               @uk.gov.gds.ier.transaction.forces.contactAddress.ContactAddressStep.editPost
+
+#Open Register Step
+GET         /register-to-vote/forces/open-register                      @uk.gov.gds.ier.transaction.forces.openRegister.OpenRegisterStep.get
+POST        /register-to-vote/forces/open-register                      @uk.gov.gds.ier.transaction.forces.openRegister.OpenRegisterStep.post
+GET         /register-to-vote/forces/edit/open-register                 @uk.gov.gds.ier.transaction.forces.openRegister.OpenRegisterStep.editGet
+POST        /register-to-vote/forces/edit/open-register                 @uk.gov.gds.ier.transaction.forces.openRegister.OpenRegisterStep.editPost
+
+#Ways To Vote Step
+GET         /register-to-vote/forces/ways-to-vote                       @uk.gov.gds.ier.transaction.forces.waysToVote.WaysToVoteStep.get
+POST        /register-to-vote/forces/ways-to-vote                       @uk.gov.gds.ier.transaction.forces.waysToVote.WaysToVoteStep.post
+GET         /register-to-vote/forces/edit/ways-to-vote                  @uk.gov.gds.ier.transaction.forces.waysToVote.WaysToVoteStep.editGet
+POST        /register-to-vote/forces/edit/ways-to-vote                  @uk.gov.gds.ier.transaction.forces.waysToVote.WaysToVoteStep.editPost
+
+#Proxy Vote Step
+GET         /register-to-vote/forces/proxy-vote                         @uk.gov.gds.ier.transaction.forces.applicationFormVote.ProxyVoteStep.get
+POST        /register-to-vote/forces/proxy-vote                         @uk.gov.gds.ier.transaction.forces.applicationFormVote.ProxyVoteStep.post
+GET         /register-to-vote/forces/edit/proxy-vote                    @uk.gov.gds.ier.transaction.forces.applicationFormVote.ProxyVoteStep.editGet
+POST        /register-to-vote/forces/edit/proxy-vote                    @uk.gov.gds.ier.transaction.forces.applicationFormVote.ProxyVoteStep.editPost
+
+#Postal Vote Step
+GET         /register-to-vote/forces/postal-vote                        @uk.gov.gds.ier.transaction.forces.applicationFormVote.PostalVoteStep.get
+POST        /register-to-vote/forces/postal-vote                        @uk.gov.gds.ier.transaction.forces.applicationFormVote.PostalVoteStep.post
+GET         /register-to-vote/forces/edit/postal-vote                   @uk.gov.gds.ier.transaction.forces.applicationFormVote.PostalVoteStep.editGet
+POST        /register-to-vote/forces/edit/postal-vote                   @uk.gov.gds.ier.transaction.forces.applicationFormVote.PostalVoteStep.editPost
+
+#Contact Step
+GET         /register-to-vote/forces/contact                            @uk.gov.gds.ier.transaction.forces.contact.ContactStep.get
+POST        /register-to-vote/forces/contact                            @uk.gov.gds.ier.transaction.forces.contact.ContactStep.post
+GET         /register-to-vote/forces/edit/contact                       @uk.gov.gds.ier.transaction.forces.contact.ContactStep.editGet
+POST        /register-to-vote/forces/edit/contact                       @uk.gov.gds.ier.transaction.forces.contact.ContactStep.editPost
+
+
+#Forces Confirmation
+GET         /register-to-vote/forces/confirmation                       @uk.gov.gds.ier.transaction.forces.confirmation.ConfirmationStep.get
+POST        /register-to-vote/forces/confirmation                       @uk.gov.gds.ier.transaction.forces.confirmation.ConfirmationStep.post
+
+
+################################
+## Crown Routes
+################################
+
+#Crown Start page
+GET         /register-to-vote/crown                                    @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteCrown
+GET         /register-to-vote/crown/start                              @uk.gov.gds.ier.controller.RegisterToVoteController.registerToVoteCrownStart
+
+#Statement Step
+GET         /register-to-vote/crown/statement                          @uk.gov.gds.ier.transaction.crown.statement.StatementStep.get
+POST        /register-to-vote/crown/statement                          @uk.gov.gds.ier.transaction.crown.statement.StatementStep.post
+GET         /register-to-vote/crown/edit/statement                     @uk.gov.gds.ier.transaction.crown.statement.StatementStep.editGet
+POST        /register-to-vote/crown/edit/statement                     @uk.gov.gds.ier.transaction.crown.statement.StatementStep.editPost
+
+#First Address Step
+GET         /register-to-vote/crown/address/first                      @uk.gov.gds.ier.transaction.crown.address.AddressFirstStep.get
+POST        /register-to-vote/crown/address/first                      @uk.gov.gds.ier.transaction.crown.address.AddressFirstStep.post
+GET         /register-to-vote/crown/edit/address/first                 @uk.gov.gds.ier.transaction.crown.address.AddressFirstStep.editGet
+POST        /register-to-vote/crown/edit/address/first                 @uk.gov.gds.ier.transaction.crown.address.AddressFirstStep.editPost
+
+#Address Step
+GET         /register-to-vote/crown/address                            @uk.gov.gds.ier.transaction.crown.address.AddressStep.get
+POST        /register-to-vote/crown/address                            @uk.gov.gds.ier.transaction.crown.address.AddressStep.post
+GET         /register-to-vote/crown/edit/address                       @uk.gov.gds.ier.transaction.crown.address.AddressStep.editGet
+POST        /register-to-vote/crown/edit/address                       @uk.gov.gds.ier.transaction.crown.address.AddressStep.editPost
+
+#Manual Address Step
+GET         /register-to-vote/crown/address/manual                     @uk.gov.gds.ier.transaction.crown.address.AddressManualStep.get
+POST        /register-to-vote/crown/address/manual                     @uk.gov.gds.ier.transaction.crown.address.AddressManualStep.post
+GET         /register-to-vote/crown/edit/address/manual                @uk.gov.gds.ier.transaction.crown.address.AddressManualStep.editGet
+POST        /register-to-vote/crown/edit/address/manual                @uk.gov.gds.ier.transaction.crown.address.AddressManualStep.editPost
+
+#Select Address Step
+GET         /register-to-vote/crown/address/select                     @uk.gov.gds.ier.transaction.crown.address.AddressSelectStep.get
+POST        /register-to-vote/crown/address/select                     @uk.gov.gds.ier.transaction.crown.address.AddressSelectStep.post
+GET         /register-to-vote/crown/edit/address/select                @uk.gov.gds.ier.transaction.crown.address.AddressSelectStep.editGet
+POST        /register-to-vote/crown/edit/address/select                @uk.gov.gds.ier.transaction.crown.address.AddressSelectStep.editPost
+
+#Previous Address Step
+GET         /register-to-vote/crown/previous-address                   @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressFirstStep.get
+POST        /register-to-vote/crown/previous-address                   @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressFirstStep.post
+GET         /register-to-vote/crown/edit/previous-address              @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressFirstStep.editGet
+POST        /register-to-vote/crown/edit/previous-address              @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressFirstStep.editPost
+
+#Previous Address Step - postcode entry (if there is a previous address)
+GET         /register-to-vote/crown/previous-address/postcode          @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressPostcodeStep.get
+POST        /register-to-vote/crown/previous-address/postcode          @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressPostcodeStep.post
+GET         /register-to-vote/crown/edit/previous-address/postcode     @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressPostcodeStep.editGet
+POST        /register-to-vote/crown/edit/previous-address/postcode     @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressPostcodeStep.editPost
+
+#Previous Address Step - selection from postcode
+GET         /register-to-vote/crown/previous-address/select            @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressSelectStep.get
+POST        /register-to-vote/crown/previous-address/select            @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressSelectStep.post
+GET         /register-to-vote/crown/edit/previous-address/select       @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressSelectStep.editGet
+POST        /register-to-vote/crown/edit/previous-address/select       @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressSelectStep.editPost
+
+#Previous Address Step - manual address
+GET         /register-to-vote/crown/previous-address/manual            @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressManualStep.get
+POST        /register-to-vote/crown/previous-address/manual            @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressManualStep.post
+GET         /register-to-vote/crown/edit/previous-address/manual       @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressManualStep.editGet
+POST        /register-to-vote/crown/edit/previous-address/manual       @uk.gov.gds.ier.transaction.crown.previousAddress.PreviousAddressManualStep.editPost
+
+#Nationality Step
+GET         /register-to-vote/crown/nationality                        @uk.gov.gds.ier.transaction.crown.nationality.NationalityStep.get
+POST        /register-to-vote/crown/nationality                        @uk.gov.gds.ier.transaction.crown.nationality.NationalityStep.post
+GET         /register-to-vote/crown/edit/nationality                   @uk.gov.gds.ier.transaction.crown.nationality.NationalityStep.editGet
+POST        /register-to-vote/crown/edit/nationality                   @uk.gov.gds.ier.transaction.crown.nationality.NationalityStep.editPost
+
+#Date of Birth Step
+GET         /register-to-vote/crown/date-of-birth                      @uk.gov.gds.ier.transaction.crown.dateOfBirth.DateOfBirthStep.get
+POST        /register-to-vote/crown/date-of-birth                      @uk.gov.gds.ier.transaction.crown.dateOfBirth.DateOfBirthStep.post
+GET         /register-to-vote/crown/edit/date-of-birth                 @uk.gov.gds.ier.transaction.crown.dateOfBirth.DateOfBirthStep.editGet
+POST        /register-to-vote/crown/edit/date-of-birth                 @uk.gov.gds.ier.transaction.crown.dateOfBirth.DateOfBirthStep.editPost
+
+#Name Step
+GET         /register-to-vote/crown/name                               @uk.gov.gds.ier.transaction.crown.name.NameStep.get
+POST        /register-to-vote/crown/name                               @uk.gov.gds.ier.transaction.crown.name.NameStep.post
+GET         /register-to-vote/crown/edit/name                          @uk.gov.gds.ier.transaction.crown.name.NameStep.editGet
+POST        /register-to-vote/crown/edit/name                          @uk.gov.gds.ier.transaction.crown.name.NameStep.editPost
+
+#Job Step
+GET         /register-to-vote/crown/job-title                          @uk.gov.gds.ier.transaction.crown.job.JobStep.get
+POST        /register-to-vote/crown/job-title                          @uk.gov.gds.ier.transaction.crown.job.JobStep.post
+GET         /register-to-vote/crown/edit/job-title                     @uk.gov.gds.ier.transaction.crown.job.JobStep.editGet
+POST        /register-to-vote/crown/edit/job-title                     @uk.gov.gds.ier.transaction.crown.job.JobStep.editPost
+
+# declaration pdf form download
+GET         /register-to-vote/crown/declaration-pdf                    @uk.gov.gds.ier.transaction.crown.declaration.DeclarationPdfStep.get
+POST        /register-to-vote/crown/declaration-pdf                    @uk.gov.gds.ier.transaction.crown.declaration.DeclarationPdfStep.post
+GET         /register-to-vote/crown/edit/declaration-pdf               @uk.gov.gds.ier.transaction.crown.declaration.DeclarationPdfStep.editGet
+POST        /register-to-vote/crown/edit/declaration-pdf               @uk.gov.gds.ier.transaction.crown.declaration.DeclarationPdfStep.editPost
+GET         /register-to-vote/crown/declaration-pdf-download           @uk.gov.gds.ier.controller.DeclarationPdfDownloadController.download
+
+#Nino Step
+GET         /register-to-vote/crown/nino                               @uk.gov.gds.ier.transaction.crown.nino.NinoStep.get
+POST        /register-to-vote/crown/nino                               @uk.gov.gds.ier.transaction.crown.nino.NinoStep.post
+GET         /register-to-vote/crown/edit/nino                          @uk.gov.gds.ier.transaction.crown.nino.NinoStep.editGet
+POST        /register-to-vote/crown/edit/nino                          @uk.gov.gds.ier.transaction.crown.nino.NinoStep.editPost
+
+
+#Contact Address Step
+GET         /register-to-vote/crown/contact-address                    @uk.gov.gds.ier.transaction.crown.contactAddress.ContactAddressStep.get
+POST        /register-to-vote/crown/contact-address                    @uk.gov.gds.ier.transaction.crown.contactAddress.ContactAddressStep.post
+GET         /register-to-vote/crown/edit/contact-address               @uk.gov.gds.ier.transaction.crown.contactAddress.ContactAddressStep.editGet
+POST        /register-to-vote/crown/edit/contact-address               @uk.gov.gds.ier.transaction.crown.contactAddress.ContactAddressStep.editPost
+
+#Open Register Step
+GET         /register-to-vote/crown/open-register                      @uk.gov.gds.ier.transaction.crown.openRegister.OpenRegisterStep.get
+POST        /register-to-vote/crown/open-register                      @uk.gov.gds.ier.transaction.crown.openRegister.OpenRegisterStep.post
+GET         /register-to-vote/crown/edit/open-register                 @uk.gov.gds.ier.transaction.crown.openRegister.OpenRegisterStep.editGet
+POST        /register-to-vote/crown/edit/open-register                 @uk.gov.gds.ier.transaction.crown.openRegister.OpenRegisterStep.editPost
+
+#Ways To Vote Step
+GET         /register-to-vote/crown/ways-to-vote                       @uk.gov.gds.ier.transaction.crown.waysToVote.WaysToVoteStep.get
+POST        /register-to-vote/crown/ways-to-vote                       @uk.gov.gds.ier.transaction.crown.waysToVote.WaysToVoteStep.post
+GET         /register-to-vote/crown/edit/ways-to-vote                  @uk.gov.gds.ier.transaction.crown.waysToVote.WaysToVoteStep.editGet
+POST        /register-to-vote/crown/edit/ways-to-vote                  @uk.gov.gds.ier.transaction.crown.waysToVote.WaysToVoteStep.editPost
+
+#Proxy Vote Step
+GET         /register-to-vote/crown/proxy-vote                         @uk.gov.gds.ier.transaction.crown.applicationFormVote.ProxyVoteStep.get
+POST        /register-to-vote/crown/proxy-vote                         @uk.gov.gds.ier.transaction.crown.applicationFormVote.ProxyVoteStep.post
+GET         /register-to-vote/crown/edit/proxy-vote                    @uk.gov.gds.ier.transaction.crown.applicationFormVote.ProxyVoteStep.editGet
+POST        /register-to-vote/crown/edit/proxy-vote                    @uk.gov.gds.ier.transaction.crown.applicationFormVote.ProxyVoteStep.editPost
+
+#Postal Vote Step
+GET         /register-to-vote/crown/postal-vote                        @uk.gov.gds.ier.transaction.crown.applicationFormVote.PostalVoteStep.get
+POST        /register-to-vote/crown/postal-vote                        @uk.gov.gds.ier.transaction.crown.applicationFormVote.PostalVoteStep.post
+GET         /register-to-vote/crown/edit/postal-vote                   @uk.gov.gds.ier.transaction.crown.applicationFormVote.PostalVoteStep.editGet
+POST        /register-to-vote/crown/edit/postal-vote                   @uk.gov.gds.ier.transaction.crown.applicationFormVote.PostalVoteStep.editPost
+
+#Contact Step
+GET         /register-to-vote/crown/contact                            @uk.gov.gds.ier.transaction.crown.contact.ContactStep.get
+POST        /register-to-vote/crown/contact                            @uk.gov.gds.ier.transaction.crown.contact.ContactStep.post
+GET         /register-to-vote/crown/edit/contact                       @uk.gov.gds.ier.transaction.crown.contact.ContactStep.editGet
+POST        /register-to-vote/crown/edit/contact                       @uk.gov.gds.ier.transaction.crown.contact.ContactStep.editPost
+
+#Crown Confirmation
+GET         /register-to-vote/crown/confirmation                       @uk.gov.gds.ier.transaction.crown.confirmation.ConfirmationStep.get
+POST        /register-to-vote/crown/confirmation                       @uk.gov.gds.ier.transaction.crown.confirmation.ConfirmationStep.post
+
+# Zendesk proxy
+GET         /register-to-vote/feedback                                 @uk.gov.gds.ier.feedback.FeedbackPage.get(sourcePath: Option[String] ?= None)
+POST        /register-to-vote/feedback                                 @uk.gov.gds.ier.feedback.FeedbackPage.post(sourcePath: Option[String] ?= None)
+GET         /register-to-vote/feedback/thank-you                       @uk.gov.gds.ier.feedback.FeedbackPage.thankYou(sourcePath: Option[String] ?= None)
+
+# Local Authority Lookup
+GET         /register-to-vote/local-authority/lookup                   @uk.gov.gds.ier.localAuthority.LocalAuthorityController.showLookup(sourcePath: Option[String] ?= None)
+POST        /register-to-vote/local-authority/lookup                   @uk.gov.gds.ier.localAuthority.LocalAuthorityController.doLookup(sourcePath: Option[String] ?= None)
+GET         /register-to-vote/local-authority/:gssCode                 @uk.gov.gds.ier.localAuthority.LocalAuthorityController.ero(gssCode:String, sourcePath: Option[String] ?= None)

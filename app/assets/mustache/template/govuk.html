@@ -1,0 +1,39 @@
+{{<govuk_template_inheritance/views/layouts/govuk_template}}
+
+{{$cookieMessage}}
+{{>template/cookieMessage}}
+{{/cookieMessage}}
+
+{{$footerSupportLinks}}
+{{>template/footerLinks}}
+{{/footerSupportLinks}}
+
+{{$propositionHeader}}
+{{>template/propositionHeader}}
+{{/propositionHeader}}
+
+{{$head}}
+{{>template/head}}
+{{/head}}
+
+{{$htmlLang}}{{htmlLang}}{{/htmlLang}}
+
+{{$headerClass}}{{headerClass}}{{/headerClass}}
+
+{{$bodyEnd}}
+{{>template/stepBodyEnd}}
+{{/bodyEnd}}
+
+{{$pageTitle}}
+{{^pageTitle}}GOV.UK - The best place to find government services and information{{/pageTitle}}
+{{pageTitle}}
+{{/pageTitle}}
+
+{{$content}}
+<main id="content" class="{{ contentClasses }}">
+    {{$main}}{{/main}}
+</main>
+{{$related}}{{/related}}
+{{/content}}
+
+{{/govuk_template_inheritance/views/layouts/govuk_template}}

@@ -1,0 +1,57 @@
+{{<template/govuk}}
+
+{{$pageTitle}}{{messages.feedback_title}}{{/pageTitle}}
+
+{{$main}}
+<header>
+    <h1>{{messages.feedback_title}}</h1>
+</header>
+<form action="{{postUrl}}" method="POST">
+    <p>
+        {{messages.feedback_description_p1}}
+    </p>
+
+    <p class="">
+        <strong>{{messages.feedback_description_p2}}</strong>
+    </p>
+
+    <label for="{{feedbackText.id}}" class="visuallyhidden">
+        {{messages.feedback_detail_label}}
+    </label>
+    <textarea name="{{feedbackText.name}}"
+              id="{{feedbackText.id}}"
+              class="text large"
+              maxlength="{{maxFeedbackCommentLength}}"
+              autocomplete="off"
+              ></textarea>
+
+    <p id="textdetailscounter" class="hint">
+      {{feedbackDetailHint}}
+    </p>
+
+    <h3>{{messages.feedback_contact_h2}}</h3>
+    <p>{{messages.feedback_contact_descr_p1}}</p>
+
+    <label for="{{contactName.id}}">{{messages.feedback_contact_name_label}}</label>
+    <input name="{{contactName.name}}"
+           id="{{contactName.id}}"
+           type="text"
+           maxlength="{{maxFeedbackNameLength}}"
+           class="text long"
+           autocomplete="off">
+
+
+    <label for="{{contactEmail.id}}">{{messages.feedback_contact_email_label}}</label>
+    <input name="{{contactEmail.name}}"
+           id="{{contactEmail.id}}"
+           type="text"
+           maxlength="{{maxFeedbackEmailLength}}"
+           class="text long"
+           autocomplete="off">
+
+    <button type="submit" class="button next" id="continue">{{messages.feedback_submit}}</button>
+
+</form>
+{{/main}}
+
+{{/template/govuk}}

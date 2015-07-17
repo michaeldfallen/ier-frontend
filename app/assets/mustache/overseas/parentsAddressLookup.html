@@ -1,0 +1,28 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset>
+        <p>
+            This is where your vote will be counted as an overseas voter.
+        </p>
+        <label for="{{postcode.id}}">
+            Postcode
+        </label>
+        <div class="validation-wrapper {{postcode.classes}}">
+            <input
+              type="text"
+              id="{{postcode.id}}"
+              name="{{postcode.name}}"
+              value="{{postcode.value}}"
+              autocomplete="off"
+              class="text postcode medium validate {{postcode.classes}}">
+        </div>
+    </fieldset>
+    <button
+      id="find-parents-address"
+      type="submit"
+      class="button next">
+        Find address
+    </button>
+</form>

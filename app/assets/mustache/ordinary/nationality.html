@@ -1,0 +1,147 @@
+<form action="{{question.postUrl}}" method="POST"
+      data-validation-name="nationality" data-validation-type="association"
+      data-validation-rules="fieldsetOrExcuse" class="validate"
+      data-validation-members="country nationalityExcuse">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <p>{{messages.ordinary_nationality_content_1}}</p>
+
+    <fieldset class="validate {{nationality.classes}}"
+              data-validation-name="country"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneChecked checkedOtherIsValid max5Countries"
+              data-validation-children="british irish other otherCountries">
+
+        <label class="selectable">
+            <input type="checkbox"
+                   id="{{britishOption.id}}"
+                   name="{{britishOption.name}}"
+                   value="true"
+                   class=" validate"
+                   data-validation-name="british"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{britishOption.attributes}}} />
+            {{messages.ordinary_nationality_british}}
+        </label>
+        <label class="selectable">
+            <input type="checkbox"
+                   id="{{irishOption.id}}"
+                   name="{{irishOption.name}}"
+                   value="true"
+                   class=" validate"
+                   data-validation-name="irish"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{irishOption.attributes}}} />
+            {{messages.ordinary_nationality_irish}}
+        </label>
+        <div class="validation-wrapper {{otherCountry.classes}}">
+            <div id="add-countries"
+                 class="optional-section validate"
+                 data-condition="{{hasOtherCountryOption.id}}"
+                 data-validation-name="otherCountries"
+                 data-validation-type="fieldset"
+                 data-validation-rules="atLeastOneCountry allCountriesValid"
+                 data-validation-children="added-country-0 added-country-1 added-country-2"
+                 data-control-text="{{messages.ordinary_nationality_otherCountry}}"
+                 data-control-id="{{hasOtherCountryOption.id}}"
+                 data-control-name="{{hasOtherCountryOption.name}}"
+                 data-control-value="true"
+                 data-control-classes="validate"
+                 data-control-attributes="
+                   data-validation-name='other'
+                   data-validation-type='field'
+                   data-validation-rules='nonEmpty'
+                   {{{hasOtherCountryOption.attributes}}}
+                "
+            >
+                <div class="added-country">
+                  <label for="{{otherCountries0.id}}">
+                      {{{messages.ordinary_nationality_whichCountry}}}
+                  </label>
+                  <div class="validation-wrapper">
+                      <input type="text"
+                             id="{{otherCountries0.id}}"
+                             name="{{otherCountries0.name}}"
+                             value="{{otherCountries0.value}}"
+                             autocomplete="off"
+                             class="text  country-autocomplete long validate {{otherCountries0.classes}}"
+                             data-validation-name="added-country-0"
+                             data-validation-type="field"
+                             data-validation-rules="nonEmpty validCountry" />
+                  </div>
+                </div>
+                <div class="added-country">
+                  <label for="{{otherCountries1.id}}">
+                      {{{messages.ordinary_nationality_secondCountry}}}
+                  </label>
+                  <div class="validation-wrapper">
+                      <input type="text"
+                             id="{{otherCountries1.id}}"
+                             name="{{otherCountries1.name}}"
+                             value="{{otherCountries1.value}}"
+                             autocomplete="off"
+                             class="text  country-autocomplete long validate {{otherCountries1.classes}}"
+                             data-validation-name="added-country-1"
+                             data-validation-type="field"
+                             data-validation-rules="nonEmpty validCountry" />
+                  </div>
+                </div>
+                <div class="added-country">
+                  <label for="{{otherCountries2.id}}">
+                      {{{messages.ordinary_nationality_thirdCountry}}}
+                  </label>
+                  <div class="validation-wrapper">
+                      <input type="text"
+                             id="{{otherCountries2.id}}"
+                             name="{{otherCountries2.name}}"
+                             value="{{otherCountries2.value}}"
+                             autocomplete="off"
+                             class="text  country-autocomplete long validate {{otherCountries2.classes}}"
+                             data-validation-name="added-country-2"
+                             data-validation-type="field"
+                             data-validation-rules="nonEmpty validCountry" />
+                  </div>
+              </div>
+            </div>
+        </div>
+    </fieldset>
+    <button type="submit"
+            id="alt-continue"
+            class="button next validation-submit"
+            data-validation-sources="nationality">
+        {{messages.step_continue}}
+    </button>
+    <div class="help-content help-content{{noNationalityReasonShowFlag}}"
+         data-toggle-text="{{messages.ordinary_nationality_help_heading_1}}">
+        <h2>{{messages.ordinary_nationality_help_heading_1}}</h2>
+        <p>{{messages.ordinary_nationality_help_content_1}}</p>
+        <p>{{messages.ordinary_nationality_help_content_2}}</p>
+        <div class="optional-section optional-section{{noNationalityReasonShowFlag}}"
+             data-toggle-text="{{messages.ordinary_nationality_help_heading_2}}"
+             id="nationality-provision">
+            <h3>{{messages.ordinary_nationality_help_heading_2}}</h3>
+            <label for="{{noNationalityReason.id}}">
+                {{messages.ordinary_nationality_help_content_3}}
+            </label>
+            <textarea name="{{noNationalityReason.name}}"
+                      id="{{noNationalityReason.id}}"
+                      class="{{noNationalityReason.classes}} small validate"
+                      data-validation-name="nationalityExcuse"
+                      data-validation-type="field"
+                      data-validation-rules="nonEmpty"
+                      maxlength="500"
+                      autocomplete="off" >{{noNationalityReason.value}}</textarea>
+        </div>
+    </div>
+    <button type="submit"
+            id="continue"
+            class="button next validation-submit"
+            data-validation-sources="nationality">
+        {{messages.step_continue}}
+    </button>
+</form>

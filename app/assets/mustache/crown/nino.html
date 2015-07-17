@@ -1,0 +1,52 @@
+<form action="{{question.postUrl}}" method="POST" data-validation-name="nino"
+      data-validation-type="association"
+      data-validation-rules="fieldsetOrExcuse"
+      class="validate" data-validation-members="ninoCode ninoExcuse">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <label for="{{nino.id}}" class="visuallyhidden"  >
+        What is your National Insurance number?
+    </label>
+
+    <div class="validation-wrapper {{nino.classes}}">
+        <input type="text" id="{{nino.id}}" name="{{nino.name}}" value="{{nino.value}}"
+               autocomplete="off" class="text  validate nino {{nino.classes}}"
+               data-validation-name="ninoCode" data-validation-type="field"
+               data-validation-rules="nonEmpty nino" />
+    </div>
+    <p class="example">Example: QQ 12 34 56 C</p>
+    <button type="submit" id="alt-continue"
+            class="button next validation-submit"
+            data-validation-sources="nino">Continue</button>
+    <div class="help-content help-content{{noNinoReasonShowFlag.value}}" data-toggle-text="I don't know my National Insurance number">
+        <h2>I don't know my National Insurance number</h2>
+        <p>You can:</p>
+        <ul>
+            <li>look for it on pay slips or official letters about tax,
+                pensions and benefits</li>
+            <li><a href="https://www.gov.uk/lost-national-insurance-number">
+                ask for a reminder through the post</a></li>
+        </ul>
+        <p>If you can't provide a National Insurance number, you will need to explain why.
+            And after you've applied, you'll be asked to prove your identity by sending
+            documents in the post (or providing them in person).</p>
+        <div class="optional-section optional-section{{noNinoReasonShowFlag.value}}" data-toggle-text="I can't provide a National Insurance number">
+            <h3>I can't provide a National Insurance number</h3>
+
+            <label for="{{noNinoReason.id}}" class=""  >
+                Why can't you provide a National Insurance number?
+            </label>
+            <textarea name="{{noNinoReason.name}}"
+                      id="{{noNinoReason.id}}" class="small validate"
+                      data-validation-name="ninoExcuse"  data-validation-type="field"
+                      data-validation-rules="nonEmpty" maxlength="500"
+                      autocomplete="off">{{noNinoReason.value}}</textarea>
+        </div>
+    </div>
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="nino">Continue</button>
+</form>

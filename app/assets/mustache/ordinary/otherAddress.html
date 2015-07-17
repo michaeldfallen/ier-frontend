@@ -1,0 +1,65 @@
+<form action="{{question.postUrl}}" method="POST">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{hasOtherAddress.classes}}"
+              data-validation-name="otherAddressQuestion"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="otherAddressNo otherAddressYesTwoHomes otherAddressYesStudent">
+        <label for="{{hasOtherAddressNone.id}}" class="selectable">
+            <input id="{{hasOtherAddressNone.id}}" name="{{hasOtherAddressNone.name}}" value="none"
+                   class="radio  validate" data-validation-name="otherAddressNo"
+                   data-validation-type="field" data-validation-rules="nonEmpty" type="radio"
+            {{{hasOtherAddressNone.attributes}}}>
+            {{messages.ordinary_otheraddr_noTwoHomes}}
+        </label>
+
+        <label for="{{hasOtherAddressHome.id}}" class="selectable">
+            <input id="{{hasOtherAddressHome.id}}" name="{{hasOtherAddressHome.name}}"
+                   value="secondHome" class="radio  validate"
+                   data-validation-name="otherAddressYesTwoHomes" data-validation-type="field"
+                   data-validation-rules="nonEmpty" type="radio"
+            {{{hasOtherAddressHome.attributes}}}>
+            {{messages.ordinary_otheraddr_yesTwoHomes}}
+        </label>
+
+        <div id="{{hasOtherAddressHome.id}}_help" class="optional-section"
+             data-condition="{{hasOtherAddressHome.id}}">
+
+            <h2 class="alt-content">{{messages.ordinary_otheraddr_ifYouHaveSecondAddress_h2}}</h2>
+
+            <p>{{messages.ordinary_otheraddr_ifYouHaveSecondAddr_p1}}</p>
+
+            <p>{{messages.ordinary_otheraddr_ifYouHaveSecondAddr_p2}}</p>
+
+        </div>
+
+        <label for="{{hasOtherAddressStudent.id}}" class="selectable">
+            <input id="{{hasOtherAddressStudent.id}}" name="{{hasOtherAddressStudent.name}}"
+                   value="student" class="radio  validate"
+                   data-validation-name="otherAddressYesStudent" data-validation-type="field"
+                   data-validation-rules="nonEmpty" type="radio"
+            {{{hasOtherAddressStudent.attributes}}}
+            data-journey-click="Do you also live at a second address?:Yes:Yes, I’m a student with home and term-time addresses">
+            {{messages.ordinary_otheraddr_yesImStudent}}
+        </label>
+
+        <div id="{{hasOtherAddressStudent.id}}_help" class="optional-section"
+             data-condition="{{hasOtherAddressStudent.id}}">
+
+            <p>{{messages.ordinary_otheraddr_yesImStudent_p1}}</p>
+
+            <p>{{messages.ordinary_otheraddr_yesImStudent_p2}}</p>
+
+        </div>
+    </fieldset>
+
+    <button type="submit" id="continue" class="button next validation-submit"
+            data-validation-sources="otherAddressQuestion">
+        {{messages.step_continue}}
+    </button>
+
+</form>

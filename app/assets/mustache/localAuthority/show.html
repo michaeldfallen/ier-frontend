@@ -1,0 +1,50 @@
+{{<template/govuk}}
+
+{{$pageTitle}}{{messages.lookup_show_contact}} {{localAuthorityContact.name}}{{/pageTitle}}
+
+{{$main}}
+  <article>
+
+    <header >
+      <h1>{{messages.lookup_show_contact}} {{localAuthorityContact.name}}</h1>
+    </header>
+
+    {{#visitAuthorityPage}}
+      <p id="authority_url">{{{visitAuthorityPage}}}</p>
+    {{/visitAuthorityPage}}
+
+    <p id="authority_email">
+      {{messages.lookup_show_email}}:
+      <a href="mailto:{{localAuthorityContact.emailAddress}}">{{localAuthorityContact.emailAddress}}</a>
+    </p>
+    <p id="authority_phone">{{messages.lookup_show_phone}}: {{localAuthorityContact.phoneNumber}}</p>
+    <p id="authority_address">
+      {{localAuthorityContact.name}}
+
+      {{#localAuthorityContact.addressLine1}}
+       <br /> {{localAuthorityContact.addressLine1}}
+      {{/localAuthorityContact.addressLine1}}
+
+      {{#localAuthorityContact.addressLine2}}
+       <br /> {{localAuthorityContact.addressLine2}}
+      {{/localAuthorityContact.addressLine2}}
+
+      {{#localAuthorityContact.addressLine3}}
+        <br />{{localAuthorityContact.addressLine3}}
+      {{/localAuthorityContact.addressLine3}}
+
+      {{#localAuthorityContact.addressLine4}}
+        <br />{{localAuthorityContact.addressLine4}}
+      {{/localAuthorityContact.addressLine4}}
+    </p>
+    <p id="authority_postcode">{{localAuthorityContact.postcode}}</p>
+
+    {{#sourcePath}}
+    <p>
+      <a class="call-to-action" href="{{sourcePath}}" id="continue">{{messages.lookup_show_exit_button}}</a>
+    </p>
+    {{/sourcePath}}
+
+  </article>
+{{/main}}
+{{/template/govuk}}

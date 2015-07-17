@@ -1,0 +1,14 @@
+{
+  "name": "ier-frontend",
+  "description": "Gulp build for the Individual Electoral Registration front-end code",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "gulp": "3.8.7",
+    "gulp-uglify": "0.3.1",
+    "gulp-rimraf": "0.1.0",
+    "gulp-ruby-sass": "0.7.1",
+    "gulp-shell" : "0.2.9",
+    "jsdoc" : "3.3.0-alpha9"
+  }
+}

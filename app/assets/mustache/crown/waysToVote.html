@@ -1,0 +1,61 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="sub-section validate {{waysToVote.classes}}"
+              data-validation-name="waysToVote"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="byPost byProxy inPerson">
+
+        <label for="{{byPost.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{byPost.id}}"
+                   name="{{byPost.name}}"
+                   value="{{byPost.value}}"
+                   class="radio validate"
+                   data-validation-name="byPost"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{byPost.attributes}}}>
+            By post
+        </label>
+
+        <label for="{{byProxy.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{byProxy.id}}"
+                   name="{{byProxy.name}}"
+                   value="{{byProxy.value}}"
+                   class="radio  validate"
+                   data-validation-name="byProxy"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{byProxy.attributes}}}>
+            By proxy (someone else voting for you)
+        </label>
+
+        <p>or</p>
+
+        <label for="{{inPerson.id}}" class="selectable"  >
+            <input type="radio"
+                   id="{{inPerson.id}}"
+                   name="{{inPerson.name}}"
+                   value="{{inPerson.value}}"
+                   class="radio  validate"
+                   data-validation-name="inPerson"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{inPerson.attributes}}}>
+            In the UK, at a polling station
+        </label>
+
+    </fieldset>
+
+    <button id="continue"
+            type="submit"
+            class="button next validation-submit"
+            data-validation-sources="waysToVote">
+        Continue
+    </button>
+</form>

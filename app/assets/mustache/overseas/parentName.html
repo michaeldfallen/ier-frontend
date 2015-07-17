@@ -1,0 +1,176 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    <p>As you were less than 18 years old when you left the country, we will need to verify a parent or guardian who was registered to vote in the UK.</p>
+
+    {{> shared/validationMessages }}
+
+    <h3>Parent or guardian's registration details</h3>
+
+    <fieldset class="validate"
+              data-validation-name="fullName"
+              data-validation-type="association"
+              data-validation-rules="allNonEmpty allValid"
+              data-validation-members="firstName middleName lastName">
+
+        <label for="{{firstName.id}}">
+            First name
+        </label>
+        <div class="validation-wrapper {{firstName.classes}}">
+            <input type="text" id="{{firstName.id}}"
+                   name="{{firstName.name}}"
+                   value="{{firstName.value}}"
+                   autocomplete="off"
+                   class="text long validate {{firstName.classes}}"
+                   data-validation-name="firstName"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty firstNameText">
+        </div>
+
+        <label for="{{middleNames.id}}">
+            Middle names
+        </label>
+        <input type="text" id="{{middleNames.id}}"
+               name="{{middleNames.name}}"
+               value="{{middleNames.value}}"
+               autocomplete="off"
+               class="text middle-names long validate {{middleNames.classes}}"
+               data-validation-name="middleName"
+               data-validation-type="field"
+               data-validation-rules="middleNameText">
+
+        <label for="{{lastName.id}}">
+            Last name
+        </label>
+        <div class="validation-wrapper {{lastName.classes}}">
+            <input type="text" id="{{lastName.id}}"
+                   name="{{lastName.name}}"
+                   value="{{lastName.value}}"
+                   autocomplete="off"
+                   class="text long validate {{lastName.classes}}"
+                   data-validation-name="lastName"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty lastNameText">
+        </div>
+    </fieldset>
+
+    <fieldset class="sub-section validate local-fix-source {{hasPreviousNameOption.classes}}"
+              data-validation-name="previousQuestion"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="previousNo previousYes previousOther">
+        <legend class="label">Have they changed their name since you left the UK?</legend>
+
+        <label for="{{hasPreviousNameOptionFalse.id}}" class="selectable"  >
+            <input
+                    type="radio"
+                    id="{{hasPreviousNameOptionFalse.id}}"
+                    name="{{hasPreviousNameOptionFalse.name}}"
+                    value="{{hasPreviousNameOptionFalse.value}}"
+                    class="radio validate"
+                    data-validation-name="previousNo"
+                    data-validation-type="field"
+                    data-validation-rules="nonEmpty"
+            {{{hasPreviousNameOptionFalse.attributes}}}>
+            No, they haven't changed their name
+        </label>
+
+        <label for="{{hasPreviousNameOptionTrue.id}}" class="selectable"  >
+            <input
+                    type="radio"
+                    id="{{hasPreviousNameOptionTrue.id}}"
+                    name="{{hasPreviousNameOptionTrue.name}}"
+                    value="{{hasPreviousNameOptionTrue.value}}"
+                    class="radio validate"
+                    data-validation-name="previousYes"
+                    data-validation-type="field"
+                    data-validation-rules="nonEmpty"
+            {{{hasPreviousNameOptionTrue.attributes}}}>
+            Yes, they changed their name in the last 12 months
+        </label>
+
+        <label for="{{hasPreviousNameOptionOther.id}}" class="selectable"  >
+            <input
+                    type="radio"
+                    id="{{hasPreviousNameOptionOther.id}}"
+                   name="{{hasPreviousNameOptionOther.name}}"
+                   value="{{hasPreviousNameOptionOther.value}}"
+                   class="radio validate"
+                   data-validation-name="previousOther"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{hasPreviousNameOptionOther.attributes}}}>
+            Yes, they changed but more than a year ago
+        </label>
+    </fieldset>
+
+    <div
+            class="optional-section optional-section-core-content local-fix-target"
+            aria-hidden="true" aria-expanded="false">
+        <h2>What was their previous name?</h2>
+    </div>
+
+    <div
+            class="optional-section optional-section-core-content"
+            data-condition="{{hasPreviousNameOptionOther.id}}"
+            aria-hidden="true" aria-expanded="false">
+        <legend class="label">
+            As they changed their name more than a year ago you don't have to tell us their previous name, but you might need to send us copies of identity documents if you don't.
+        </legend>
+    </div>
+
+    <div class="optional-section optional-section-core-content local-fix-target">
+        <fieldset class="validate"
+                  data-validation-name="previousName"
+                  data-validation-type="association"
+                  data-validation-rules="allValid"
+                  data-validation-members="previousFirstName previousMiddleName previousLastName">
+
+            <label for="{{previousFirstName.id}}">
+                <span class="visuallyhidden">Previous</span> First name
+            </label>
+            <div class="validation-wrapper {{previousFirstName.classes}}">
+                <input type="text" id="{{previousFirstName.id}}"
+                       name="{{previousFirstName.name}}"
+                       value="{{previousFirstName.value}}"
+                       autocomplete="off"
+                       class="text long validate {{previousFirstName.classes}}"
+                       data-validation-name="previousFirstName"
+                       data-validation-type="field"
+                       data-validation-rules="prevFirstNameText">
+            </div>
+
+            <label for="{{previousMiddleNames.id}}">
+                <span class="visuallyhidden">Previous</span> Middle names
+            </label>
+            <input type="text" id="{{previousMiddleNames.id}}"
+                   name="{{previousMiddleNames.name}}"
+                   value="{{previousMiddleNames.value}}"
+                   autocomplete="off"
+                   class="text middle-names long validate {{previousMiddleNames.classes}}"
+                   data-validation-name="previousMiddleName"
+                   data-validation-type="field"
+                   data-validation-rules="prevMiddleNameText">
+
+            <label for="{{previousLastName.id}}">
+                <span class="visuallyhidden">Previous</span> Last name
+            </label>
+            <div class="validation-wrapper {{previousLastName.classes}}">
+                <input type="text" id="{{previousLastName.id}}"
+                       name="{{previousLastName.name}}"
+                       value="{{previousLastName.value}}"
+                       autocomplete="off"
+                       class="text long validate {{previousLastName.classes}}"
+                       data-validation-name="previousLastName"
+                       data-validation-type="field"
+                       data-validation-rules="prevLastNameText">
+            </div>
+        </fieldset>
+    </div>
+
+    <button id="continue" type="submit"
+            class="button next validation-submit"
+            data-validation-sources="fullName previousQuestion previousName">
+        Continue
+    </button>
+</form>

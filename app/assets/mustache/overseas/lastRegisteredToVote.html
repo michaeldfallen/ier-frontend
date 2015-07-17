@@ -1,0 +1,84 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset class="{{registeredType.classes}}">
+
+        <label for="{{ukResident.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{ukResident.id}}"
+              name="{{ukResident.name}}"
+              value="{{ukResident.value}}"
+              class="radio validate"
+              {{{ukResident.attributes}}}>
+            UK resident
+        </label>
+
+        <label for="{{ukOverseas.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{ukOverseas.id}}"
+              name="{{ukOverseas.name}}"
+              value="{{ukOverseas.value}}"
+              class="radio validate"
+              {{{ukOverseas.attributes}}}>
+            British citizen living abroad
+        </label>
+
+        <p>or</p>
+
+        <label for="{{armedForces.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{armedForces.id}}"
+              name="{{armedForces.name}}"
+              value="{{armedForces.value}}"
+              class="radio validate"
+              {{{armedForces.attributes}}}>
+            Member of the armed forces
+        </label>
+
+        <label for="{{crownServant.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{crownServant.id}}"
+              name="{{crownServant.name}}"
+              value="{{crownServant.value}}"
+              class="radio validate"
+              {{{crownServant.attributes}}}>
+            Crown servant
+        </label>
+
+        <label for="{{britishCouncil.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{britishCouncil.id}}"
+              name="{{britishCouncil.name}}"
+              value="{{britishCouncil.value}}"
+              class="radio validate"
+              {{{britishCouncil.attributes}}}>
+            British Council employee
+        </label>
+
+        <label for="{{notRegistered.id}}" class="selectable">
+            <input
+              type="radio"
+              id="{{notRegistered.id}}"
+              name="{{notRegistered.name}}"
+              value="{{notRegistered.value}}"
+              class="radio validate"
+              {{{notRegistered.attributes}}}>
+            I have never been registered to vote
+        </label>
+
+    </fieldset>
+
+    <button
+      type="submit"
+      id="continue"
+      class="button next validation-submit"
+      data-validation-sources="country">
+        Continue
+    </button>
+</form>

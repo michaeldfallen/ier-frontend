@@ -1,0 +1,90 @@
+<form action="{{question.postUrl}}" method="POST">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <div class="question">
+        <fieldset class="validate {{voteFieldSet.classes}}"
+                  data-validation-name="postalVote"
+                  data-validation-type="fieldset"
+                  data-validation-rules="atLeastOneNonEmpty"
+                  data-validation-children="postalNo postalYes">
+
+            <label class="selectable binary"  >
+                <input type="radio" id="{{voteOptInFalse.id}}"
+                       name="{{voteOptInFalse.name}}"
+                       value="false" {{{voteOptInFalse.attributes}}}
+                       class="radio  validate" data-validation-name="postalNo"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty" />No
+            </label>
+            <label class="selectable binary"  >
+                <input type="radio" id="{{voteOptInTrue.id}}"
+                       name="{{voteOptInTrue.name}}"
+                       value="true" {{{voteOptInTrue.attributes}}}
+                       class="radio  validate" data-validation-name="postalYes"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty" />Yes
+            </label>
+        </fieldset>
+    </div>
+    <div class="help">
+        <p>{{description.value}}</p>
+    </div>
+
+    <fieldset class="optional-section optional-section-core-content sub-section validate {{voteDeliveryMethodFieldSet.classes}}"
+              data-condition="{{voteOptInTrue.id}}"
+              data-validation-name="deliveryMethod"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="deliveryMethodEmail deliveryMethodPost">
+              
+        <legend>How should we send you the form?</legend>
+        
+        <label for="{{voteDeliveryMethodEmail.id}}" class="selectable"  >
+            <input type="radio" id="{{voteDeliveryMethodEmail.id}}"
+                   name="{{voteDeliveryMethodEmail.name}}"
+                   value="email" {{{voteDeliveryMethodEmail.attributes}}}
+                   class="radio  validate"
+                   data-validation-name="deliveryMethodEmail"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" />Email it to me
+        </label>
+
+        <div class="optional-section"
+             data-condition="{{voteDeliveryMethodEmail.id}}">
+
+            <label for="{{voteEmailAddress.id}}">Email address</label>
+            <div class="validation-wrapper {{voteEmailAddress.classes}}">
+                <input type="email" id="{{voteEmailAddress.id}}"
+                       name="{{voteEmailAddress.name}}"
+                       value="{{voteEmailAddress.value}}"
+                       autocomplete="off"
+                       class="text  text long validate {{voteEmailAddress.classes}}"
+                       data-validation-name="emailAddress"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty email" />
+            </div>
+        </div>
+
+        <label for="{{voteDeliveryMethodPost.id}}" class="selectable"  >
+            <input type="radio" id="{{voteDeliveryMethodPost.id}}"
+                   name="{{voteDeliveryMethodPost.name}}"
+                   value="post" {{{voteDeliveryMethodPost.attributes}}}
+                   class="radio  validate"
+                   data-validation-name="deliveryMethodPost"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" />Post it to me
+        </label>
+    </fieldset>
+
+    <input type="hidden" id="{{voteType.id}}"
+           name="{{voteType.name}}"
+           value="{{voteType.value}}"/>
+
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="postalVote deliveryMethod emailAddress">Continue</button>
+</form>
+

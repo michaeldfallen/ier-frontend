@@ -1,0 +1,90 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+  {{> shared/questionHeader }}
+  {{> shared/validationMessages }}
+
+    <fieldset class="{{hasPassport.classes}}">
+
+        <label
+          for="{{hasPassportTrue.id}}"
+          class="selectable binary">
+            <input
+              type="radio"
+              id="{{hasPassportTrue.id}}"
+              name="{{hasPassportTrue.name}}"
+              value="true"
+              class="radio validate"
+              {{{hasPassportTrue.attributes}}}>
+            Yes
+            <span class="visuallyhidden">
+                I hold a British Passport
+            </span>
+        </label>
+
+        <label
+          for="{{hasPassportFalse.id}}"
+          class="selectable binary">
+            <input
+              type="radio"
+              id="{{hasPassportFalse.id}}"
+              name="{{hasPassportFalse.name}}"
+              value="false"
+              class="radio  validate"
+              {{{hasPassportFalse.attributes}}}>
+            No
+            <span class="visuallyhidden">
+                I don't hold a British Passport
+            </span>
+        </label>
+
+    </fieldset>
+
+    <h2 class="alt-content paragraph">If you <strong>don't</strong> have a british passport</h2>
+
+    <fieldset
+      class="sub-section {{bornInUk.classes}} optional-section"
+      data-condition="passport_hasPassport_false">
+        <legend class="label">
+            Were you born inside the UK?
+        </legend>
+
+        <label
+          for="{{bornInUkTrue.id}}"
+          class="selectable binary">
+            <input
+              type="radio"
+              id="{{bornInUkTrue.id}}"
+              name="{{bornInUkTrue.name}}"
+              value="true"
+              class="radio validate"
+              {{{bornInUkTrue.attributes}}}>
+            Yes
+            <span class="visuallyhidden">
+                I was born inside the UK
+            </span>
+        </label>
+
+        <label
+          for="{{bornInUkFalse.id}}"
+          class="selectable binary">
+            <input
+              type="radio"
+              id="{{bornInUkFalse.id}}"
+              name="{{bornInUkFalse.name}}"
+              value="false"
+              class="radio  validate"
+              {{{bornInUkFalse.attributes}}}>
+            No
+            <span class="visuallyhidden">
+                I wasn't born inside the UK
+            </span>
+        </label>
+    </fieldset>
+
+    <button
+      id="continue"
+      type="submit"
+      class="button next">
+        Continue
+    </button>
+</form>

@@ -1,0 +1,60 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{contactFieldSet.classes}}" data-validation-name="contact" 
+      data-validation-type="fieldset" data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="emailOption phoneOption post">
+
+        <label class="selectable"  >
+            <input type="checkbox" id="{{contactEmailCheckbox.id}}" name="{{contactEmailCheckbox.name}}" 
+              value="true" {{contactEmailCheckbox.attributes}} class="validate {{contactEmailCheckbox.classes}}" 
+              data-validation-name="emailOption"  data-validation-type="field" data-validation-rules="nonEmpty">
+            {{messages.ordinary_contact_email_option}}
+        </label>
+
+        <div class="optional-section " data-condition="contact_email_contactMe">
+            <label for="{{contactEmailText.id}}" class=""  >
+                {{messages.ordinary_contact_emailAddress}}
+            </label>
+            <div class="validation-wrapper">
+                <input type="email" id="{{contactEmailText.id}}" name="{{contactEmailText.name}}"
+                  value="{{contactEmailText.value}}" autocomplete="off"  
+                  class="text  long validate {{contactEmailText.classes}}" data-validation-name="emailAddress"
+                  data-validation-type="field" data-validation-rules="nonEmpty email">
+            </div>
+        </div>
+
+        <label class="selectable"  >
+           <input type="checkbox" id="{{contactPhoneCheckbox.id}}" name="{{contactPhoneCheckbox.name}}"
+              value="true" {{contactPhoneCheckbox.attributes}} class=" validate {{contactPhoneCheckbox.classes}}" 
+              data-validation-name="phoneOption"  data-validation-type="field" data-validation-rules="nonEmpty">
+           {{messages.ordinary_contact_phoneCall_option}}
+        </label>
+
+        <div class="optional-section " data-condition="contact_phone_contactMe">
+            <label for="{{contactPhoneText.id}}" class=""  >
+                {{messages.ordinary_contact_phoneNumber}}
+            </label>
+            <div class="validation-wrapper">
+                <input type="tel" id="{{contactPhoneText.id}}" name="{{contactPhoneText.name}}" 
+                  value="{{contactPhoneText.value}}" autocomplete="off" 
+                  class="text  validate {{contactPhoneText.classes}}" data-validation-name="phoneNumber" 
+                  data-validation-type="field"  data-validation-rules="nonEmpty" >
+            </div>
+        </div>
+
+        <label class="selectable"  >
+            <input type="checkbox" id="{{contactPostCheckbox.id}}" name="{{contactPostCheckbox.name}}" 
+              value="true" {{contactPostCheckbox.attributes}} class=" validate {{contactPostCheckbox.classes}}" 
+              data-validation-name="post"  data-validation-type="field" data-validation-rules="nonEmpty" >
+            {{messages.ordinary_contact_post_option}}
+        </label>
+
+    </fieldset>
+    <p class="footnote">{{messages.ordinary_contact_emailConfirmationMessage}}</p>
+    <button type="submit" id="continue" class="button next validation-submit" 
+      data-validation-sources="contact phoneNumber emailAddress">{{messages.step_continue}}</button>
+</form>

@@ -1,0 +1,59 @@
+<article>
+    <header>
+        <h1>Check your answers before sending your application</h1>
+    </header>
+
+    {{#displayPartnerBlock}}
+    <h2>Your partner's details</h2>
+    {{#partnerDetails}}
+        <div>
+            <h3>{{title}}</h3>
+            <div class="data-wrap">
+                {{#content}}
+                {{#blockContent}}
+                <p>{{.}}</p>
+                {{/blockContent}}
+                {{#blockError}}
+                <div class="validation-message visible">{{.}}</div>
+                {{/blockError}}
+                {{/content}}
+            </div>
+            <a href="{{editLink}}" class="change">
+                Change<span class="visuallyhidden"> {{changeName}}</span>
+            </a>
+        </div>
+    {{/partnerDetails}}
+
+    <h2>Your details</h2>
+    {{/displayPartnerBlock}}
+    {{#applicantDetails}}
+    <div>
+        <h3>{{title}}</h3>
+        <div class="data-wrap">
+            {{#content}}
+            {{#blockContent}}
+            <p>{{.}}</p>
+            {{/blockContent}}
+            {{#blockError}}
+            <div class="validation-message visible">{{.}}</div>
+            {{/blockError}}
+            {{/content}}
+        </div>
+        <a href="{{editLink}}" class="change">
+            Change<span class="visuallyhidden"> {{changeName}}</span>
+        </a>
+    </div>
+    {{/applicantDetails}}
+
+    <div class="notice">
+        <h2>Send your application</h2>
+        <p>By sending your application you confirm that the information you have provided is true.</p>
+        <p>Your information may be shared with other government departments to check your identity and that you’re entitled to register to vote.</p>
+        <div class="warning">
+            <p>You could be fined up to £5,000 or go to prison for up to 6 months if you knowingly give false information in your application.</p>
+        </div>
+    </div>
+</article>
+<form action="{{question.postUrl}}" method="POST">
+    <input id="continue" type="submit" class="button next" value="I accept - send my application">
+</form>

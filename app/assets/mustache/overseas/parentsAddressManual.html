@@ -1,0 +1,71 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset>
+        <p>
+            <span class="postcode-prefix">Postcode</span>
+            <span class="visuallyhidden">:</span>
+            <span class="postcode">{{postcode.value}}</span>
+            <a href="{{lookupUrl}}" class="change-postcode-button">
+                Change<span class="visuallyhidden"> your postcode</span>
+            </a>
+        </p>
+        <input
+          type="hidden"
+          id="{{postcode.id}}"
+          name="{{postcode.name}}"
+          value="{{postcode.value}}"
+          class="text hidden">
+
+        <label for="{{maLineOne.id}}">Address</label>
+        <div class="validation-wrapper {{maLineOne.classes}}">
+            <input type="text"
+                   id="{{maLineOne.id}}"
+                   name="{{maLineOne.name}}"
+                   value="{{maLineOne.value}}"
+                   class="text long {{maLineOne.classes}}"
+                   autocomplete="off"
+                   data-validation-name="manualAddressLineOne"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   >
+        </div>
+        <div class="validation-wrapper {{maLineTwo.classes}}">
+            <input type="text"
+                   id="{{maLineTwo.id}}"
+                   name="{{maLineTwo.name}}"
+                   value="{{maLineTwo.value}}"
+                   class="text long {{maLineTwo.classes}}"
+                   autocomplete="off"
+                   >
+        </div>
+        <div class="validation-wrapper {{maLineThree.classes}}">
+            <input type="text"
+                   id="{{maLineThree.id}}"
+                   name="{{maLineThree.name}}"
+                   value="{{maLineThree.value}}"
+                   class="text long {{maLineThree.classes}}"
+                   autocomplete="off"
+                   >
+        </div>
+        <label for="{{maCity.id}}">Town or city</label>
+        <div class="validation-wrapper {{maCity.classes}}">
+            <input type="text"
+                   id="{{maCity.id}}"
+                   name="{{maCity.name}}"
+                   value="{{maCity.value}}"
+                   class="text long {{maCity.classes}}"
+                   autocomplete="off"
+                   >
+        </div>
+    </fieldset>
+
+    <button
+      type="submit"
+      id="continue"
+      class="button next validation-submit"
+      style="display: block;">
+        Continue
+    </button>
+</form>

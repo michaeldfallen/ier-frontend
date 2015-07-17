@@ -1,0 +1,49 @@
+<form action="{{question.postUrl}}" method="POST"  data-validation-name="dateOfBirth" 
+  data-validation-type="association" class="validate" data-validation-members="dateOfBirthDate"
+  data-validation-rules="allNonEmpty">
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+    
+    <fieldset class="validate inline-fields" data-validation-name="dateOfBirthDate" 
+      data-validation-type="fieldset" data-validation-rules="allNonEmpty" 
+      data-validation-children="day month year">
+      
+      <span class="field-wrapper day">
+
+        <label for="{{day.id}}" class="">Day</label>
+
+        <input type="number" id="{{day.id}}" name="{{day.name}}" value="{{day.value}}" autocomplete="off" 
+          class="text  day {{day.classes}}" data-validation-name="day" data-validation-type="field" 
+          data-validation-rules="nonEmpty">
+      
+      </span>
+      
+      <span class="field-wrapper month">
+
+        <label for="{{month.id}}" class="">Month</label>
+
+        <input type="number" id="{{month.id}}" name="{{month.name}}" value="{{month.value}}" 
+          autocomplete="off" class="text  month {{month.classes}}" data-validation-name="month" 
+          data-validation-type="field" data-validation-rules="nonEmpty">
+
+      </span>
+      
+      <span class="field-wrapper year">
+
+        <label for="{{year.id}}" class="">Year</label>
+
+        <input type="number" id="{{year.id}}" name="{{year.name}}" value="{{year.value}}" autocomplete="off" 
+          class="text  year {{year.classes}} " data-validation-name="year" data-validation-type="field" 
+          data-validation-rules="nonEmpty">
+
+      </span>
+      
+      <p class="example">For example: <span class="date">31 12 1970</span></p>
+    
+    </fieldset>
+      
+    <button type="submit" id="continue" class="button next validation-submit" 
+    data-validation-sources="dateOfBirth">Continue</button>
+  
+</form>

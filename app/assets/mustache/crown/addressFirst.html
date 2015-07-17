@@ -1,0 +1,55 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate"
+              data-validation-name="hasAddress"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="hasAddressYesAndLivingThere hasAddressYesAndNotLivingThere hasAddressNo">
+
+        <label for="{{hasAddressYesAndLivingThere.id}}" class="selectable">
+            <input type="radio"
+                   id="{{hasAddressYesAndLivingThere.id}}"
+                   name="{{hasAddressYesAndLivingThere.name}}"
+                   value="{{hasAddressYesAndLivingThere.value}}"
+                   class="radio validate {{hasAddressYesAndLivingThere.classes}}"
+                   data-validation-name="hasAddressYesAndLivingThere"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{hasAddressYesAndLivingThere.attributes}}}>
+            Yes, and I'm living there now
+        </label>
+        <label for="{{hasAddressYesAndNotLivingThere.id}}" class="selectable">
+            <input type="radio"
+                   id="{{hasAddressYesAndNotLivingThere.id}}"
+                   name="{{hasAddressYesAndNotLivingThere.name}}"
+                   value="{{hasAddressYesAndNotLivingThere.value}}"
+                   class="radio validate {{hasAddressYesAndNotLivingThere.classes}}"
+                   data-validation-name="hasAddressYesAndNotLivingThere"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{hasAddressYesAndNotLivingThere.attributes}}}>
+            Yes, but I don't live there at the moment
+        </label>
+        <label for="{{hasAddressNo.id}}" class="selectable">
+            <input type="radio"
+                   id="{{hasAddressNo.id}}"
+                   name="{{hasAddressNo.name}}"
+                   value="{{hasAddressNo.value}}"
+                   class="radio  validate {{hasAddressNo.classes}}"
+                   data-validation-name="hasAddressNo"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{hasAddressNo.attributes}}}>
+            No
+        </label>
+    </fieldset>
+
+    <button id="continue"
+            type="submit"
+            class="button next validation-submit"
+            data-validation-sources="hasAddress">
+        Continue
+    </button>
+</form>

@@ -1,0 +1,265 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{contactAddressFieldSet.classes}}"
+              data-validation-name="contactAddress"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="ukAddressOption BFPOAddressOption otherAddressOption">
+
+        <label class="selectable"  >
+            <input type="radio"
+                   id="{{ukAddress.ukAddressOption.id}}"
+                   name="{{ukAddress.ukAddressOption.name}}"
+                   value="uk"
+                   class="radio validate {{ukAddress.ukAddressOption.classes}}"
+                   data-validation-name="ukAddressOption"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{ukAddress.ukAddressOption.attributes}}}>
+            {{ukAddress.ukAddressLineText.value}}
+            <input type="hidden"
+                    id="{{ukAddress.ukAddressLineText.id}}"
+                    name="{{ukAddress.ukAddressLineText.name}}"
+                    value="{{{ukAddress.ukAddressLineText.value}}}">
+        </label>
+
+        <label class="selectable"  >
+            <input type="radio"
+                   id="{{bfpoAddress.BFPOAddressOption.id}}"
+                   name="{{bfpoAddress.BFPOAddressOption.name}}"
+                   value="bfpo"
+                   class="radio validate {{bfpoAddress.BFPOAddressOption.classes}}"
+                   data-validation-name="BFPOAddressOption"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{bfpoAddress.BFPOAddressOption.attributes}}}>
+            BFPO address
+        </label>
+
+        <div class="optional-section"
+             data-condition="{{bfpoAddress.BFPOAddressOption.id}}">
+
+            <fieldset class="validate"
+                      data-validation-name="BFPOAddressLinesFieldSet"
+                      data-validation-type="fieldset"
+                      data-validation-rules="atLeastOneNonEmpty"
+                      data-validation-children=
+                              "BFPOAddressLine1 BFPOAddressLine2 BFPOAddressLine3 BFPOAddressLine4 BFPOAddressLine5">
+
+                <legend class="label">
+                    Address
+                </legend>
+                <div class="validation-wrapper">
+                    <label for="{{bfpoAddress.BFPOAddressLine1.id}}" class="visuallyhidden">
+                        Address line one 
+                    </label>
+                    <input type="text" id="{{bfpoAddress.BFPOAddressLine1.id}}"
+                           name="{{bfpoAddress.BFPOAddressLine1.name}}"
+                           value="{{bfpoAddress.BFPOAddressLine1.value}}"
+                           autocomplete="off"
+                           class="text long validate {{bfpoAddress.BFPOAddressLine1.classes}}"
+                           data-validation-name="BFPOAddressLine1"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{bfpoAddress.BFPOAddressLine2.id}}" class="visuallyhidden">
+                        Address line two 
+                    </label>
+                    <input type="text" id="{{bfpoAddress.BFPOAddressLine2.id}}"
+                           name="{{bfpoAddress.BFPOAddressLine2.name}}"
+                           value="{{bfpoAddress.BFPOAddressLine2.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="BFPOAddressLine2"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{bfpoAddress.BFPOAddressLine3.id}}" class="visuallyhidden">
+                        Address line three 
+                    </label>
+                    <input type="text" id="{{bfpoAddress.BFPOAddressLine3.id}}"
+                           name="{{bfpoAddress.BFPOAddressLine3.name}}"
+                           value="{{bfpoAddress.BFPOAddressLine3.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="BFPOAddressLine3"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{bfpoAddress.BFPOAddressLine4.id}}" class="visuallyhidden">
+                        Address line four 
+                    </label>
+                    <input type="text" id="{{bfpoAddress.BFPOAddressLine4.id}}"
+                           name="{{bfpoAddress.BFPOAddressLine4.name}}"
+                           value="{{bfpoAddress.BFPOAddressLine4.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="BFPOAddressLine4"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{bfpoAddress.BFPOAddressLine5.id}}" class="visuallyhidden">
+                        Address line five 
+                    </label>
+                    <input type="text" id="{{bfpoAddress.BFPOAddressLine5.id}}"
+                           name="{{bfpoAddress.BFPOAddressLine5.name}}"
+                           value="{{bfpoAddress.BFPOAddressLine5.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="BFPOAddressLine5"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+            </fieldset>
+
+            <label for="{{bfpoAddress.BFPOAddressPostcode.id}}" class="sub-section">
+                BFPO
+            </label>
+            <div class="validation-wrapper">
+                <input type="text" id="{{bfpoAddress.BFPOAddressPostcode.id}}"
+                       name="{{bfpoAddress.BFPOAddressPostcode.name}}"
+                       value="{{bfpoAddress.BFPOAddressPostcode.value}}"
+                       autocomplete="off"
+                       class="text medium validate {{bfpoAddress.BFPOAddressPostcode.classes}}"
+                       data-validation-name="BFPOAddressPostcode"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty" >
+            </div>
+        </div>
+
+
+        <label class="selectable"  >
+            <input type="radio"
+                   id="{{otherAddress.otherAddressOption.id}}"
+                   name="{{otherAddress.otherAddressOption.name}}"
+                   value="other"
+                   class="radio validate {{otherAddress.otherAddressOption.classes}}"
+                   data-validation-name="otherAddressOption"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+            {{{otherAddress.otherAddressOption.attributes}}}>
+            Other Address
+        </label>
+
+        <div class="optional-section"
+             data-condition="{{otherAddress.otherAddressOption.id}}">
+
+            <fieldset class="validate"
+                      data-validation-name="otherAddressLinesFieldSet"
+                      data-validation-type="fieldset"
+                      data-validation-rules="atLeastOneNonEmpty"
+                      data-validation-children=
+                              "otherAddressLine1 otherAddressLine2 otherAddressLine3 otherAddressLine4 otherAddressLine5">
+
+                <legend class="label">
+                    Address
+                </legend>
+                <div class="validation-wrapper">
+                    <label for="{{otherAddress.otherAddressLine1.id}}" class="visuallyhidden">
+                      Address line one 
+                    </label>
+                    <input type="text" id="{{otherAddress.otherAddressLine1.id}}"
+                           name="{{otherAddress.otherAddressLine1.name}}"
+                           value="{{otherAddress.otherAddressLine1.value}}"
+                           autocomplete="off"
+                           class="text long validate {{otherAddress.otherAddressLine1.classes}}"
+                           data-validation-name="otherAddressLine1"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{otherAddress.otherAddressLine2.id}}" class="visuallyhidden">
+                      Address line two 
+                    </label>
+                    <input type="text" id="{{otherAddress.otherAddressLine2.id}}"
+                           name="{{otherAddress.otherAddressLine2.name}}"
+                           value="{{otherAddress.otherAddressLine2.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="otherAddressLine2"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{otherAddress.otherAddressLine3.id}}" class="visuallyhidden">
+                      Address line three 
+                    </label>
+                    <input type="text" id="{{otherAddress.otherAddressLine3.id}}"
+                           name="{{otherAddress.otherAddressLine3.name}}"
+                           value="{{otherAddress.otherAddressLine3.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="otherAddressLine3"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{otherAddress.otherAddressLine4.id}}" class="visuallyhidden">
+                      Address line four 
+                    </label>
+                    <input type="text" id="{{otherAddress.otherAddressLine4.id}}"
+                           name="{{otherAddress.otherAddressLine4.name}}"
+                           value="{{otherAddress.otherAddressLine4.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="otherAddressLine4"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+                <div class="validation-wrapper">
+                    <label for="{{otherAddress.otherAddressLine5.id}}" class="visuallyhidden">
+                      Address line five 
+                    </label>
+                    <input type="text" id="{{otherAddress.otherAddressLine5.id}}"
+                           name="{{otherAddress.otherAddressLine5.name}}"
+                           value="{{otherAddress.otherAddressLine5.value}}"
+                           autocomplete="off"
+                           class="text long validate"
+                           data-validation-name="otherAddressLine5"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty" >
+                </div>
+            </fieldset>
+
+            <label for="{{otherAddress.otherAddressPostcode.id}}" class="sub-section">
+                Postcode
+            </label>
+            <div class="validation-wrapper">
+                <input type="text" id="{{otherAddress.otherAddressPostcode.id}}"
+                       name="{{otherAddress.otherAddressPostcode.name}}"
+                       value="{{otherAddress.otherAddressPostcode.value}}"
+                       autocomplete="off"
+                       class="text medium">
+            </div>
+
+            <label for="{{otherAddress.otherAddressCountry.id}}" class="sub-section">
+                Country
+            </label>
+            <div class="validation-wrapper">
+                <input type="text" id="{{otherAddress.otherAddressCountry.id}}"
+                       name="{{otherAddress.otherAddressCountry.name}}"
+                       value="{{otherAddress.otherAddressCountry.value}}"
+                       autocomplete="off"
+                       class="text medium validate {{otherAddress.otherAddressCountry.classes}}"
+                       data-validation-name="otherAddressCountry"
+                       data-validation-type="field"
+                       data-validation-rules="nonEmpty" >
+            </div>
+        </div>
+
+    </fieldset>
+
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources=
+            "contactAddress BFPOAddressLinesFieldSet BFPOAddressPostcode otherAddressLinesFieldSet otherAddressPostcode otherAddressCountry">
+        Continue</button>
+</form>

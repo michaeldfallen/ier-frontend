@@ -1,0 +1,43 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{previousAddress.classes}}"
+              data-validation-name="previousAddress"
+              data-validation-type="fieldset"
+              data-validation-rules="atLeastOneNonEmpty"
+              data-validation-children="previousYes previousNo">
+
+        <label for="{{previousYes.id}}" class="selectable binary"  >
+            <input type="radio"
+                   id="{{previousYes.id}}"
+                   name="{{previousYes.name}}"
+                   value="{{previousYes.value}}"
+                   class="radio validate"
+                   data-validation-name="previousYes"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previousYes.attributes}}}>
+            Yes
+        </label>
+        <label for="{{previousNo.id}}" class="selectable binary"  >
+            <input type="radio"
+                   id="{{previousNo.id}}"
+                   name="{{previousNo.name}}"
+                   value="{{previousNo.value}}"
+                   class="radio  validate"
+                   data-validation-name="previousNo"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty"
+                   {{{previousNo.attributes}}}>
+            No
+        </label>
+    </fieldset>
+
+    <button id="continue"
+            type="submit"
+            class="button next validation-submit"
+            data-validation-sources="previousAddress">
+        Continue
+    </button>
+</form>

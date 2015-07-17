@@ -1,0 +1,142 @@
+/* Styles for the confirmation page */
+
+@import "toolkit";
+
+.confirmation {
+  article {
+    padding-top: 2em;
+    padding-bottom: 0;
+  }
+
+  form {
+    padding-top: 0;
+    overflow: hidden;
+
+    @include media(desktop) {
+      margin-right: 0;
+      max-width: 100%;
+    }
+  }
+
+  h3 {
+    color: $grey-1;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  div,
+  .warning {
+    border-top: 1px solid $grey-3;
+  }
+
+  div {
+    @extend %contain-floats;
+    padding: 1em 5.5em 1em 0;
+    position: relative;
+
+    @include media(tablet) {
+      padding-right: 0;
+    }
+
+    &.notice {
+      padding-right: 0;
+
+      @include media(tablet) {
+        padding-right: 5.5em;
+      }
+    }
+
+    h3,
+    .data-wrap,
+    .change {
+      vertical-align: top;
+    }
+
+    h3,
+    .data-wrap {
+      border-top: none;
+      margin: 0 0 1em;
+      padding: 0;
+
+      @include media(tablet) {
+        @include inline-block;
+      }
+    }
+
+    h3 {
+      font-weight: normal;
+
+      @include media(tablet) {
+        width: 33%
+      }
+    }
+
+    .data-wrap {
+      padding: 0;
+
+      @include media(tablet) {
+        width: 52%;
+        padding: 0;
+
+        p,
+        div {
+          padding-right: 1.25em;
+          padding-left: 1.25em;
+        }
+      }
+
+      p {
+        color: $black;
+      }
+
+      .message {
+        color: $grey-1;
+      }
+
+      .postcode {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .back-to-previous {
+    position: static;
+  }
+
+  .change {
+    @include button($grey-3);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 1em;
+
+    @include media(tablet) {
+      position: relative;
+      float: right;
+      margin-top: 0;
+    }
+  }
+
+  .warning {
+    padding: 1.6em 0 0 3em;
+    background-position: 0 1.25em;
+
+    p {
+      color: $black;
+      font-weight: 600;
+    }
+  }
+
+  .validation-message {
+    border-top: none;
+    padding-left: 0.5em;
+    margin-left: 0;
+  }
+
+  .next {
+    margin-top: 1em;
+  }
+}

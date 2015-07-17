@@ -1,0 +1,61 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate" data-validation-name="job"
+              data-validation-type="association"
+              data-validation-rules="allNonEmpty"
+              data-validation-members="jobTitle payrollNumber govDepartment">
+
+        <label for="{{jobTitle.id}}">
+            Job title or rank
+        </label>
+        <div class="validation-wrapper {{jobTitle.classes}}">
+            <input type="text" id="{{jobTitle.id}}"
+                   name="{{jobTitle.name}}"
+                   value="{{jobTitle.value}}"
+                   autocomplete="off"
+                   class="text long validate {{jobTitle.classes}}"
+                   data-validation-name="jobTitle"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" >
+        </div>
+
+        <label for="{{payrollNumber.id}}">
+            Payroll number/ Staff ID
+        </label>
+        <div class="validation-wrapper {{payrollNumber.classes}}">
+            <input type="text" id="{{payrollNumber.id}}"
+                   name="{{payrollNumber.name}}"
+                   value="{{payrollNumber.value}}"
+                   autocomplete="off"
+                   class="text long validate {{payrollNumber.classes}}"
+                   data-validation-name="payrollNumber"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" >
+        </div>
+
+        <label for="{{govDepartment.id}}">
+            Government department, agency or body
+        </label>
+        <div class="validation-wrapper {{govDepartment.classes}}">
+            <input type="text" id="{{govDepartment.id}}"
+                   name="{{govDepartment.name}}"
+                   value="{{govDepartment.value}}"
+                   autocomplete="off"
+                   class="text long validate {{govDepartment.classes}}"
+                   data-validation-name="govDepartment"
+                   data-validation-type="field"
+                   data-validation-rules="nonEmpty" >
+        </div>
+        <p class="example">(For example: FCO, MOD, DFID, British Council)</p>
+        
+    </fieldset>
+
+    <button id="continue" type="submit"
+            class="button next validation-submit"
+            data-validation-sources="job">
+        Continue
+    </button>
+</form>

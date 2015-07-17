@@ -1,0 +1,139 @@
+<form action="{{question.postUrl}}" method="POST"
+      data-validation-name="dateOfBirth"
+      data-validation-type="association"
+      data-validation-rules="dateOfBirthOrExcuse" 
+      data-validation-members="dateOfBirthDate dateOfBirthExcuse"
+      class="validate">
+
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate inline-fields" data-validation-name="dateOfBirthDate"
+              data-validation-type="fieldset" data-validation-rules="allNonEmpty"
+              data-validation-children="day month year">
+
+      <span class="day field-wrapper">
+        <label for="{{day.id}}" class=""  >
+            Day
+        </label>
+        <input type="number" id="{{day.id}}" name="{{day.name}}"
+               value="{{day.value}}" 
+               autocomplete="off"
+               class="text  day validate {{day.classes}}"
+               data-validation-name="day"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+      <span class="month field-wrapper">
+        <label for="{{month.id}}" class=""  >
+            Month
+        </label>
+        <input type="number" id="{{month.id}}" name="{{month.name}}"
+               value="{{month.value}}" 
+               autocomplete="off"
+               class="text  month validate {{month.classes}}"
+               data-validation-name="month"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+      <span class="year field-wrapper">
+        <label for="{{year.id}}" class=""  >
+            Year
+        </label>
+        <input type="number" id="{{year.id}}" name="{{year.name}}" value="{{year.value}}"
+               autocomplete="off" 
+               class="text year text validate {{year.classes}}"
+               data-validation-name="year"
+               data-validation-type="field"
+               data-validation-rules="nonEmpty" >
+      </span>
+
+        <p class="example">For example: <span class="date">31 12 1970</span></p>
+    </fieldset>
+
+    <button type="submit" id="alt-continue"
+            class="button next validation-submit"
+            data-validation-sources="dateOfBirth">Continue</button>
+    <div class="help-content help-content{{noDobReasonShowFlag.value}}" data-toggle-text="Help with date of birth">
+        <h3>Help with date of birth</h3>
+        <p>If you don’t know your exact date of birth, use the one you put on official documents
+            (for example, your passport or driving licence).</p>
+        <p>If you can’t provide your date of birth, you'll need to explain why. And after
+            you've applied, you'll be asked to prove your identity by sending documents in
+            the post (or providing them in person).</p>
+
+        <div class="optional-section validate optional-section{{noDobReasonShowFlag.value}}"
+             id="no-date-of-birth"
+             data-toggle-text="I can't provide my date of birth"
+             data-validation-name="dateOfBirthExcuse" data-validation-type="fieldset"
+             data-validation-rules="allNonEmpty"
+             data-validation-children="dateOfBirthExcuseReason excuseAgeAttempt">
+
+           <h3>I can't provide my date of birth</h3>
+           <label for="{{noDobReason.id}}" class=""  >
+                Why can't you provide your date of birth?
+            </label>
+
+            <div class="validation-wrapper">
+                <textarea name="{{noDobReason.name}}" id="{{noDobReason.id}}"
+                          class="validate small {{noDobReason.classes}}"
+                          data-validation-name="dateOfBirthExcuseReason"
+                          data-validation-type="field"
+                          data-validation-rules="nonEmpty"
+                          autocomplete="off" >{{noDobReason.value}}</textarea>
+            </div>
+
+            <fieldset class="validate {{rangeFieldSet.classes}}"
+                      data-validation-name="excuseAgeAttempt"
+                      data-validation-type="fieldset"
+                      data-validation-rules="radioNonEmpty"
+                      data-validation-children="excuseUnder18 excuse18to70 excuseOver70 excuseDontKnow">
+
+                <p>How old are you?</p>
+                <label for="{{rangeUnder18.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeUnder18.id}}" name="{{rangeUnder18.name}}"
+                           value="under18"  class="radio  validate"
+                           data-validation-name="excuseUnder18"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeUnder18.attributes}}}>
+                    <span class="visuallyhidden">I am</span>Under 18 years old
+                </label>
+                <label for="{{range18to70.id}}" class="selectable"  >
+                    <input type="radio" id="{{range18to70.id}}" name="{{range18to70.name}}"
+                           value="18to70"  class="radio  validate"
+                           data-validation-name="excuse18to70"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{range18to70.attributes}}}>
+                    <span class="visuallyhidden">I am</span>Between 18 and 70 years old
+                </label>
+                <label for="{{rangeOver70.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeOver70.id}}" name="{{rangeOver70.name}}"
+                           value="over70"  class="radio  validate"
+                           data-validation-name="excuseOver70"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeOver70.attributes}}}>
+                    <span class="visuallyhidden">I am</span>Over 70 years old
+                </label>
+                <label for="{{rangeDontKnow.id}}" class="selectable"  >
+                    <input type="radio" id="{{rangeDontKnow.id}}" name="{{rangeDontKnow.name}}"
+                           value="dontKnow"  class="radio  validate"
+                           data-validation-name="excuseDontKnow"
+                           data-validation-type="field"
+                           data-validation-rules="nonEmpty"
+                           {{{rangeDontKnow.attributes}}}>
+                    I don't know<span class="visuallyhidden"> how old I am</span>
+                </label>
+            </fieldset>
+        </div>
+    </div>
+    <button type="submit" id="continue"
+            class="button next validation-submit"
+            data-validation-sources="dateOfBirth">Continue</button>
+
+</form>

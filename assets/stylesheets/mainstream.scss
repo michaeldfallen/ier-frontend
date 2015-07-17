@@ -1,0 +1,632 @@
+/* Styles for start page on GOV.UK */
+
+@import "toolkit";
+
+/*
+ * Global headers
+ */
+
+#global-header {
+  .header-wrapper .header-global .site-search {
+    @extend %contain-floats;
+    width: 49%;
+    float: right;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+    max-width: 100%;
+
+    @include media(desktop){
+      width: 33.33%;
+    }
+    @media screen and (max-width: 379px) {
+      width: auto;
+      float: none;
+    }
+
+    .content {
+      margin: 0 15px;
+    }
+  }
+  &.with-proposition {
+    .header-wrapper {
+      .header-global {
+        @include media(desktop){
+          float: left;
+          width: 33.33%;
+
+          .header-logo,
+          .site-search {
+            width: 100%;
+          }
+        }
+      }
+      .header-proposition {
+        @include media(desktop){
+          width: 66.66%;
+          float: left;
+        }
+        .content {
+          margin: 0 15px;
+        }
+      }
+    }
+
+    #search {
+      margin-top: 4px;
+    }
+  }
+
+  .search-toggle {
+    display: none;
+
+    @media screen and (max-width: 379px) {
+      display: block;
+      float: right;
+      height: 30px;
+      width: 36px;
+      padding: 0;
+      margin: -32px 15px;
+      overflow: hidden;
+      text-indent: -5000px;
+      background-color: $light-blue;
+      background-image: url("/assets/images/search-button.png");
+      background-repeat: no-repeat;
+      background-position: 0 50%;
+
+      body.search & { display: none; }
+
+      @include device-pixel-ratio() {
+        background-size: 52.5px 35px;
+        background-position: 100% 50%;
+      }
+    }
+
+    &:hover {
+      background-color: darken($mainstream-brand, 5%);
+    }
+
+    &.js-hidden { display: none; }
+  }
+
+  form#search {
+    .content {
+      @extend %contain-floats;
+      position: relative;
+      background: #fff;
+    }
+    label {
+      float: left;
+      height: 35px;
+      line-height: 35px;
+      text-indent: 15px;
+      overflow: hidden;
+      display: block;
+      margin-right: 10px;
+
+      .js-enabled & {
+        float: none;
+        position: absolute;
+        left: 0;
+        top: 1px;
+        z-index: 1;
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+    input {
+      @include box-sizing(border-box);
+      float: left;
+      width: 50%;
+      min-width: 0;
+      display: block;
+      margin: 0;
+      border: 0;
+      height: 35px;
+      padding: 6px 0;
+      @include ie-lte(7){
+        height: 23px;
+      }
+      @include appearance(none);
+    }
+
+    input#site-search-text {
+      @include core-16($line-height: (23/16), $line-height-640: (23/13));
+      position: relative;
+      padding: 6px;
+      z-index: 3;
+      background: transparent;
+
+      &.focus,
+      &:focus {
+        background: #fff;
+      }
+
+      @include ie-lte(7){
+        padding-left: 0;
+      }
+      .js-enabled & {
+        width: 86%;
+        @include calc(width, "100% - 37px");
+      }
+    }
+
+    input.submit {
+      position: absolute;
+      z-index: 4;
+      right: 0;
+      top: 0;
+      width: 35px;
+      height: 35px;
+
+      border: 1px solid #005ea5; // $govuk-blue
+      border-width: 0 0 0 1px;
+      @include ie-lte(7){
+        border-width: 1px;
+      }
+      border-left-color: #222;
+      @include border-radius(0);
+
+      overflow: hidden;
+      text-indent: -5000px;
+
+      color: $white;
+      background-color: #005ea5; // $govuk-blue
+      background-image: url("/assets/images/search-button.png");
+      background-repeat: no-repeat;
+      background-position: 0 50%;
+
+      @include device-pixel-ratio() {
+        background-size: 52.5px 35px;
+        background-position: 100% 50%;
+      }
+
+      @include ie-lte(7) {
+        background-image: none;
+        width: auto;
+      }
+
+      &:hover {
+        background-color: darken($mainstream-brand, 5%);
+      }
+    }
+
+    @include ie-lte(7) {
+      input.button-active {
+        background-color: #28A197;
+        top: 0;
+      }
+
+      input.button-hover {
+        background-color: #3ABAA8;
+      }
+    }
+
+
+    @media screen and (max-width: 379px) {
+      display: none;
+      width: 100%;
+
+      #site-search-text {
+        width: 80%;
+      }
+    }
+    &.js-visible { display: block; }
+  }
+
+  .header-proposition {
+    padding-top: 10px;
+    @include media(desktop){
+      padding-top: 0;
+    }
+    #proposition-name {
+      @include core-24;
+      font-weight: bold;
+      color: $white;
+      text-decoration: none;
+    }
+    a.menu {
+      @include core-16;
+      color: $white;
+      display: block;
+      float: right;
+      text-decoration: none;
+      padding-top: 6px;
+      @include media(desktop){
+        display: none;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+      &:after {
+        display: inline-block;
+        font-size: 8px;
+        height: 8px;
+        padding-left: 5px;
+        vertical-align: middle;
+        content: " \25BC";
+      }
+      &.js-hidden:after {
+        content: " \25B2";
+      }
+    }
+    #proposition-menu {
+      margin-top: 5px;
+    }
+    #proposition-links {
+      clear: both;
+      @extend %contain-floats;
+      margin: 2px 0 0 0;
+      padding: 0;
+
+      .js-enabled & {
+        display: none;
+        @include media(desktop){
+          display: block;
+        }
+        &.js-visible {
+          display: block;
+        }
+      }
+
+      li {
+        float: left;
+        width: 50%;
+        padding: 3px 0;
+        border-bottom: 1px solid $grey-2;
+
+        @include media(desktop){
+          display: block;
+          width: auto;
+          padding: 0 15px 0 0;
+          border-bottom: 0;
+
+          &.clear-child {
+            clear: left;
+          }
+        }
+
+        a {
+          color: $white;
+          text-decoration: none;
+          @include bold-14;
+
+          @include media(desktop) {
+            @include bold-16;
+            line-height: 23px;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+          &.active {
+            color: $turquoise;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Page headers
+ */
+
+header.page-header {
+  .skip-to-related {
+    position: relative;
+    left: 1em;
+    top: -1em;
+
+    &:focus {
+      position: relative;
+      @include inline-block;
+      left: 32px;
+      top: -2em;
+    }
+
+    @include media(tablet) {
+      position: absolute;
+      left: -9999em;
+    }
+  }
+
+  div {
+    background-color: #fff;
+    display: block;
+    margin: 0;
+    padding: 1em 2em 0 1em;
+
+    @include media(tablet) {
+      margin: 0 24em 0 0;
+      padding-bottom: 2em;
+      padding-left: 2em;
+    }
+
+    h1 {
+      @include heading-48;
+      background-repeat: no-repeat;
+      color: $text-colour;
+      font-weight: 600;
+      margin: 0;
+      min-height: (61em/25);
+
+      @include ie(6) {
+        position: relative;
+        z-index: 1;
+        zoom: 1;
+      }
+
+      @include media(tablet) {
+        min-height: 0;
+        padding-bottom: 0;
+      }
+
+      span {
+        @include core-27($line-height: 1);
+        display: block;
+        margin-bottom: 0.25em;
+        text-shadow: none;
+        color: $secondary-text-colour ;
+
+        @include ie-lte(8) {
+          height: 1%;
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Related box
+ */
+.related-positioning {
+  position: static;
+  top: auto;
+  height: auto;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+
+  @include ie-lte(8) {
+    z-index: 0;
+  }
+
+  @include ie-lte(7) {
+    position: absolute !important;
+  }
+
+  @include media(desktop) {
+    position: absolute;
+    top: 7em;
+    height: 0;
+  }
+}
+
+/*
+.js-enabled .related-positioning {
+  top: 7em;
+}
+.beta .related-positioning {
+  top: 12em;
+}
+
+.js-enabled .related-with-cookie,
+.js-enabled .related-beta {
+  top: 9.5em;
+}
+*/
+
+.related-container {
+  position: relative;
+  margin: 0 auto;
+  max-width: auto;
+  height: auto;
+  z-index: 50;
+
+  @include ie-lte(7) {
+    width: 990px;
+  }
+
+  @include media(desktop) {
+    height: 0;
+    max-width: 1020px;
+  }
+}
+
+.related {
+  position: static;
+  right: auto;
+  width: auto;
+  margin: 3em 0 0 0;
+  border-top: 10px solid #005ea5; //$govuk-blue
+
+  @include media(desktop) {
+    position: absolute;
+    right: 1.75em;
+    width: 18.75em;
+  }
+
+  .inner {
+    background-color: $white;
+    padding: 0.5em 1em 0 1em;
+    width: auto;
+
+    @include media(tablet) {
+      padding-left: 2em;
+    }
+
+    @include media(desktop) {
+      padding-left: 0;
+    }
+  }
+
+  nav {
+    margin-bottom: 1.25em;
+  }
+
+  h2 {
+    @include core-24;
+    font-weight: 600;
+    color: $text-colour;
+    margin-top: 0.3em;
+    margin-bottom: 0.625em;
+    position: relative;
+
+    @include media(mobile) {
+      font-size: 17px;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  ul {
+    @include core-16;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li {
+    margin-bottom: 0.75em;
+    padding-left: 0;
+
+    &.related-topic {
+      list-style: none outside none;
+
+      a {
+        display: inline;
+        font-weight: bold;
+      }
+    }
+
+    a {
+      background-position: 0 -287px;
+      background-repeat: no-repeat;
+      display: block;
+      line-height:1.25em;
+      orphans: 2;
+
+      &:hover {
+        background-position: 0 10px;
+      }
+
+      @include ie-lte(8) {
+        height: 1%;
+      }
+    }
+
+    a[href*="#"] {
+      /* grey out stub links */
+      background: none;
+      color: #888;
+      cursor: default;
+      text-decoration: none;
+    }
+
+    a.view-all {
+      margin: 10px 0 10px;
+    }
+
+    a[rel="external"]:after {
+      content: "\A0\A0\A0\A0\A0\A0";
+      background-position: 5px 0px;
+    }
+
+    a[rel="external"]:hover:after {
+      background-position: 5px -388px;
+    }
+
+  }
+
+  .return-to-top {
+    @include core-16;
+    margin-bottom: 0.5em;
+    position: absolute;
+    left: -9999em;
+
+    @include media(mobile) {
+      position: static;
+      margin: 0.25em 0 0;
+      padding: 0.75em 0;
+    }
+  }
+}
+
+.related.sections-list li a {
+  padding: 0.1em 0em;
+}
+
+#legacy-sources {
+  margin-top: 1em;
+  display: none;
+
+  @include media(tablet) {
+    margin: 1em 2em 0em;
+  }
+
+  @include media(mobile) {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  p {
+    font-size: 1em;
+    margin-bottom: 0;
+    padding: 0;
+    color: black;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+  }
+
+  li {
+    text-indent: -5000px;
+    float: left;
+    background-repeat: no-repeat;
+    display: none;
+  }
+}
+
+.businesslink #legacy-sources,
+.directgov #legacy-sources {
+  display: block;
+}
+
+.businesslink #legacy-sources li.businesslink {
+  background-image: image-url("businesslink-logo.png");
+  width: 84px;
+  height: 33px;
+  margin-top: 0.5em;
+  display: block;
+
+  @include device-pixel-ratio() {
+    background-image: image-url("businesslink-logo-2x.png");
+    background-size: 84px 33px;
+  }
+}
+
+.directgov #legacy-sources li.directgov {
+  background-image: image-url("directgov-logo.png");
+  width: 74px;
+  height: 14px;
+  margin-right: 1em;
+  margin-top: 1.2em;
+  display: block;
+
+  @include device-pixel-ratio() {
+    background-image: image-url("directgov-logo-2x.png");
+    background-size: 74px 14px;
+  }
+}
+
+article {
+  padding-bottom: 2em;
+
+  .toggle {
+    float: none;
+  }
+}

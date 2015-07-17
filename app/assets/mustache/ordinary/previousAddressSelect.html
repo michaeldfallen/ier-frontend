@@ -1,0 +1,77 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+    <p>
+        <span class="postcode-prefix">{{messages.ordinary_previousAddress_select_postcode_label}}</span>
+        <span class="visuallyhidden">:</span>
+        <span class="postcode">{{postcode.value}}</span>
+        <a href="{{lookupUrl}}" class="change-postcode-button">
+            {{{messages.ordinary_previousAddress_select_postcodeChange}}}
+        </a>
+    </p>
+    {{^hasAddresses}}
+    <div class="validation-message visible">
+        {{messages.ordinary_address_select_couldNotFindAnyAddresses_p}}
+    </div>
+       {{#hasAuthority}}
+    <p>
+        <a href="{{manualUrl}}" class="button">
+            {{messages.ordinary_address_select_enterManually}}
+        </a>
+    </p>
+       {{/hasAuthority}}
+    {{/hasAddresses}}
+    {{#hasAddresses}}
+    <fieldset>
+        <input
+          type="hidden"
+          id="{{postcode.id}}"
+          name="{{postcode.name}}"
+          value="{{postcode.value}}"
+          class="text hidden">
+
+        <label for="{{address.id}}">
+            {{{messages.ordinary_previousAddress_select_selectAddress}}}
+        </label>
+        <div class="validation-wrapper {{address.classes}}">
+            <select
+              id="{{address.id}}"
+              name="{{address.name}}"
+              class="lonely validate {{address.classes}}"
+              data-validation-name="addressSelect"
+              data-validation-type="field"
+              data-validation-rules="nonEmpty">
+              {{#address.optionList}}
+                <option value="{{value}}" {{{selected}}}>{{text}}</option>
+              {{/address.optionList}}
+            </select>
+        </div>
+    </fieldset>
+    <a href="{{manualUrl}}" class="toggle">
+        {{messages.ordinary_previousAddress_select_cannotFindAddress}}
+    </a>
+
+    <button
+        type="submit"
+        id="continue"
+        class="button next validation-submit"
+        data-validation-sources="addressSelect"
+    >
+        {{messages.step_continue}}
+    </button>
+  {{/hasAddresses}}
+    <input
+      type="hidden"
+      id="{{possibleJsonList.id}}"
+      name="{{possibleJsonList.name}}"
+      value='{"addresses":[]}'
+      autocomplete="off"
+      class="text hidden">
+    <input
+      type="hidden"
+      id="{{possiblePostcode.id}}"
+      name="{{possiblePostcode.name}}"
+      value="{{possiblePostcode.value}}"
+      autocomplete="off"
+      class="text hidden">
+</form>

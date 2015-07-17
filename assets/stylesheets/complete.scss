@@ -1,0 +1,130 @@
+/* Styles for start page on GOV.UK */
+
+@import "toolkit";
+
+.complete {
+  article {
+    min-height: 300px;
+    padding-bottom: 2em;
+  }
+
+  header {
+    position: relative;
+    color: $white;
+    max-width: 640px;
+    background: rgb(40, 161, 151) !important;
+    margin: 0 2em;
+    margin: 1em 0 2em;
+    padding: 1em;
+
+    @include media(tablet) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    h1,
+    h3,
+    p {
+      text-align: center;
+    }
+
+    h1,
+    h3 {
+      margin: 0 auto 0.5em;
+      padding-left: 24px;
+      background-size: 20px;
+
+      @include media(tablet) {
+        padding-left: 32px;
+        background-size: initial;
+      }
+    }
+
+    h1 {
+      @include bold-36;
+    }
+    h3 {
+      @include bold-27;
+      background: url('/assets/images/icon-tick.png') left center no-repeat;
+    }
+
+    p {
+      @include bold-19;
+      color: $white;
+      padding: 0;
+
+      span {
+        @include bold-36;
+        display: block;
+        margin: 0 0 10px 0;
+
+        @include media(mobile) {
+          font-size: 36px;
+        }
+      }
+    }
+  }
+  header.bunting{
+    padding-top: 5em;
+    @include media($max-width: 550px) {
+      padding-top: 4em;
+    }
+    @include media($max-width: 450px) {
+      padding-top: 3em;
+    }
+  }
+  p.intro{
+    border-bottom: 1px solid $grey-2;
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  div.footnote {
+    border-top: 1px solid $grey-2;
+    padding-top: 1.5em;
+    margin-top: 1.5em;
+
+    h3 {
+      margin: 0 0 1em;
+    }
+  }
+  .email {
+    padding-left: 34px;
+    background: url('/assets/images/icon-email.png') 0px 3px no-repeat;
+
+    @include device-pixel-ratio() {
+      background-size: 21px 16px;
+      background-image: url('/assets/images/icon-email-2x.png');
+    }
+  }
+  .sharing-links {
+    margin: 0 0 1em;
+    padding-left: 0;
+
+    li {
+      display: block;
+      padding-left: 0;
+      margin: 0 1em 1em 0;
+      list-style: none;
+
+      @include media ($min-width: 500px) {
+        display: inline;
+        margin-bottom: 0;
+      }
+
+      a,
+      img {
+        vertical-align: middle;
+      }
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+  .bunting-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+  }
+}

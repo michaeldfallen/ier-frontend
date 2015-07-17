@@ -1,0 +1,34 @@
+<form action="{{question.postUrl}}" method="POST" >
+    {{> shared/questionHeader }}
+
+    {{> shared/validationMessages }}
+
+    <fieldset class="validate {{dateLeftUkFieldSet.classes}}">
+
+        <div class="validation-wrapper {{dateLeftUkMonth.classes}}">
+
+            <label for="{{dateLeftUkMonth.id}}" class="visuallyhidden">The month you left</label>
+            <select id="{{dateLeftUkMonth.id}}" name="{{dateLeftUkMonth.name}}"
+                    class="{{dateLeftUkMonth.classes}} validate" data-validation-name="dateLeftUkMonth"
+                    data-validation-type="field" data-validation-rules="nonEmpty">
+
+                {{#dateLeftUkMonth.optionList}}
+                    <option value="{{value}}" {{selected}}>{{text}}</option>
+                {{/dateLeftUkMonth.optionList}}
+            </select>
+
+            <label for="{{dateLeftUkYear.id}}" class="visuallyhidden">The year you left</label>
+            <input type="number" id="{{dateLeftUkYear.id}}" name="{{dateLeftUkYear.name}}"
+                   value="{{dateLeftUkYear.value}}" autocomplete="off"
+                   class="text  year text validate {{dateLeftUkYear.classes}}"
+                   data-validation-name="dateLeftUkYear" data-validation-type="field"
+                   data-validation-rules="nonEmpty">
+        </div>
+
+    </fieldset>
+
+
+    <button id="continue" type="submit" class="button next validation-submit" data-validation-sources="">
+        Continue
+    </button>
+</form>

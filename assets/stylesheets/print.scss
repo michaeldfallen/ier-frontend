@@ -1,0 +1,258 @@
+/* Global print stylesheet */
+$is-print: true;
+
+@import "../../app/assets/govuk_frontend_toolkit/stylesheets/_typography";
+@import "../../app/assets/govuk_frontend_toolkit/stylesheets/_colours";
+@import "../../app/assets/govuk_frontend_toolkit/stylesheets/design-patterns/_buttons";
+
+main > header {
+  position: relative;
+
+  h1 {
+    @include core-24;
+    border-bottom: solid 1pt black;
+    padding-bottom: 6pt;
+    width: 80%;
+
+    &:after {
+      content: " from GOV.UK";
+    }
+  }
+}
+
+article,
+form {
+  margin-bottom: 1cm;
+  width: 80%;
+
+  h2,
+  h3,
+  h4,
+  p,
+  ul {
+      orphans: 3;
+      widows: 3;
+  }
+
+  h2,
+  h3,
+  h4 {
+      page-break-after: avoid;
+  }
+
+  header h1 {
+    @include bold-19;
+    border-bottom: 1pt solid rgb(127,127,127);
+    padding-top: 7pt;
+    padding-bottom: 7pt;
+  }
+
+  h2 {
+    @include bold-19;
+    padding-top: 7pt;
+  }
+
+  h3 {
+    @include bold-16;
+  }
+
+  h4 {
+    @include bold-14;
+  }
+
+  p {
+    @include core-14;
+    margin-bottom: 1.5em;
+  }
+
+  ul,
+  ol {
+    @include core-14;
+    padding-left: 13pt;
+    list-style-image: none;
+    list-style-type: disc;
+  }
+
+  li {
+    line-height: 1.5em;
+  }
+
+  form,
+  fieldset {
+    @extend %contain-floats;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  input[type="text"],
+  textarea {
+    display: block;
+    border: solid 1pt $black;
+    padding: 4pt;
+    margin-bottom: 10pt;
+  }
+
+  textarea {
+    min-height: 60pt;
+    overflow: visible;
+  }
+
+  label {
+    display: block;
+  }
+
+  input.small {
+    width: 32pt;
+  }
+
+  input.year {
+    display: inline-block;
+  }
+
+  textarea.small {
+    width: 220pt;
+    overflow: hidden;
+  }
+
+  .next {
+    margin: 2em 0;
+  }
+
+  /* block-level form controls that require contained width */
+  .selectable {
+    display: block;
+  }
+
+  /* block-level form controls */
+  .selectable {
+    margin-bottom: 1em;
+  }
+
+  .selectable {
+    padding: 2.5pt 10pt 2.5pt 18pt;
+    position: relative;
+
+    input {
+      position: absolute;
+      left: 0pt;
+      top: 4.5pt;
+      margin: 0;
+    }
+  }
+
+  .help-content,
+  .optional-section {
+    margin-bottom: 2em;
+
+    h2.visuallyhidden,
+    h3.visuallyhidden,
+    h4.visuallyhidden {
+      position: static;
+      display: block !important;
+    }
+  }
+
+  input[type="text"].invalid {
+    border: 4pt solid $grey-1;
+  }
+
+  .validation-message {
+    padding: 0.5em;
+    margin: 1em 0 1em 0;
+    border-left: 4pt solid $grey-2;
+    font-weight: bold;
+    color: $grey-2;
+  }
+}
+
+.confirmation {
+  h3,
+  .data-wrap {
+    @include inline-block;
+  }
+
+  h3 {
+    width: 40%;
+  }
+
+  .data-wrap {
+    width: 59%;
+
+    div,
+    p {
+      width: auto;
+      padding-left: 10pt;
+    }
+  }
+
+  h3,
+  .data-wrap div,
+  .data-wrap p {
+    margin-bottom: 1em;
+  }
+
+  .warning {
+    margin-top: 1em;
+    border-top: 1pt solid $black;
+    padding-top: 1em;
+    font-weight: 600;
+    width: 59%;
+  }
+}
+
+.complete {
+  header {
+    border: solid 1pt $black;
+    max-width: 640px;
+    margin: 0 2em;
+    margin: 1em 0 2em;
+    padding: 1em;
+
+    @include media(tablet) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    h1,
+    p {
+      text-align: center;
+    }
+
+    h1 {
+      @include bold-36;
+      margin: 0 auto 0.5em;
+      width: 10.5em;
+    }
+
+    p {
+      @include bold-19;
+      padding: 0;
+
+      span {
+        @include bold-36;
+        display: block;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+  p.footnote {
+    border-top: 1px solid $grey-2;
+    padding-top: 2em;
+  }
+}
+
+#skiplink-container,
+.skip-to-related,
+#global-header,
+#global-cookie-message,
+.back-to-previous,
+.button,
+.toggle,
+.remove-field,
+.duplicate-control,
+.change {
+  display: none !important;
+}

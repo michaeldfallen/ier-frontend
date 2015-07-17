@@ -1,0 +1,126 @@
+<form action="{{question.postUrl}}" method="POST" >
+
+  {{> shared/questionHeader }}
+  {{> shared/validationMessages }}
+
+    <fieldset class="validate"
+      data-validation-name="citizenDetails"
+      data-validation-type="association"
+      data-validation-rules="allValid"
+      data-validation-members="citizenDateMulti howBecameCitizen birthplace">
+        <input
+          type="hidden"
+          id="{{hasPassport.id}}"
+          name="{{hasPassport.name}}"
+          value="{{hasPassport.value}}">
+
+        <input
+          type="hidden"
+          id="{{bornInUk.id}}"
+          name="{{bornInUk.name}}"
+          value="{{bornInUk.value}}">
+
+            <fieldset
+              id="{{citizenDate.id}}"
+              class="validate inline-fields {{citizenDate.classes}}"
+              data-validation-name="citizenDateMulti"
+              data-validation-type="fieldset"
+              data-validation-rules="allNonEmpty"
+              data-validation-children="citizenDateDay citizenDateMonth citizenDateYear">
+                <legend class="label">
+                    Date you became a British citizen
+                </legend>
+                <span class="field-wrapper day">
+                    <label for="{{citizenDateDay.id}}" class="">Day</label>
+                    <input
+                      type="number"
+                      id="{{citizenDateDay.id}}"
+                      name="{{citizenDateDay.name}}"
+                      value="{{citizenDateDay.value}}"
+                      autocomplete="off"
+                      class="text day validate {{citizenDateDay.classes}}"
+                      data-validation-name="citizenDateDay"
+                      data-validation-type="field"
+                      data-validation-rules="nonEmpty">
+                </span>
+
+                <span class="field-wrapper month">
+                    <label for="{{citizenDateMonth.id}}" class="">Month</label>
+                    <input
+                      type="number"
+                      id="{{citizenDateMonth.id}}"
+                      name="{{citizenDateMonth.name}}"
+                      value="{{citizenDateMonth.value}}"
+                      autocomplete="off"
+                      class="text month validate {{citizenDateMonth.classes}}"
+                      data-validation-name="citizenDateMonth"
+                      data-validation-type="field"
+                      data-validation-rules="nonEmpty">
+                </span>
+
+                <span class="field-wrapper year">
+                    <label for="{{citizenDateYear.id}}" class="">Year</label>
+                    <input
+                      type="number"
+                      id="{{citizenDateYear.id}}"
+                      name="{{citizenDateYear.name}}"
+                      value="{{citizenDateYear.value}}"
+                      autocomplete="off"
+                      class="text year validate {{citizenDateYear.classes}}"
+                      data-validation-name="citizenDateYear"
+                      data-validation-type="field"
+                      data-validation-rules="nonEmpty">
+                </span>
+
+                <p class="example">
+                    For example: <span class="date">31 12 1970</span>
+                </p>
+            </fieldset>
+
+            <label for="{{howBecameCitizen.id}}" class="sub-section">
+                How did you become a British Citizen?
+            </label>
+            <div class="validation-wrapper {{howBecameCitizen.classes}}">
+                <input
+                  type="text"
+                  id="{{howBecameCitizen.id}}"
+                  name="{{howBecameCitizen.name}}"
+                  value="{{howBecameCitizen.value}}"
+                  autocomplete="off"
+                  class="text long validate {{howBecameCitizen.classes}}"
+                  data-validation-name="howBecameCitizen"
+                  data-validation-type="field"
+                  data-validation-rules="nonEmpty">
+            </div>
+            <p class="example">
+                For example: Naturalisation, adoption, born in the UK to British parents
+            </p>
+
+            <label for="{{birthplace.id}}" class="sub-section">
+                Town or city and country of birth
+            </label>
+            <div class="validation-wrapper {{birthplace.classes}}">
+                <input
+                    type="text"
+                    id="{{birthplace.id}}"
+                    name="{{birthplace.name}}"
+                    value="{{birthplace.value}}"
+                    autocomplete="off"
+                    class="text long validate {{birthplace.classes}}"
+                    data-validation-name="birthplace"
+                    data-validation-type="field"
+                    data-validation-rules="nonEmpty">
+            </div>
+
+
+    </fieldset>
+
+    <button
+      id="continue"
+      type="submit"
+      class="button next validation-submit"
+      data-validation-sources="citizenDetails">
+        Continue
+    </button>
+
+</form>

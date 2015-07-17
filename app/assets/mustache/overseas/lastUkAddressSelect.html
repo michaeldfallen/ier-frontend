@@ -1,0 +1,73 @@
+<form action="{{question.postUrl}}" method="POST">
+    {{> shared/questionHeader }}
+    {{> shared/validationMessages }}
+    <p>
+        <span class="postcode-prefix">Postcode</span>
+        <span class="visuallyhidden">:</span>
+        <span class="postcode">{{postcode.value}}</span>
+        <a href="{{lookupUrl}}" class="change-postcode-button">
+            Change<span class="visuallyhidden"> your postcode</span>
+        </a>
+    </p>
+  {{^hasAddresses}}
+    <div class="validation-message visible">
+        Sorry - we couldn't find any addresses for that postcode
+    </div>
+    {{#hasAuthority}}
+    <p>
+        <a href="{{manualUrl}}" class="button">
+            Enter your address manually
+        </a>
+    </p>
+    {{/hasAuthority}}
+  {{/hasAddresses}}
+  {{#hasAddresses}}
+    <fieldset>
+        <input
+          type="hidden"
+          id="{{postcode.id}}"
+          name="{{postcode.name}}"
+          value="{{postcode.value}}"
+          class="text hidden">
+
+        <label for="{{address.id}}">
+            <span class="visuallyhidden">Select your </span>Address
+        </label>
+        <div class="validation-wrapper {{address.classes}}">
+            <select
+              id="{{address.id}}"
+              name="{{address.name}}"
+              class="lonely validate {{address.classes}}">
+              {{#address.optionList}}
+                <option value="{{value}}" {{{selected}}}>{{text}}</option>
+              {{/address.optionList}}
+            </select>
+        </div>
+    </fieldset>
+    <a href="{{manualUrl}}" class="toggle">
+        I can't find my address in the list<span class="visuallyhidden"> section</span>
+    </a>
+
+    <button
+      type="submit"
+      id="continue"
+      class="button next"
+      style="display: block;">
+        Continue
+    </button>
+  {{/hasAddresses}}
+    <input
+      type="hidden"
+      id="{{possibleJsonList.id}}"
+      name="{{possibleJsonList.name}}"
+      value='{"addresses":[]}'
+      autocomplete="off"
+      class="text hidden">
+    <input
+      type="hidden"
+      id="{{possiblePostcode.id}}"
+      name="{{possiblePostcode.name}}"
+      value="{{possiblePostcode.value}}"
+      autocomplete="off"
+      class="text  hidden">
+</form>
